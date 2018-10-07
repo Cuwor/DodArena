@@ -44,8 +44,8 @@ ModelImporter:
     2100000: 01 - Default
     2100002: 'Material #58'
     4300000: SLame
-    7400000: Take 001
-    7400002: Walk
+    7400000: SlameOnBone
+    7400002: SlimeWalk
     9500000: //RootNode
     13700000: SLame
   externalObjects: {}
@@ -77,10 +77,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Take 001
-      takeName: Take 001
+      name: SlameOnBone
+      takeName: SlameOnBone
       firstFrame: 0
-      lastFrame: 580
+      lastFrame: 570
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -105,16 +105,16 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Walk
-      takeName: Take 001
-      firstFrame: 0
-      lastFrame: 30
+      name: SlimeWalk
+      takeName: SlameOnBone
+      firstFrame: 15
+      lastFrame: 45
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
-      hasAdditiveReferencePose: 0
+      hasAdditiveReferencePose: 1
       loopTime: 1
       loopBlend: 1
       loopBlendOrientation: 0
@@ -135,7 +135,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.05
+    globalScale: 0.04
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
@@ -155,7 +155,7 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 0
-    previousCalculatedGlobalScale: 0.05
+    previousCalculatedGlobalScale: 0.04
     hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
@@ -175,8 +175,8 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    rootMotionBoneName: Bone073
-    rootMotionBoneRotation: {x: -0.48044363, y: 0.51881975, z: -0.48044363, w: 0.51881975}
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
