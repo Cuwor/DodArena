@@ -54,7 +54,7 @@ ModelImporter:
     7400014: SlimeAttack1
     7400016: SlimeAttack2
     7400018: SlimeDamege1
-    7400020: SlimeDamage2
+    7400020: SlimeDamege2
     7400022: SlimeStay
     7400024: SlimeDead
     7400026: SlimeSpec
@@ -183,7 +183,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 1
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -231,7 +231,7 @@ ModelImporter:
     - serializedVersion: 16
       name: SlimeDefault1
       takeName: SlameOnBone
-      firstFrame: 150
+      firstFrame: 155
       lastFrame: 240
       wrapMode: 0
       orientationOffsetY: 0
@@ -239,7 +239,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 1
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -267,7 +267,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 1
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -369,7 +369,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 105
     - serializedVersion: 16
-      name: SlimeDamage2
+      name: SlimeDamege2
       takeName: SlameOnBone
       firstFrame: 430
       lastFrame: 450
