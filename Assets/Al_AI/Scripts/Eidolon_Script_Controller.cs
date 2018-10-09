@@ -13,10 +13,12 @@ public class Eidolon_Script_Controller : MonoBehaviour {
 	public float RadiusAttack=2;
 	[Range(90,100)]
 	public float HP =95;
+	private Animator _anim;
 	// Use this for initialization
 	void Start () {
 		NavAgent = GetComponent<NavMeshAgent>();
 		Player = GameObject.FindWithTag("Player");
+		_anim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -24,10 +26,13 @@ public class Eidolon_Script_Controller : MonoBehaviour {
 		
 		if (HP <= 0)
 		{
+			_anim.SetTrigger("Dead");
 			StartCoroutine(Destroeded());
+			
+
 		}
 		DistanceTP = Vector3.Distance(Player.transform.position, transform.position);
-		Debug.Log(DistanceTP);
+		//Debug.Log(DistanceTP);
 		if (DistanceTP > RadiusAttack)
 		{
 			NavAgent.enabled = true;

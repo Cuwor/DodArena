@@ -8,7 +8,7 @@ AnimatorController:
   m_Name: Slime
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: Damege
+  - m_Name: Damage
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -231,10 +231,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: Damege
+    m_ConditionEvent: Damage
     m_EventTreshold: 41
   - m_ConditionMode: 3
-    m_ConditionEvent: Damege
+    m_ConditionEvent: Damage
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: GetDamage
@@ -354,7 +354,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 3
-    m_ConditionEvent: Damege
+    m_ConditionEvent: Damage
     m_EventTreshold: 40
   - m_ConditionMode: 1
     m_ConditionEvent: GetDamage

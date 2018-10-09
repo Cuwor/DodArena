@@ -5,7 +5,8 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-public class Slice_Script_Controller : MonoBehaviour {
+
+public class Slice_Script_Controller : MyTools, IAlive {
 	[Tooltip("Здесь объект")]
 	[Header("Здесь объект")]
 	public GameObject Player;
@@ -17,14 +18,38 @@ public class Slice_Script_Controller : MonoBehaviour {
 	[Range(90,100)]
 	public float HP =95;
 
+	public bool saled = true;
+
+	private int qtyEidolons = 4;
+	private Animator _anim;
 	public bool key = true;
 
+	public float Health
+	{
+		get
+		{
+			return HP;
+		}
+
+		set
+		{
+			if(value <= 0)
+			{
+				Death();
+
+				HP = 0;
+			}
+			HP = value;
+		}
+	}
+	
 	public GameObject[] Eidolons;
 
 	// Use this for initialization
 	void Start ()
 	{
 		NavAgent = GetComponent<NavMeshAgent>();
+		_anim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -32,12 +57,11 @@ public class Slice_Script_Controller : MonoBehaviour {
 	{
 		if (HP <= 0 && key)
 		{
-			StartCoroutine(CreateEidolons());
-			StartCoroutine(Destroeded());
-			key = false;
+			Death();
 		}
+		
 		DistanceTP = Vector3.Distance(Player.transform.position, transform.position);
-		Debug.Log(DistanceTP);
+//		Debug.Log(DistanceTP);
 		if (DistanceTP > RadiusAttack)
 		{
 			NavAgent.enabled = true;
@@ -46,7 +70,7 @@ public class Slice_Script_Controller : MonoBehaviour {
 		else if (DistanceTP<=RadiusAttack)
 		{
 			NavAgent.enabled = false;
-			HP -= 100;
+			//HP -= 100;
 		}
 
 	}
@@ -54,16 +78,49 @@ public class Slice_Script_Controller : MonoBehaviour {
 	IEnumerator CreateEidolons()
 	{
 		yield return new WaitForSeconds(1f);
-		Instantiate(Eidolons[0], transform.position, Quaternion.identity);
-		Instantiate(Eidolons[0], transform.position, Quaternion.identity);
-		Instantiate(Eidolons[0], transform.position, Quaternion.identity);
-		Instantiate(Eidolons[0], transform.position, Quaternion.identity);
-
+		GameObject eidolon;
+		for (int i = 0; i < qtyEidolons; i++)
+		{
+			eidolon = Instantiate(Eidolons[0], transform.position, Quaternion.identity);
+			eidolon.GetComponent<Slice_Script_Controller>().Player = Player;
+		}
 	}
 	IEnumerator Destroeded()
 	{
 		yield return new WaitForSeconds(2);
 		Destroy(this.gameObject);
+	}
+
+	
+	public void GetDamage(float value)
+	{
+		Health -= value;
+		_anim.SetInteger("Damage", (int)value);
+		_anim.SetTrigger("GetDamage");
+		Debug.Log(Health);
+	}
+
+	public void PlusHealth(float value)
+	{
+		
+	}
+
+	public void Death()
+	{
+		_anim.SetTrigger("Dead");
+		if(saled)
+			StartCoroutine(CreateEidolons());
+		StartCoroutine(Destroeded());
+		key = false;
+	}
+	
+	private void OnTriggerEnter(Collider other)
+	{
+		Projectile proj;
+		if(MyGetComponent(out proj, other.gameObject))
+		{
+			GetDamage(proj.damage);
+		}
 	}
 }
 

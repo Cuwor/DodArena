@@ -8,10 +8,10 @@ public class Projectile : MonoBehaviour {
 
     private void Update()
     {
-        if(damage - 0.05f > 0)
-        {
-            damage -= 3f;
-        }
+//        if(damage - 0.0005f*Time.deltaTime > 0)
+//        {
+//            damage -= 0.0005f*Time.deltaTime;
+//        }
     }
 
     private void Start()
