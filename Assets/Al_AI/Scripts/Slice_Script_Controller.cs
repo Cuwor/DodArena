@@ -15,14 +15,16 @@ public class Slice_Script_Controller : MyTools, IAlive {
 	public float DistanceTP;
 	[Range(1,10)]
 	public float RadiusAttack;
-	[Range(90,100)]
-	public float HP =95;
+	[Range(0,100)]
+	public float HP;
+    public bool saled;
+    public bool key;
 
-	public bool saled = true;
 
+
+    private Animator _anim;
 	private int qtyEidolons = 4;
-	private Animator _anim;
-	public bool key = true;
+    private float maxHP;
 
 	public float Health
 	{
@@ -43,34 +45,29 @@ public class Slice_Script_Controller : MyTools, IAlive {
 		}
 	}
 	
-	public GameObject[] Eidolons;
+	public GameObject Eidolon;
 
 	// Use this for initialization
 	void Start ()
 	{
 		NavAgent = GetComponent<NavMeshAgent>();
 		_anim = GetComponent<Animator>();
+        key = saled = true;
+        maxHP = Health;
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		if (HP <= 0 && key)
-		{
-			Death();
-		}
-		
 		DistanceTP = Vector3.Distance(Player.transform.position, transform.position);
-//		Debug.Log(DistanceTP);
 		if (DistanceTP > RadiusAttack)
 		{
 			NavAgent.enabled = true;
 			NavAgent.destination = Player.transform.position;
 		}
-		else if (DistanceTP<=RadiusAttack)
+		else if (DistanceTP <= RadiusAttack)
 		{
 			NavAgent.enabled = false;
-			//HP -= 100;
 		}
 
 	}
@@ -81,14 +78,19 @@ public class Slice_Script_Controller : MyTools, IAlive {
 		GameObject eidolon;
 		for (int i = 0; i < qtyEidolons; i++)
 		{
-			eidolon = Instantiate(Eidolons[0], transform.position, Quaternion.identity);
-			eidolon.GetComponent<Slice_Script_Controller>().Player = Player;
-		}
+			eidolon = Instantiate(Eidolon, GetRandomPositionForEidolons(), Quaternion.identity);
+            Slice_Script_Controller SSC;
+            if(MyGetComponent(out SSC, eidolon))
+            {
+                SSC.Player = Player;
+                SSC.Health = maxHP / 2;
+            }
+        }
 	}
 	IEnumerator Destroeded()
 	{
 		yield return new WaitForSeconds(2);
-		Destroy(this.gameObject);
+		Destroy(gameObject);
 	}
 
 	
@@ -113,8 +115,17 @@ public class Slice_Script_Controller : MyTools, IAlive {
 		StartCoroutine(Destroeded());
 		key = false;
 	}
-	
-	private void OnTriggerEnter(Collider other)
+
+    private Vector3 GetRandomPositionForEidolons()
+    {
+        float x, z;
+        x = UnityEngine.Random.Range(-2, 3);
+        z = UnityEngine.Random.Range(-2, 3);
+
+        return transform.position + new Vector3(x, 0, z);
+    }
+
+    private void OnTriggerEnter(Collider other)
 	{
 		Projectile proj;
 		if(MyGetComponent(out proj, other.gameObject))
