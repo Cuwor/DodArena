@@ -33,7 +33,24 @@ public class RecoilRotation
 
 public class PlayerController : MyTools, IAlive {
 
-    public float Health { get; set; }
+    public float Health
+    {
+        get
+        {
+            return health;
+        }
+
+        set
+        {
+            if (value <= 0)
+            {
+                Death();
+
+                health = 0;
+            }
+            health = value;
+        }
+    }
 
     [Tooltip("Подвижная часть тела (следует за камерой)")]
     public GameObject body;
@@ -61,6 +78,8 @@ public class PlayerController : MyTools, IAlive {
     [Header("Части интерфейса")]
     [Tooltip("Количество патронов")]
     public Text ammunitionCount;
+    [Tooltip("Слайдер для здоровья")]
+    public Slider helath;
 
     [HideInInspector]
     public bool inDialog;
@@ -75,8 +94,10 @@ public class PlayerController : MyTools, IAlive {
     private float rotationX, rotationY;
     private float movementMultiplicator;
     private float vertSpeed;
+    private float health;
     private bool recoil;
     private bool reload;
+
 
     void Start () {
         Cursor.lockState = CursorLockMode.Locked;
@@ -88,6 +109,7 @@ public class PlayerController : MyTools, IAlive {
         ammunitionCount.text = "2/0";
         view = new RecoilRotation();
         GetComponent<PlayerUI>().pc = this;
+        Health = 100;
     }
 
     private void Update(){
@@ -250,12 +272,14 @@ public class PlayerController : MyTools, IAlive {
     private void OnTriggerEnter(Collider other)
     {
         Ammunition amun;
-        if (MyGetComponent<Ammunition>(out amun, other.gameObject))
+        if (MyGetComponent(out amun, other.gameObject))
         {
             weapon.ammo += amun.count;
             Destroy(other.gameObject);
             DrawAmmo();
         }
+
+
     }
 
     #endregion

@@ -26,13 +26,13 @@ public class SlimeContrller : MyTools, IAlive {
 
         set
         {
-            if(health - value < 0)
+            if(value < 0)
             {
                 Death();
 
                 health = 0;
             }
-            health -= value;
+            health = value;
         }
     }
 

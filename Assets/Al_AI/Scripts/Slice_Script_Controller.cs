@@ -7,7 +7,8 @@ using UnityEngine.AI;
 
 
 public class Slice_Script_Controller : MyTools, IAlive {
-	[Tooltip("Здесь объект")]
+
+    [Tooltip("Здесь объект")]
 	[Header("Здесь объект")]
 	public GameObject Player;
 	[Space(20)]
@@ -17,13 +18,17 @@ public class Slice_Script_Controller : MyTools, IAlive {
 	public float RadiusAttack;
 	[Range(0,100)]
 	public float HP;
+    [Range(0,50)]
+    public float AttackForce;
+    public GameObject Eidolon;
     public bool saled;
     public bool key;
 
-
+    public GameObject[] AttackAreas;
 
     private Animator _anim;
 	private int qtyEidolons = 4;
+    private int attackType;
     private float maxHP;
 
 	public float Health
@@ -45,7 +50,7 @@ public class Slice_Script_Controller : MyTools, IAlive {
 		}
 	}
 	
-	public GameObject Eidolon;
+	
 
 	// Use this for initialization
 	void Start ()
@@ -54,6 +59,15 @@ public class Slice_Script_Controller : MyTools, IAlive {
 		_anim = GetComponent<Animator>();
         key = true;
         maxHP = Health;
+
+        for (int i = 0; i < AttackAreas.Length; i++)
+        {
+            AttackArea proj;
+            if (MyGetComponent(out proj, AttackAreas[i]))
+            {
+                proj.Damage = AttackForce;
+            }
+        }
 	}
 	
 	// Update is called once per frame
@@ -64,10 +78,16 @@ public class Slice_Script_Controller : MyTools, IAlive {
 		{
 			NavAgent.enabled = true;
 			NavAgent.destination = Player.transform.position;
-		}
-		else if (DistanceTP <= RadiusAttack)
+            _anim.SetInteger("Attack", 0);
+            _anim.SetFloat("Xstate", 0);
+            _anim.SetFloat("Ystate", 1);
+        }
+        else if (DistanceTP <= RadiusAttack)
 		{
 			NavAgent.enabled = false;
+            attackType = UnityEngine.Random.Range(1, 3);
+            _anim.SetInteger("Attack", attackType);
+            Invoke("Attack", 1f);
 		}
 
 	}
@@ -84,6 +104,7 @@ public class Slice_Script_Controller : MyTools, IAlive {
             {
                 SSC.Player = Player;
                 SSC.Health = maxHP / 2;
+                SSC.AttackForce = AttackForce / 2;
             }
         }
 	}
@@ -133,5 +154,19 @@ public class Slice_Script_Controller : MyTools, IAlive {
 			GetDamage(proj.damage);
 		}
 	}
+
+    private void Attack()
+    {
+        AttackAreas[attackType-1].SetActive(true);
+        Invoke("StopAttack", 1f);
+    }
+
+    private void StopAttack()
+    {
+        foreach(var element in AttackAreas)
+        {
+            element.SetActive(false);
+        }
+    }
 }
 
