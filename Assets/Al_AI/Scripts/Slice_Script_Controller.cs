@@ -52,7 +52,7 @@ public class Slice_Script_Controller : MyTools, IAlive {
 	{
 		NavAgent = GetComponent<NavMeshAgent>();
 		_anim = GetComponent<Animator>();
-        key = saled = true;
+        key = true;
         maxHP = Health;
 	}
 	
