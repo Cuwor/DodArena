@@ -30,6 +30,7 @@ public class Slice_Script_Controller : MyTools, IAlive {
 	private int qtyEidolons = 4;
     private int attackType;
     private float maxHP;
+    private bool alive;
 
 	public float Health
 	{
@@ -43,7 +44,7 @@ public class Slice_Script_Controller : MyTools, IAlive {
 			if(value <= 0)
 			{
 				Death();
-
+                alive = false;
 				HP = 0;
 			}
 			HP = value;
@@ -59,7 +60,7 @@ public class Slice_Script_Controller : MyTools, IAlive {
 		_anim = GetComponent<Animator>();
         key = true;
         maxHP = Health;
-
+        alive = true;
         for (int i = 0; i < AttackAreas.Length; i++)
         {
             AttackArea proj;
@@ -73,23 +74,24 @@ public class Slice_Script_Controller : MyTools, IAlive {
 	// Update is called once per frame
 	void Update ()
 	{
-		DistanceTP = Vector3.Distance(Player.transform.position, transform.position);
-		if (DistanceTP > RadiusAttack)
-		{
-			NavAgent.enabled = true;
-			NavAgent.destination = Player.transform.position;
-            _anim.SetInteger("Attack", 0);
-            _anim.SetFloat("Xstate", 0);
-            _anim.SetFloat("Ystate", 1);
+        if(alive)
+        {
+            DistanceTP = Vector3.Distance(Player.transform.position, transform.position);
+            if (DistanceTP > RadiusAttack)
+            {
+                NavAgent.enabled = true;
+                NavAgent.destination = Player.transform.position;
+                _anim.SetInteger("Attack", 0);
+                _anim.SetFloat("Xstate", 0);
+                _anim.SetFloat("Ystate", 1);
+            }
+            else if (DistanceTP <= RadiusAttack)
+            {
+                NavAgent.enabled = false;
+                attackType = UnityEngine.Random.Range(1, 3);
+                _anim.SetInteger("Attack", attackType);
+            }
         }
-        else if (DistanceTP <= RadiusAttack)
-		{
-			NavAgent.enabled = false;
-            attackType = UnityEngine.Random.Range(1, 3);
-            _anim.SetInteger("Attack", attackType);
-            Invoke("Attack", 1f);
-		}
-
 	}
 
 	IEnumerator CreateEidolons()
@@ -148,25 +150,14 @@ public class Slice_Script_Controller : MyTools, IAlive {
 
     private void OnTriggerEnter(Collider other)
 	{
-		Projectile proj;
-		if(MyGetComponent(out proj, other.gameObject))
-		{
-			GetDamage(proj.damage);
-		}
-	}
-
-    private void Attack()
-    {
-        AttackAreas[attackType-1].SetActive(true);
-        Invoke("StopAttack", 1f);
-    }
-
-    private void StopAttack()
-    {
-        foreach(var element in AttackAreas)
+        if(alive)
         {
-            element.SetActive(false);
+            Projectile proj;
+            if (MyGetComponent(out proj, other.gameObject))
+            {
+                GetDamage(proj.damage);
+            }
         }
-    }
+	}
 }
 

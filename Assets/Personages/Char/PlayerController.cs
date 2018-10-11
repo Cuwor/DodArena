@@ -7,8 +7,10 @@ public abstract class MyTools : MonoBehaviour
 {
     protected bool MyGetComponent<T>(out T component, GameObject obj)
     {
+        Debug.Log(obj.name);
         component = obj.GetComponent<T>();
-        if(component != null)
+        Debug.Log(component);
+        if (component != null)
         {
             return true;
         }
@@ -37,7 +39,7 @@ public class PlayerController : MyTools, IAlive {
     {
         get
         {
-            return health;
+            return helath.value;
         }
 
         set
@@ -46,9 +48,9 @@ public class PlayerController : MyTools, IAlive {
             {
                 Death();
 
-                health = 0;
+                helath.value = 0;
             }
-            health = value;
+            helath.value = value;
         }
     }
 
@@ -269,7 +271,19 @@ public class PlayerController : MyTools, IAlive {
 
     #region Реакции
 
-    private void OnTriggerEnter(Collider other)
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    Debug.Log("OnCollisionEnter");
+    //    AttackArea at;
+    //    if (MyGetComponent(out at, collision.gameObject))
+    //    {
+    //        Health -= at.Damage;
+    //        Debug.Log(at.Damage);
+    //    }
+    //    else Debug.Log("OnCollisionEnterNull");
+    //}
+
+    private void OnTriggerExit(Collider other)
     {
         Ammunition amun;
         if (MyGetComponent(out amun, other.gameObject))
@@ -279,6 +293,15 @@ public class PlayerController : MyTools, IAlive {
             DrawAmmo();
         }
 
+        Debug.Log("OnTriggerEnter");
+        AttackArea at;
+        
+        if (MyGetComponent(out at, other.gameObject))
+        {
+            Health -= at.Damage;
+            Debug.Log(at.Damage);
+        }
+        else Debug.Log("OnTriggerEnterNull");
 
     }
 
