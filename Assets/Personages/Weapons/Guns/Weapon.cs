@@ -20,7 +20,7 @@ public struct WeaponSound
     public AudioClip noAmmo;
 }
 
-public class Weapon : MyTools {
+public class Weapon : MonoBehaviour {
    
     
     [Tooltip("Снаряд")]

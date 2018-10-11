@@ -112,8 +112,8 @@ GameObject:
   - component: {fileID: 4024324695646080}
   - component: {fileID: 33210762710026990}
   - component: {fileID: 23617039797366406}
-  - component: {fileID: 64599086086443446}
   - component: {fileID: 114660597495796580}
+  - component: {fileID: 65130955166931680}
   m_Layer: 0
   m_Name: Attack2
   m_TagString: Untagged
@@ -236,8 +236,8 @@ GameObject:
   - component: {fileID: 4248374335038246}
   - component: {fileID: 33948595830147234}
   - component: {fileID: 23236225579470730}
-  - component: {fileID: 64794026866240706}
   - component: {fileID: 114431302347792596}
+  - component: {fileID: 65158054935918840}
   m_Layer: 0
   m_Name: Attack1
   m_TagString: Untagged
@@ -510,7 +510,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1765340675439584}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.4939365, y: -4.1168792e-17, z: 15.753407}
+  m_LocalPosition: {x: -11.21, y: -4.1168792e-17, z: 15.753407}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4985405456692570}
@@ -721,34 +721,30 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1546976608455954}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!64 &64599086086443446
-MeshCollider:
+--- !u!65 &65130955166931680
+BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1330774848365664}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!64 &64794026866240706
-MeshCollider:
+  serializedVersion: 2
+  m_Size: {x: 10, y: 2.220446e-16, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65158054935918840
+BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1546976608455954}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+  serializedVersion: 2
+  m_Size: {x: 10, y: 0.0000000046566133, z: 10.000001}
+  m_Center: {x: 0, y: -0.0000038146973, z: 0.0000009536743}
 --- !u!95 &95173457803077570
 Animator:
   serializedVersion: 3
@@ -783,7 +779,7 @@ MonoBehaviour:
   DistanceTP: 0
   RadiusAttack: 8.5
   HP: 100
-  AttackForce: 0
+  AttackForce: 8.3
   Eidolon: {fileID: 1693680021295912, guid: 5f16f36cae5aa4d46be9629c2af2ec91, type: 2}
   saled: 1
   key: 1

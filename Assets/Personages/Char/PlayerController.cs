@@ -7,9 +7,9 @@ public abstract class MyTools : MonoBehaviour
 {
     protected bool MyGetComponent<T>(out T component, GameObject obj)
     {
-        Debug.Log(obj.name);
+        //Debug.Log(obj.name);
         component = obj.GetComponent<T>();
-        Debug.Log(component);
+        //Debug.Log(component);
         if (component != null)
         {
             return true;
@@ -33,7 +33,8 @@ public class RecoilRotation
     public Vector2 oldRotation;
 }
 
-public class PlayerController : MyTools, IAlive {
+public class PlayerController : MyTools, IAlive
+{
 
     public float Health
     {
@@ -57,7 +58,7 @@ public class PlayerController : MyTools, IAlive {
     [Tooltip("Подвижная часть тела (следует за камерой)")]
     public GameObject body;
     [Space(10)]
-    [Range(15,30)]
+    [Range(15, 30)]
     [Tooltip("Скорость перемещения")]
     public float speed;
     [Tooltip("Скорость поворота по горизонтали")]
@@ -101,7 +102,8 @@ public class PlayerController : MyTools, IAlive {
     private bool reload;
 
 
-    void Start () {
+    void Start()
+    {
         Cursor.lockState = CursorLockMode.Locked;
         anim = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
@@ -114,8 +116,9 @@ public class PlayerController : MyTools, IAlive {
         Health = 100;
     }
 
-    private void Update(){
-        if(!inDialog)
+    private void Update()
+    {
+        if (!inDialog)
         {
             Move();
             MaxSpeed();
@@ -126,7 +129,7 @@ public class PlayerController : MyTools, IAlive {
 
     private void LateUpdate()
     {
-        if(!inDialog)
+        if (!inDialog)
         {
             Rotate();
         }
@@ -160,7 +163,7 @@ public class PlayerController : MyTools, IAlive {
             var z = Input.GetAxis("Vertical");
             moveVector = transform.right * x + transform.forward * z;
         }
-        
+
         if (controller.isGrounded)
         {
             vertSpeed = 0;
@@ -207,7 +210,7 @@ public class PlayerController : MyTools, IAlive {
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if(weapon.MakeShoot())
+            if (weapon.MakeShoot())
             {
                 DrawAmmo();
                 Invoke("AttackEffect", 0.02f);
@@ -222,8 +225,8 @@ public class PlayerController : MyTools, IAlive {
     private void RotateToView(float force, Vector2 forceVector)
     {
         float x, y;
-        x = transform.localEulerAngles.y + force/2 * Mathf.Sign(forceVector.x - rotationX) * Time.deltaTime;
-        y = force* 3 *  Mathf.Sign(forceVector.y - rotationY) * Time.deltaTime;
+        x = transform.localEulerAngles.y + force / 2 * Mathf.Sign(forceVector.x - rotationX) * Time.deltaTime;
+        y = force * 3 * Mathf.Sign(forceVector.y - rotationY) * Time.deltaTime;
         rotationX = x;
         rotationY += y;
         rotationY = Mathf.Clamp(rotationY, minY, maxY);
@@ -233,12 +236,12 @@ public class PlayerController : MyTools, IAlive {
     private IEnumerator Recoil()
     {
         float force = weapon.backForce;
-        for(float i = force; i > 0; i-=20)
+        for (float i = force; i > 0; i -= 20)
         {
-            RotateToView(i/4, view.newRotation);
+            RotateToView(i / 4, view.newRotation);
             yield return new WaitForSeconds(0.025f);
         }
-        for (int i  = 0; i < force; i++)
+        for (int i = 0; i < force; i++)
         {
             RotateToView(0.5f, view.oldRotation);
         }
@@ -248,11 +251,11 @@ public class PlayerController : MyTools, IAlive {
     {
         view.oldRotation = new Vector2(rotationX, rotationY);
         int[] c = { -1, 1 };
-        view.newRotation = new Vector2(rotationX + c[Random.Range(0, 2)] * weaponRecoilForce/10, rotationY + weaponRecoilForce); 
+        view.newRotation = new Vector2(rotationX + c[Random.Range(0, 2)] * weaponRecoilForce / 10, rotationY + weaponRecoilForce);
     }
     private void Reload()
     {
-        if(Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             weapon.Reload();
             Invoke("DrawAmmo", weapon.reloadTime);
@@ -283,7 +286,7 @@ public class PlayerController : MyTools, IAlive {
     //    else Debug.Log("OnCollisionEnterNull");
     //}
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         Ammunition amun;
         if (MyGetComponent(out amun, other.gameObject))
@@ -293,9 +296,9 @@ public class PlayerController : MyTools, IAlive {
             DrawAmmo();
         }
 
-        Debug.Log("OnTriggerEnter");
+        Debug.Log("OnTriggerEnter " + other);
         AttackArea at;
-        
+
         if (MyGetComponent(out at, other.gameObject))
         {
             Health -= at.Damage;
@@ -307,8 +310,8 @@ public class PlayerController : MyTools, IAlive {
 
     #endregion
 
-    
-    
+
+
 }
 
 

@@ -146,8 +146,8 @@ GameObject:
   - component: {fileID: 4932041992402550}
   - component: {fileID: 33713986145668758}
   - component: {fileID: 23624193107567508}
-  - component: {fileID: 64057155049498906}
   - component: {fileID: 114350992103782978}
+  - component: {fileID: 65281869612984618}
   m_Layer: 0
   m_Name: Attack1
   m_TagString: Untagged
@@ -315,8 +315,8 @@ GameObject:
   - component: {fileID: 4872298919120876}
   - component: {fileID: 33020381135607784}
   - component: {fileID: 23191007084493510}
-  - component: {fileID: 64830093319177902}
   - component: {fileID: 114320887472464170}
+  - component: {fileID: 65530957578817352}
   m_Layer: 0
   m_Name: Attack2
   m_TagString: Untagged
@@ -721,34 +721,30 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1672710844383188}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!64 &64057155049498906
-MeshCollider:
+--- !u!65 &65281869612984618
+BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1672710844383188}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!64 &64830093319177902
-MeshCollider:
+  serializedVersion: 2
+  m_Size: {x: 10, y: 0.0000000046566133, z: 10.000001}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65530957578817352
+BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1892221112700288}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+  serializedVersion: 2
+  m_Size: {x: 10, y: 2.220446e-16, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95249202223565442
 Animator:
   serializedVersion: 3
