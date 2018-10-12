@@ -7,9 +7,7 @@ public abstract class MyTools : MonoBehaviour
 {
     protected bool MyGetComponent<T>(out T component, GameObject obj)
     {
-        //Debug.Log(obj.name);
         component = obj.GetComponent<T>();
-        //Debug.Log(component);
         if (component != null)
         {
             return true;
@@ -40,7 +38,7 @@ public class PlayerController : MyTools, IAlive
     {
         get
         {
-            return helath.value;
+            return health.value;
         }
 
         set
@@ -49,9 +47,9 @@ public class PlayerController : MyTools, IAlive
             {
                 Death();
 
-                helath.value = 0;
+                health.value = 0;
             }
-            helath.value = value;
+            health.value = value;
         }
     }
 
@@ -82,7 +80,7 @@ public class PlayerController : MyTools, IAlive
     [Tooltip("Количество патронов")]
     public Text ammunitionCount;
     [Tooltip("Слайдер для здоровья")]
-    public Slider helath;
+    public Slider health;
 
     [HideInInspector]
     public bool inDialog;
@@ -97,7 +95,6 @@ public class PlayerController : MyTools, IAlive
     private float rotationX, rotationY;
     private float movementMultiplicator;
     private float vertSpeed;
-    private float health;
     private bool recoil;
     private bool reload;
 
@@ -274,17 +271,7 @@ public class PlayerController : MyTools, IAlive
 
     #region Реакции
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    Debug.Log("OnCollisionEnter");
-    //    AttackArea at;
-    //    if (MyGetComponent(out at, collision.gameObject))
-    //    {
-    //        Health -= at.Damage;
-    //        Debug.Log(at.Damage);
-    //    }
-    //    else Debug.Log("OnCollisionEnterNull");
-    //}
+   
 
     private void OnTriggerEnter(Collider other)
     {
@@ -296,16 +283,12 @@ public class PlayerController : MyTools, IAlive
             DrawAmmo();
         }
 
-        Debug.Log("OnTriggerEnter " + other);
-        AttackArea at;
 
+        AttackArea at;
         if (MyGetComponent(out at, other.gameObject))
         {
             Health -= at.Damage;
-            Debug.Log(at.Damage);
         }
-        else Debug.Log("OnTriggerEnterNull");
-
     }
 
     #endregion
