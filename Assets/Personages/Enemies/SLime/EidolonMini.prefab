@@ -663,17 +663,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14c94f3ddcd09f449b1f842b8160abe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
+  target: {fileID: 0}
+  unionTarget: {fileID: 0}
   NavAgent: {fileID: 0}
   DistanceTP: 0
+  distanceUT: 0
   RadiusAttack: 3.1
+  RadiusView: 0
   HP: 100
   AttackForce: 10
   Eidolon: {fileID: 0}
+  god: {fileID: 1483824054489608, guid: 5f16f36cae5aa4d46be9629c2af2ec91, type: 2}
   saled: 0
-  key: 1
+  boss: 0
+  itIsBig: 0
+  ready: 0
+  bossReady: 0
   AttackAreas:
   - {fileID: 1300088694594652}
+  ammos:
+  - {fileID: 1549386376721870, guid: 5cf2e6e8b9769994c9beab133a8f837c, type: 2}
+  state: 0
+  Brothers: []
 --- !u!137 &137434934708707994
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

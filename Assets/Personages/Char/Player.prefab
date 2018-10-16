@@ -843,7 +843,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1991421695753794}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.859513, y: 2, z: 6.710081}
+  m_LocalPosition: {x: 0, y: 3.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4199884717338076}
@@ -3097,10 +3097,10 @@ MonoBehaviour:
   gilzZone: {fileID: 4094034852960476}
   type: 0
   weaponDamage: 30
-  maxAmmo: 2
+  maxAmmo: 8
   shootForce: 100
-  backForce: 100
-  pauseTime: 0.7
+  backForce: 43
+  pauseTime: 0.28
   reloadTime: 1
   sounds:
     shoot: {fileID: 8300000, guid: 8602b7d5cd15c1943a50aa53f171c8cf, type: 3}
