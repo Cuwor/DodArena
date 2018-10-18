@@ -6,6 +6,10 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
 
+public abstract class Monster
+{
+    
+}
 public enum EnemyState
 {
     Stay,
@@ -14,13 +18,7 @@ public enum EnemyState
     Spec,
 }
 
-public enum SlimeState
-{
-    Parts,
-    Alone
-}
-
-public class Slice_Script_Controller : MyTools, IAlive
+public class Slice_Script_Controller : MyTools, IAlive//в плеере
 {
     [Tooltip("Здесь объект")]
     [Header("Здесь объект")]
@@ -44,10 +42,9 @@ public class Slice_Script_Controller : MyTools, IAlive
 
 
     public GameObject[] AttackAreas;
-
     public GameObject[] ammos;
-
     public EnemyState state;
+    
     private Animator _anim;
     private int qtyEidolons = 4;
     private int attackType;
@@ -137,6 +134,8 @@ public class Slice_Script_Controller : MyTools, IAlive
                 }
                 else
                 {
+                    ready = false;
+                    bossReady = 0;
                     state = EnemyState.Stay;
                 }
 
@@ -193,25 +192,14 @@ public class Slice_Script_Controller : MyTools, IAlive
         saled = false;
         Health = 0;
     }
-    IEnumerator Unite1()
-    {
-        yield return new WaitForSeconds(1f);
-        GameObject game = Instantiate(god, transform.position, Quaternion.identity);
-        Slice_Script_Controller SSC = game.GetComponent<Slice_Script_Controller>();
-        SSC.Initiolize();
-        SSC.target = target;
-        SSC.Health = maxHP * 2;
-        SSC.AttackForce = AttackForce * 2;
-        SSC.RadiusView = RadiusView + 2;
-        SSC.NavAgent.speed = NavAgent.speed * size;
-    }
+   
 
 
     private void CaseMethod(bool navAgentEnebled, float xstate, float ysate, int attack, Vector3 destenation)
     {
         NavAgent.enabled = navAgentEnebled;
         if (navAgentEnebled)
-            NavAgent.destination = destenation;
+        NavAgent.destination = destenation;
         _anim.SetInteger("Attack", attack);
         _anim.SetFloat("Xstate", xstate);
         _anim.SetFloat("Ystate", ysate);
@@ -338,22 +326,6 @@ public class Slice_Script_Controller : MyTools, IAlive
         z = UnityEngine.Random.Range(-2, 3);
 
         return transform.position + new Vector3(x, 0, z);
-    }
-
-    private void FindBrothersTarget()
-    {
-        float distance = Vector3.Distance(transform.position, Brothers[0].transform.position);
-        GameObject target = Brothers[0];
-
-        for (int i = 1; i < Brothers.Count; i++)
-        {
-            float newDistance = Vector3.Distance(transform.position, Brothers[i].transform.position);
-            if (newDistance < distance && newDistance > 5f)
-            {
-                distance = newDistance;
-                target = Brothers[i];
-            }
-        }
     }
 
     private void FindPlayers()
