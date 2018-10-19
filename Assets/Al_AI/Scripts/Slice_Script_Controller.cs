@@ -6,58 +6,26 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
 
-public abstract class Monster
+public abstract class Monster :MyTools, IAlive 
 {
-    
-}
-public enum EnemyState
-{
-    Stay,
-    Attack,
-    Walk,
-    Spec,
-}
-
-public class Slice_Script_Controller : MyTools, IAlive//в плеере
-{
-    [Tooltip("Здесь объект")]
-    [Header("Здесь объект")]
     public GameObject target;
-    public GameObject unionTarget;
-
-    [Space(20)] public NavMeshAgent NavAgent;
+    
     public float DistanceTP;
-    public float distanceUT;
+    [Space(20)] public NavMeshAgent NavAgent;
     [Range(1, 30)] public float RadiusAttack;
     [Range(1, 100)] public float RadiusView;
     [Range(0, 100)] public float HP;
     [Range(0, 50)] public float AttackForce;
-    public GameObject Eidolon;
-    public GameObject god;
     public bool saled = false;
-    public bool boss = false;
-    public bool itIsBig = false;
-    public bool ready = false;
-    public int bossReady = 0;
-
-
+    
     public GameObject[] AttackAreas;
     public GameObject[] ammos;
-    public EnemyState state;
     
-    private Animator _anim;
-    private int qtyEidolons = 4;
-    private int attackType;
-    private float maxHP;
-    private float attackDistance;
-    private float size;
-    private bool alive;
-    private bool wait;
+    protected bool alive;
+    protected Animator _anim;
+    protected bool wait;
 
-    //[HideInInspector]
-    public List<GameObject> Brothers;
-
-    public float Health
+    public virtual float Health
     {
         get { return HP; }
 
@@ -73,6 +41,135 @@ public class Slice_Script_Controller : MyTools, IAlive//в плеере
             HP = value;
         }
     }
+    
+    protected IEnumerator Drop()
+    {
+        yield return new WaitForSeconds(2);
+        int x = UnityEngine.Random.Range(0, ammos.Length);
+        Instantiate(ammos[x], transform.position, new Quaternion());
+    }
+    public virtual void Death()
+    {
+        NavAgent.enabled = false;
+        _anim.SetTrigger("Dead");
+        if (saled)
+        {
+            StartCoroutine(Drop());
+        }
+        StartCoroutine(Destroeded());
+
+    }
+    protected IEnumerator Destroeded()
+    {
+        yield return new WaitForSeconds(2);
+        Destroy(gameObject);
+    }
+    
+    protected IEnumerator GetRandomStayState()
+    {
+        _anim.SetFloat("Ystate", -1);
+        _anim.SetFloat("Xstate", UnityEngine.Random.Range(-1, 1.1f));
+        FindPlayers();
+        yield return new WaitForSeconds(2);
+        wait = false;
+    }
+
+    public void GetDamage(float value)
+    {
+        Health -= value;
+        _anim.SetInteger("Damage", (int)value);
+        _anim.SetTrigger("GetDamage");
+    }
+
+    public void PlusHealth(float value)
+    {
+    }
+    
+    protected void FindPlayers()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        float distance = Vector3.Distance(transform.position, players[0].transform.position);
+        target = players[0];
+
+        for (int i = 1; i < players.Length; i++)
+        {
+            float newDistance = Vector3.Distance(transform.position, players[i].transform.position);
+            if (newDistance < distance && newDistance > 5f)
+            {
+                distance = newDistance;
+                target = players[i];
+            }
+        }
+    }
+    
+    protected void CaseMethod(bool navAgentEnebled, float xstate, float ysate, int attack, Vector3 destenation)
+    {
+        NavAgent.enabled = navAgentEnebled;
+        if (navAgentEnebled)
+            NavAgent.destination = destenation;
+        _anim.SetInteger("Attack", attack);
+        _anim.SetFloat("Xstate", xstate);
+        _anim.SetFloat("Ystate", ysate);
+    }
+    
+    protected void OnTriggerEnter(Collider other)
+    {
+        if (alive)
+        {
+            Projectile proj;
+            if (MyGetComponent(out proj, other.gameObject))
+            {
+                GetDamage(proj.damage);
+            }
+        }
+    }
+}
+
+
+
+
+public enum EnemyState
+{
+    Stay,
+    Attack,
+    Walk,
+    Spec,
+}
+
+public class Slice_Script_Controller :Monster //в плеере
+{
+    [Tooltip("Здесь объект")]
+    [Header("Здесь объект")]
+    
+    public GameObject unionTarget;
+
+ 
+   
+    public float distanceUT;
+    
+    public GameObject Eidolon;
+    public GameObject god;
+    public bool saled = false;
+    public bool boss = false;
+    public bool itIsBig = false;
+    public bool ready = false;
+    public int bossReady = 0;
+
+
+
+    public EnemyState state;
+    
+    
+    private int qtyEidolons = 4;
+    private int attackType;
+    private float maxHP;
+    private float attackDistance;
+    private float size;
+ 
+    //[HideInInspector]
+    public List<GameObject> Brothers;
+
+
 
     // Use this for initialization
     public void Start()
@@ -192,19 +289,7 @@ public class Slice_Script_Controller : MyTools, IAlive//в плеере
         saled = false;
         Health = 0;
     }
-   
-
-
-    private void CaseMethod(bool navAgentEnebled, float xstate, float ysate, int attack, Vector3 destenation)
-    {
-        NavAgent.enabled = navAgentEnebled;
-        if (navAgentEnebled)
-        NavAgent.destination = destenation;
-        _anim.SetInteger("Attack", attack);
-        _anim.SetFloat("Xstate", xstate);
-        _anim.SetFloat("Ystate", ysate);
-    }
-
+  
     public void Initiolize()
     {
         FindPlayers();
@@ -225,13 +310,6 @@ public class Slice_Script_Controller : MyTools, IAlive//в плеере
         state = EnemyState.Stay;
         GetAttackDistance();
         size = transform.localScale.x;
-    }
-
-    IEnumerator Drop()
-    {
-        yield return new WaitForSeconds(2);
-        int x = UnityEngine.Random.Range(0, ammos.Length);
-        Instantiate(ammos[x], transform.position, new Quaternion());
     }
 
     IEnumerator CreateEidolons()
@@ -270,33 +348,7 @@ public class Slice_Script_Controller : MyTools, IAlive//в плеере
         eidolons[0].name += "boss";
     }
 
-    IEnumerator Destroeded()
-    {
-        yield return new WaitForSeconds(2);
-        Destroy(gameObject);
-    }
-
-    IEnumerator GetRandomStayState()
-    {
-        _anim.SetFloat("Ystate", -1);
-        _anim.SetFloat("Xstate", UnityEngine.Random.Range(-1, 1.1f));
-        FindPlayers();
-        yield return new WaitForSeconds(2);
-        wait = false;
-    }
-
-    public void GetDamage(float value)
-    {
-        Health -= value;
-        _anim.SetInteger("Damage", (int)value);
-        _anim.SetTrigger("GetDamage");
-    }
-
-    public void PlusHealth(float value)
-    {
-    }
-
-    public void Death()
+    public override void  Death()
     {
         NavAgent.enabled = false;
         _anim.SetTrigger("Dead");
@@ -328,33 +380,6 @@ public class Slice_Script_Controller : MyTools, IAlive//в плеере
         return transform.position + new Vector3(x, 0, z);
     }
 
-    private void FindPlayers()
-    {
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        float distance = Vector3.Distance(transform.position, players[0].transform.position);
-        target = players[0];
-
-        for (int i = 1; i < players.Length; i++)
-        {
-            float newDistance = Vector3.Distance(transform.position, players[i].transform.position);
-            if (newDistance < distance && newDistance > 5f)
-            {
-                distance = newDistance;
-                target = players[i];
-            }
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (alive)
-        {
-            Projectile proj;
-            if (MyGetComponent(out proj, other.gameObject))
-            {
-                GetDamage(proj.damage);
-            }
-        }
-    }
+ 
 }
 
