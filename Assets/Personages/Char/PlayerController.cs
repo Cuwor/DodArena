@@ -262,7 +262,7 @@ public class PlayerController : MyTools, IAlive
 
     #region Интерфйс
 
-    private void DrawAmmo()
+    public void DrawAmmo()
     {
         ammunitionCount.text = weapon.magazin.ToString() + "/" + weapon.ammo.ToString();
     }
@@ -278,9 +278,9 @@ public class PlayerController : MyTools, IAlive
         Ammunition amun;
         if (MyGetComponent(out amun, other.gameObject))
         {
-            weapon.ammo += amun.count;
-            Destroy(other.gameObject);
-            DrawAmmo();
+            amun.target = gameObject;
+            amun.PC = this;
+            amun.move = true;
         }
 
 

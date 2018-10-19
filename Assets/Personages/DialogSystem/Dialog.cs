@@ -32,7 +32,13 @@ public class Dialog : MonoBehaviour {
                     }
                     for(int j = 0; j < nodes[activeNode].answers[i].actions.Length; j++)
                     {
+                        UsedObject obj = nodes[activeNode].answers[i].actions[j];
+                        if (obj is MusicManager)
+                        {
+                            obj.GetComponent<MusicManager>().tracks = nodes[activeNode].answers[i].playList;
+                        }
                         nodes[activeNode].answers[i].actions[j].Use();
+
                     }
                     activeNode = nodes[activeNode].answers[i].nextDialogNode;
                 }
@@ -63,4 +69,5 @@ public class Answer
     public bool endDialog;
 
     public UsedObject[] actions;
+    public AudioClip[] playList;
 }
