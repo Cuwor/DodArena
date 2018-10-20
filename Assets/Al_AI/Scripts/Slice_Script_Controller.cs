@@ -41,13 +41,7 @@ public abstract class Monster :MyTools, IAlive
             HP = value;
         }
     }
-    
-    protected IEnumerator Drop()
-    {
-        yield return new WaitForSeconds(2);
-        int x = UnityEngine.Random.Range(0, ammos.Length);
-        Instantiate(ammos[x], transform.position, new Quaternion());
-    }
+      
     public virtual void Death()
     {
         NavAgent.enabled = false;
@@ -59,6 +53,7 @@ public abstract class Monster :MyTools, IAlive
         StartCoroutine(Destroeded());
 
     }
+    
     protected IEnumerator Destroeded()
     {
         yield return new WaitForSeconds(2);
@@ -73,6 +68,13 @@ public abstract class Monster :MyTools, IAlive
         yield return new WaitForSeconds(2);
         wait = false;
     }
+    
+    protected IEnumerator Drop()
+    {
+        yield return new WaitForSeconds(2);
+        int x = UnityEngine.Random.Range(0, ammos.Length);
+        Instantiate(ammos[x], transform.position, new Quaternion());
+    }
 
     public void GetDamage(float value)
     {
@@ -84,6 +86,8 @@ public abstract class Monster :MyTools, IAlive
     public void PlusHealth(float value)
     {
     }
+    
+    
     
     protected void FindPlayers()
     {
@@ -123,6 +127,8 @@ public abstract class Monster :MyTools, IAlive
             }
         }
     }
+    
+ 
 }
 
 
@@ -140,28 +146,26 @@ public class Slice_Script_Controller :Monster //в плеере
 {
     [Tooltip("Здесь объект")]
     [Header("Здесь объект")]
-    
+        
     public GameObject unionTarget;
-
- 
    
     public float distanceUT;
     
     public GameObject Eidolon;
     public GameObject god;
-    public bool saled = false;
+    
+
     public bool boss = false;
     public bool itIsBig = false;
     public bool ready = false;
+    
     public int bossReady = 0;
 
-
-
     public EnemyState state;
-    
-    
+     
     private int qtyEidolons = 4;
     private int attackType;
+    
     private float maxHP;
     private float attackDistance;
     private float size;
