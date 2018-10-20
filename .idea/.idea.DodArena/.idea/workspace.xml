@@ -1,0 +1,677 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a7225ff1-1f32-4f1d-a24a-3ee8b5cc3008" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.DodArena/.idea/contentModel.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.DodArena/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Personages/Char/Player.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Personages/Char/Player.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Personages/Char/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Personages/Char/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/UnityConnectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/UnityConnectSettings.asset" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="1006124856">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="3" />
+          <entry key="project.open.time.4" value="1" />
+          <entry key="project.open.time.5" value="1" />
+          <entry key="project.open.time.6" value="1" />
+          <entry key="project.opened" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="cs" value="6" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="C#" value="6" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="cs" value="390" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="C#" value="390" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.vcs.git.usages" />
+      <usages-collector id="statistics.js.language.service.starts" />
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/Personages/Char/PlayerController.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="207">
+              <caret line="41" column="49" selection-start-line="41" selection-start-column="49" selection-end-line="41" selection-end-column="49" />
+              <folding>
+                <marker date="1540012954463" expanded="false" signature="6:100" ph="..." />
+                <marker date="1540012954463" expanded="true" signature="147:375" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="219:373" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="299:344" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="400:521" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="550:618" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="667:8640" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="979:1627" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="1016:1165" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="1174:1318" ph="/* ##Important ... */" />
+                <marker date="1540012954463" expanded="true" signature="1349:1415" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="1425:1582" ph="/* ##Critical ... */" />
+                <marker date="1540012954463" expanded="true" signature="1652:1885" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="1708:1879" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="1746:1834" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="3061:3461" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="3488:3807" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="3517:3801" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="3562:3694" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="3711:3778" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="3837:3941" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="3972:4128" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="4001:4043" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="4064:4122" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="4134:4310" ph="Показатели" />
+                <marker date="1540012954463" expanded="true" signature="4192:4204" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="4245:4257" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="4282:4294" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="4316:5965" ph="Перемещение" />
+                <marker date="1540012954463" expanded="true" signature="4360:5193" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="4446:4632" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="4668:4831" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="4754:4821" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="5126:5187" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="5220:5732" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="5302:5726" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="5761:5949" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="5812:5871" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="5884:5943" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="5971:7756" ph="Атака" />
+                <marker date="1540012954463" expanded="true" signature="6011:6223" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="6058:6217" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="6104:6207" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="6256:6334" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="6399:6865" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="6899:7257" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="6991:7115" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="7156:7226" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="7316:7560" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="7587:7740" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="7634:7734" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="7762:7923" ph="Интерфйс" />
+                <marker date="1540012954463" expanded="true" signature="7806:7907" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="7929:8350" ph="Реакции" />
+                <marker date="1540012954463" expanded="true" signature="7993:8334" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="8080:8196" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="8275:8328" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="8435:8633" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="8471:8540" ph="{...}" />
+                <marker date="1540012954463" expanded="true" signature="8553:8627" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/Photon Unity Networking/Demos/PunBasics-Tutorial/Scripts/Launcher.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="830">
+              <caret line="224" column="52" selection-start-line="224" selection-start-column="52" selection-end-line="224" selection-end-column="52" />
+              <folding>
+                <marker date="1539947170041" expanded="true" signature="0:510" ph="/*  Used in &quot;PUN Basic tutorial&quot; to connect, and join/create room automatically ... */" />
+                <marker date="1539947170041" expanded="false" signature="518:628" ph="..." />
+                <marker date="1539947170041" expanded="true" signature="631:742" ph="/* Launch manager. Connect, join a random room or create one if none or all full. ... */" />
+                <marker date="1539947170041" expanded="true" signature="781:8755" ph="{...}" />
+                <marker date="1539947170041" expanded="true" signature="829:8753" ph="{...}" />
+                <marker date="1539947170041" expanded="false" signature="834:1247" ph="Public Variables" />
+                <marker date="1539947170041" expanded="false" signature="1251:1835" ph="Private Variables" />
+                <marker date="1539947170041" expanded="true" signature="1279:1605" ph="/// Keep track of the current process. Since connection is asynchronous and is based on several callbacks from Ph ... " />
+                <marker date="1539947170041" expanded="true" signature="1630:1792" ph="/// This client's version number. Users are separated from each other by gameversion (which allows you to make br ... " />
+                <marker date="1539947170041" expanded="false" signature="1839:2512" ph="MonoBehaviour CallBacks" />
+                <marker date="1539947170041" expanded="true" signature="1874:1996" ph="/// MonoBehaviour method called on GameObject by Unity during early initialization phase. ... " />
+                <marker date="1539947170041" expanded="true" signature="2011:2498" ph="{...}" />
+                <marker date="1539947170041" expanded="true" signature="2041:2136" ph="{...}" />
+                <marker date="1539947170041" expanded="true" signature="2141:2243" ph="/* ##Critical ... */" />
+                <marker date="1539947170041" expanded="true" signature="2288:2444" ph="/* ##Critical ... */" />
+                <marker date="1539947170041" expanded="false" signature="2517:4396" ph="Public Methods" />
+                <marker date="1539947170041" expanded="true" signature="2543:2761" ph="/// Start the connection process.  ... " />
+                <marker date="1539947170041" expanded="true" signature="2785:3916" ph="{...}" />
+                <marker date="1539947170041" expanded="true" signature="3298:3348" ph="{...}" />
+                <marker date="1539947170041" expanded="true" signature="3491:3730" ph="{...}" />
+                <marker date="1539947170041" expanded="true" signature="3920:4107" ph="/// Logs the feedback in the UI view for the player, as opposed to inside the Unity Editor for the developer. ... " />
+                <marker date="1539947170041" expanded="true" signature="4142:4382" ph="{...}" />
+                <marker date="1539947170041" expanded="true" signature="4232:4250" ph="{...}" />
+                <marker date="1539947170041" expanded="true" signature="4401:8747" ph="Photon.PunBehaviour CallBacks" />
+                <marker date="1539947170041" expanded="true" signature="4441:4580" ph="/* below, we implement some callbacks of PUN ... */" />
+                <marker date="1539947170041" expanded="true" signature="4585:4748" ph="/// Called after the connection to the master is established and authenticated but only when PhotonNetwork.autoJo ... " />
+                <marker date="1539947170041" expanded="true" signature="4793:5661" ph="{...}" />
+                <marker date="1539947170041" expanded="true" signature="4869:5143" ph="/* we don't want to do anything if we are not attempting to join a room. ... */" />
+                <marker date="1539947170041" expanded="true" signature="5164:5657" ph="{...}" />
+                <marker date="1539947170041" expanded="true" signature="5665:5998" ph="/// Called when a JoinRandom() call failed. The parameter provides ErrorCode and message. ... " />
+                <marker date="1539947170041" expanded="true" signature="6067:6602" ph="{...}" />
+                <marker date="1539947170041" expanded="true" signature="6607:6886" ph="/// Called after disconnecting from the Photon server. ... " />
+                <marker date="1539947170041" expanded="true" signature="6936:7334" ph="{...}" />
+                <marker date="1539947170041" expanded="true" signature="7338:8035" ph="/// Called when entering a room (by creating or joining it). Called on all clients (including the Master Client). ... " />
+                <marker date="1539947170041" expanded="true" signature="8073:8733" ph="{...}" />
+                <marker date="1539947170041" expanded="true" signature="8583:8729" ph="{...}" />
+                <marker date="1539947170041" expanded="true" signature="8638:8679" ph="/* ##Critical ... */" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Assets/Scripts/PlayerManager.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="64" column="20" selection-start-line="64" selection-start-column="20" selection-end-line="64" selection-end-column="20" />
+              <folding>
+                <marker date="1540010021115" expanded="true" signature="0:503" ph="/*  Used in DemoAnimator to deal with the networked player instance ... */" />
+                <marker date="1540010021115" expanded="false" signature="511:555" ph="..." />
+                <marker date="1540010021115" expanded="true" signature="595:9969" ph="{...}" />
+                <marker date="1540010021115" expanded="true" signature="602:696" ph="/// Player manager. ... " />
+                <marker date="1540010021115" expanded="true" signature="765:9967" ph="{...}" />
+                <marker date="1540010021115" expanded="true" signature="780:1266" ph="Public Variables" />
+                <marker date="1540010021115" expanded="false" signature="1276:1385" ph="Private Variables" />
+                <marker date="1540010021115" expanded="true" signature="1395:7493" ph="MonoBehaviour CallBacks" />
+                <marker date="1540010021115" expanded="true" signature="1436:1570" ph="/// MonoBehaviour method called on GameObject by Unity during early initialization phase. ... " />
+                <marker date="1540010021115" expanded="true" signature="1598:2357" ph="{...}" />
+                <marker date="1540010021115" expanded="true" signature="1644:1764" ph="{...}" />
+                <marker date="1540010021115" expanded="true" signature="1781:1854" ph="{...}" />
+                <marker date="1540010021115" expanded="true" signature="1868:2016" ph="/* ##Important ... */" />
+                <marker date="1540010021115" expanded="true" signature="2051:2129" ph="{...}" />
+                <marker date="1540010021115" expanded="true" signature="2143:2304" ph="/* ##Critical ... */" />
+                <marker date="1540010021115" expanded="true" signature="2367:2495" ph="/// MonoBehaviour method called on GameObject by Unity during initialization phase. ... " />
+                <marker date="1540010021115" expanded="true" signature="2523:3635" ph="{...}" />
+                <marker date="1540010021115" expanded="true" signature="2647:2802" ph="{...}" />
+                <marker date="1540010021115" expanded="true" signature="2700:2788" ph="{...}" />
+                <marker date="1540010021115" expanded="true" signature="2819:2961" ph="{...}" />
+                <marker date="1540010021115" expanded="true" signature="3036:3237" ph="{...}" />
+                <marker date="1540010021115" expanded="true" signature="3254:3402" ph="{...}" />
+                <marker date="1540010021115" expanded="true" signature="3663:3781" ph="{...}" />
+                <marker date="1540010021115" expanded="true" signature="3792:4053" ph="/// MonoBehaviour method called on GameObject by Unity on every frame. ... " />
+                <marker date="1540010021115" expanded="true" signature="4082:4576" ph="{...}" />
+                <marker date="1540010021115" expanded="true" signature="4209:4405" ph="{...}" />
+                <marker date="1540010021115" expanded="true" signature="4301:4391" ph="{...}" />
+                <marker date="1540010021115" expanded="true" signature="4485:4566" ph="{...}" />
+                <marker date="1540010021115" expanded="true" signature="4586:5004" ph="/// MonoBehaviour method called when the Collider 'other' enters the trigger. ... " />
+                <marker date="1540010021115" expanded="true" signature="5055:5447" ph="{...}" />
+                <marker date="1540010021115" expanded="true" signature="5101:5153" ph="{...}" />
+                <marker date="1540010021115" expanded="true" signature="5168:5305" ph="/* We are only interested in Beamers ... */" />
+                <marker date="1540010021115" expanded="true" signature="5351:5403" ph="{...}" />
+                <marker date="1540010021115" expanded="true" signature="5457:5736" ph="/// MonoBehaviour method called once per frame for every Collider 'other' that is touching the trigger. ... " />
+                <marker date="1540010021115" expanded="true" signature="5786:6375" ph="{...}" />
+                <marker date="1540010021115" expanded="true" signature="5900:5952" ph="{...}" />
+                <marker date="1540010021115" expanded="true" signature="5966:6103" ph="/* We are only interested in Beamers ... */" />
+                <marker date="1540010021115" expanded="true" signature="6149:6201" ph="{...}" />
+                <marker date="1540010021115" expanded="true" signature="6620:6956" ph="/// MonoBehaviour method called after a new level of index 'level' was loaded. ... " />
+                <marker date="1540010021115" expanded="true" signature="7003:7473" ph="{...}" />
+                <marker date="1540010021115" expanded="true" signature="7207:7297" ph="{...}" />
+                <marker date="1540010021115" expanded="false" signature="7503:8852" ph="Private Methods" />
+                <marker date="1540010021115" expanded="true" signature="7670:7732" ph="{...}" />
+                <marker date="1540010021115" expanded="true" signature="7751:7933" ph="/// Processes the inputs. This MUST ONLY BE USED when the player has authority over this Networked GameObject (ph ... " />
+                <marker date="1540010021115" expanded="true" signature="7962:8832" ph="{...}" />
+                <marker date="1540010021115" expanded="true" signature="8018:8635" ph="{...}" />
+                <marker date="1540010021115" expanded="true" signature="8049:8372" ph="/* we don't want to fire when we interact with UI buttons for example. IsPointerOverGameObject really means IsPoi ... */" />
+                <marker date="1540010021115" expanded="true" signature="8439:8506" ph="{...}" />
+                <marker date="1540010021115" expanded="true" signature="8543:8621" ph="{...}" />
+                <marker date="1540010021115" expanded="true" signature="8680:8822" ph="{...}" />
+                <marker date="1540010021115" expanded="true" signature="8729:8808" ph="{...}" />
+                <marker date="1540010021115" expanded="true" signature="8862:9354" ph="/* ##region IPunObservable implementation ... */" />
+                <marker date="1540010021115" expanded="true" signature="9364:9961" ph="IPunObservable implementation" />
+                <marker date="1540010021115" expanded="true" signature="9489:9941" ph="{...}" />
+                <marker date="1540010021115" expanded="true" signature="9533:9719" ph="{...}" />
+                <marker date="1540010021115" expanded="true" signature="9736:9931" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/Photon Unity Networking/Demos/PunBasics-Tutorial/Scripts/GameManager.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="411">
+              <caret line="71" column="67" selection-start-line="71" selection-start-column="67" selection-end-line="71" selection-end-column="67" />
+              <folding>
+                <marker date="1539947938769" expanded="true" signature="0:510" ph="/*  Used in &quot;PUN Basic tutorial&quot; to handle typical game management requirements ... */" />
+                <marker date="1539947938769" expanded="false" signature="518:639" ph="..." />
+                <marker date="1539947938769" expanded="true" signature="679:4559" ph="{...}" />
+                <marker date="1539947938769" expanded="true" signature="683:903" ph="/// Game manager. ... " />
+                <marker date="1539947938769" expanded="true" signature="952:4556" ph="{...}" />
+                <marker date="1539947938769" expanded="false" signature="957:1130" ph="Public Variables" />
+                <marker date="1539947938769" expanded="false" signature="1134:1205" ph="Private Variables" />
+                <marker date="1539947938769" expanded="true" signature="1209:2685" ph="MonoBehaviour CallBacks" />
+                <marker date="1539947938769" expanded="true" signature="1244:1360" ph="/// MonoBehaviour method called on GameObject by Unity during initialization phase. ... " />
+                <marker date="1539947938769" expanded="true" signature="1375:2393" ph="{...}" />
+                <marker date="1539947938769" expanded="true" signature="1530:1603" ph="{...}" />
+                <marker date="1539947938769" expanded="true" signature="1634:1899" ph="{...}" />
+                <marker date="1539947938769" expanded="true" signature="1961:2285" ph="{...}" />
+                <marker date="1539947938769" expanded="true" signature="2397:2500" ph="/// MonoBehaviour method called on GameObject by Unity on every frame. ... " />
+                <marker date="1539947938769" expanded="true" signature="2516:2671" ph="{...}" />
+                <marker date="1539947938769" expanded="true" signature="2634:2667" ph="{...}" />
+                <marker date="1539947938769" expanded="false" signature="2689:4034" ph="Photon Messages" />
+                <marker date="1539947938769" expanded="true" signature="2716:2873" ph="/// Called when a Photon Player got connected. We need to then load a bigger scene. ... " />
+                <marker date="1539947938769" expanded="true" signature="2943:3261" ph="{...}" />
+                <marker date="1539947938769" expanded="true" signature="3094:3257" ph="{...}" />
+                <marker date="1539947938769" expanded="true" signature="3265:3421" ph="/// Called when a Photon Player got disconnected. We need to load a smaller scene. ... " />
+                <marker date="1539947938769" expanded="true" signature="3494:3807" ph="{...}" />
+                <marker date="1539947938769" expanded="true" signature="3636:3803" ph="{...}" />
+                <marker date="1539947938769" expanded="true" signature="3811:3927" ph="/// Called when the local player left the room. We need to load the launcher scene. ... " />
+                <marker date="1539947938769" expanded="true" signature="3963:4020" ph="{...}" />
+                <marker date="1539947938769" expanded="false" signature="4038:4203" ph="Public Methods" />
+                <marker date="1539947938769" expanded="true" signature="4087:4125" ph="{...}" />
+                <marker date="1539947938769" expanded="true" signature="4158:4189" ph="{...}" />
+                <marker date="1539947938769" expanded="false" signature="4207:4552" ph="Private Methods" />
+                <marker date="1539947938769" expanded="true" signature="4250:4538" ph="{...}" />
+                <marker date="1539947938769" expanded="true" signature="4296:4403" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Personages/Char/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Photon Unity Networking/Demos/PunBasics-Tutorial/Scripts/CameraWork.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Photon Unity Networking/Demos/PunBasics-Tutorial/Scripts/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Photon Unity Networking/Demos/PunBasics-Tutorial/Scripts/Launcher.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Photon Unity Networking/Demos/DemoWorker/Scripts/Game/Player/ThirdPersonController.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Assets/Photon Unity Networking/Demos/PunBasics-Tutorial/Scripts/Launcher.cs" />
+        <option value="$PROJECT_DIR$/Assets/Photon Unity Networking/Demos/PunBasics-Tutorial/Scripts/GameManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Personages/Char/PlayerController.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="width" value="1680" />
+    <option name="height" value="1050" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="UnityExplorer" proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="SolutionExplorer">
+        <option name="show-all-files" value="false" />
+      </pane>
+      <pane id="FileSystemExplorer" />
+      <pane id="UnityExplorer">
+        <option name="show-hidden-items" value="false" />
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Rider.DefaultBreakpoints.AreToggled" value="true" />
+    <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Attach to Unity Editor.Attach to Unity Editor" />
+      <item itemvalue="Attach to Unity Editor.Attach to Unity Editor &amp; Play" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a7225ff1-1f32-4f1d-a24a-3ee8b5cc3008" name="Default Changelist" comment="" />
+      <created>1539946446172</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1539946446172</updated>
+      <workItem from="1539946452204" duration="1205000" />
+      <workItem from="1539951690994" duration="183000" />
+      <workItem from="1540009774327" duration="1823000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="3211000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="1680" height="979" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21855922" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="NuGet" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Unity" order="10" />
+      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Unit Tests" order="12" />
+      <window_info anchor="bottom" id="Terminal" order="13" />
+      <window_info anchor="bottom" id="Event Log" order="14" side_tool="true" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Errors In Solution" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" suspend="NONE" type="DotNet Exception Breakpoints">
+          <properties exception="System.Threading.ThreadAbortException" displayValue="System.Threading.ThreadAbortException" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Assets/Photon Unity Networking/Demos/DemoWorker/Scripts/Game/Player/ThirdPersonController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1788">
+          <caret line="132" selection-start-line="132" selection-end-line="132" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Photon Unity Networking/Demos/PunBasics-Tutorial/Scripts/PlayerManager.cs" />
+    <entry file="file://$PROJECT_DIR$/Assets/Photon Unity Networking/Demos/PunBasics-Tutorial/Scripts/CameraWork.cs">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Photon Unity Networking/Demos/PunBasics-Tutorial/Scripts/GameManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="71" column="67" selection-start-line="71" selection-start-column="67" selection-end-line="71" selection-end-column="67" />
+          <folding>
+            <marker date="1539947938769" expanded="true" signature="0:510" ph="/*  Used in &quot;PUN Basic tutorial&quot; to handle typical game management requirements ... */" />
+            <marker date="1539947938769" expanded="false" signature="518:639" ph="..." />
+            <marker date="1539947938769" expanded="true" signature="679:4559" ph="{...}" />
+            <marker date="1539947938769" expanded="true" signature="683:903" ph="/// Game manager. ... " />
+            <marker date="1539947938769" expanded="true" signature="952:4556" ph="{...}" />
+            <marker date="1539947938769" expanded="false" signature="957:1130" ph="Public Variables" />
+            <marker date="1539947938769" expanded="false" signature="1134:1205" ph="Private Variables" />
+            <marker date="1539947938769" expanded="true" signature="1209:2685" ph="MonoBehaviour CallBacks" />
+            <marker date="1539947938769" expanded="true" signature="1244:1360" ph="/// MonoBehaviour method called on GameObject by Unity during initialization phase. ... " />
+            <marker date="1539947938769" expanded="true" signature="1375:2393" ph="{...}" />
+            <marker date="1539947938769" expanded="true" signature="1530:1603" ph="{...}" />
+            <marker date="1539947938769" expanded="true" signature="1634:1899" ph="{...}" />
+            <marker date="1539947938769" expanded="true" signature="1961:2285" ph="{...}" />
+            <marker date="1539947938769" expanded="true" signature="2397:2500" ph="/// MonoBehaviour method called on GameObject by Unity on every frame. ... " />
+            <marker date="1539947938769" expanded="true" signature="2516:2671" ph="{...}" />
+            <marker date="1539947938769" expanded="true" signature="2634:2667" ph="{...}" />
+            <marker date="1539947938769" expanded="false" signature="2689:4034" ph="Photon Messages" />
+            <marker date="1539947938769" expanded="true" signature="2716:2873" ph="/// Called when a Photon Player got connected. We need to then load a bigger scene. ... " />
+            <marker date="1539947938769" expanded="true" signature="2943:3261" ph="{...}" />
+            <marker date="1539947938769" expanded="true" signature="3094:3257" ph="{...}" />
+            <marker date="1539947938769" expanded="true" signature="3265:3421" ph="/// Called when a Photon Player got disconnected. We need to load a smaller scene. ... " />
+            <marker date="1539947938769" expanded="true" signature="3494:3807" ph="{...}" />
+            <marker date="1539947938769" expanded="true" signature="3636:3803" ph="{...}" />
+            <marker date="1539947938769" expanded="true" signature="3811:3927" ph="/// Called when the local player left the room. We need to load the launcher scene. ... " />
+            <marker date="1539947938769" expanded="true" signature="3963:4020" ph="{...}" />
+            <marker date="1539947938769" expanded="false" signature="4038:4203" ph="Public Methods" />
+            <marker date="1539947938769" expanded="true" signature="4087:4125" ph="{...}" />
+            <marker date="1539947938769" expanded="true" signature="4158:4189" ph="{...}" />
+            <marker date="1539947938769" expanded="false" signature="4207:4552" ph="Private Methods" />
+            <marker date="1539947938769" expanded="true" signature="4250:4538" ph="{...}" />
+            <marker date="1539947938769" expanded="true" signature="4296:4403" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Photon Unity Networking/Demos/PunBasics-Tutorial/Scripts/Launcher.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="830">
+          <caret line="224" column="52" selection-start-line="224" selection-start-column="52" selection-end-line="224" selection-end-column="52" />
+          <folding>
+            <marker date="1539947170041" expanded="true" signature="0:510" ph="/*  Used in &quot;PUN Basic tutorial&quot; to connect, and join/create room automatically ... */" />
+            <marker date="1539947170041" expanded="false" signature="518:628" ph="..." />
+            <marker date="1539947170041" expanded="true" signature="631:742" ph="/* Launch manager. Connect, join a random room or create one if none or all full. ... */" />
+            <marker date="1539947170041" expanded="true" signature="781:8755" ph="{...}" />
+            <marker date="1539947170041" expanded="true" signature="829:8753" ph="{...}" />
+            <marker date="1539947170041" expanded="false" signature="834:1247" ph="Public Variables" />
+            <marker date="1539947170041" expanded="false" signature="1251:1835" ph="Private Variables" />
+            <marker date="1539947170041" expanded="true" signature="1279:1605" ph="/// Keep track of the current process. Since connection is asynchronous and is based on several callbacks from Ph ... " />
+            <marker date="1539947170041" expanded="true" signature="1630:1792" ph="/// This client's version number. Users are separated from each other by gameversion (which allows you to make br ... " />
+            <marker date="1539947170041" expanded="false" signature="1839:2512" ph="MonoBehaviour CallBacks" />
+            <marker date="1539947170041" expanded="true" signature="1874:1996" ph="/// MonoBehaviour method called on GameObject by Unity during early initialization phase. ... " />
+            <marker date="1539947170041" expanded="true" signature="2011:2498" ph="{...}" />
+            <marker date="1539947170041" expanded="true" signature="2041:2136" ph="{...}" />
+            <marker date="1539947170041" expanded="true" signature="2141:2243" ph="/* ##Critical ... */" />
+            <marker date="1539947170041" expanded="true" signature="2288:2444" ph="/* ##Critical ... */" />
+            <marker date="1539947170041" expanded="false" signature="2517:4396" ph="Public Methods" />
+            <marker date="1539947170041" expanded="true" signature="2543:2761" ph="/// Start the connection process.  ... " />
+            <marker date="1539947170041" expanded="true" signature="2785:3916" ph="{...}" />
+            <marker date="1539947170041" expanded="true" signature="3298:3348" ph="{...}" />
+            <marker date="1539947170041" expanded="true" signature="3491:3730" ph="{...}" />
+            <marker date="1539947170041" expanded="true" signature="3920:4107" ph="/// Logs the feedback in the UI view for the player, as opposed to inside the Unity Editor for the developer. ... " />
+            <marker date="1539947170041" expanded="true" signature="4142:4382" ph="{...}" />
+            <marker date="1539947170041" expanded="true" signature="4232:4250" ph="{...}" />
+            <marker date="1539947170041" expanded="true" signature="4401:8747" ph="Photon.PunBehaviour CallBacks" />
+            <marker date="1539947170041" expanded="true" signature="4441:4580" ph="/* below, we implement some callbacks of PUN ... */" />
+            <marker date="1539947170041" expanded="true" signature="4585:4748" ph="/// Called after the connection to the master is established and authenticated but only when PhotonNetwork.autoJo ... " />
+            <marker date="1539947170041" expanded="true" signature="4793:5661" ph="{...}" />
+            <marker date="1539947170041" expanded="true" signature="4869:5143" ph="/* we don't want to do anything if we are not attempting to join a room. ... */" />
+            <marker date="1539947170041" expanded="true" signature="5164:5657" ph="{...}" />
+            <marker date="1539947170041" expanded="true" signature="5665:5998" ph="/// Called when a JoinRandom() call failed. The parameter provides ErrorCode and message. ... " />
+            <marker date="1539947170041" expanded="true" signature="6067:6602" ph="{...}" />
+            <marker date="1539947170041" expanded="true" signature="6607:6886" ph="/// Called after disconnecting from the Photon server. ... " />
+            <marker date="1539947170041" expanded="true" signature="6936:7334" ph="{...}" />
+            <marker date="1539947170041" expanded="true" signature="7338:8035" ph="/// Called when entering a room (by creating or joining it). Called on all clients (including the Master Client). ... " />
+            <marker date="1539947170041" expanded="true" signature="8073:8733" ph="{...}" />
+            <marker date="1539947170041" expanded="true" signature="8583:8729" ph="{...}" />
+            <marker date="1539947170041" expanded="true" signature="8638:8679" ph="/* ##Critical ... */" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Personages/Char/PlayerController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="41" column="49" selection-start-line="41" selection-start-column="49" selection-end-line="41" selection-end-column="49" />
+          <folding>
+            <marker date="1540012954463" expanded="false" signature="6:100" ph="..." />
+            <marker date="1540012954463" expanded="true" signature="147:375" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="219:373" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="299:344" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="400:521" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="550:618" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="667:8640" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="979:1627" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="1016:1165" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="1174:1318" ph="/* ##Important ... */" />
+            <marker date="1540012954463" expanded="true" signature="1349:1415" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="1425:1582" ph="/* ##Critical ... */" />
+            <marker date="1540012954463" expanded="true" signature="1652:1885" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="1708:1879" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="1746:1834" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="3061:3461" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="3488:3807" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="3517:3801" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="3562:3694" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="3711:3778" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="3837:3941" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="3972:4128" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="4001:4043" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="4064:4122" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="4134:4310" ph="Показатели" />
+            <marker date="1540012954463" expanded="true" signature="4192:4204" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="4245:4257" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="4282:4294" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="4316:5965" ph="Перемещение" />
+            <marker date="1540012954463" expanded="true" signature="4360:5193" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="4446:4632" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="4668:4831" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="4754:4821" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="5126:5187" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="5220:5732" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="5302:5726" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="5761:5949" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="5812:5871" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="5884:5943" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="5971:7756" ph="Атака" />
+            <marker date="1540012954463" expanded="true" signature="6011:6223" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="6058:6217" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="6104:6207" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="6256:6334" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="6399:6865" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="6899:7257" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="6991:7115" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="7156:7226" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="7316:7560" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="7587:7740" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="7634:7734" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="7762:7923" ph="Интерфйс" />
+            <marker date="1540012954463" expanded="true" signature="7806:7907" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="7929:8350" ph="Реакции" />
+            <marker date="1540012954463" expanded="true" signature="7993:8334" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="8080:8196" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="8275:8328" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="8435:8633" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="8471:8540" ph="{...}" />
+            <marker date="1540012954463" expanded="true" signature="8553:8627" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/PlayerManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="64" column="20" selection-start-line="64" selection-start-column="20" selection-end-line="64" selection-end-column="20" />
+          <folding>
+            <marker date="1540010021115" expanded="true" signature="0:503" ph="/*  Used in DemoAnimator to deal with the networked player instance ... */" />
+            <marker date="1540010021115" expanded="false" signature="511:555" ph="..." />
+            <marker date="1540010021115" expanded="true" signature="595:9969" ph="{...}" />
+            <marker date="1540010021115" expanded="true" signature="602:696" ph="/// Player manager. ... " />
+            <marker date="1540010021115" expanded="true" signature="765:9967" ph="{...}" />
+            <marker date="1540010021115" expanded="true" signature="780:1266" ph="Public Variables" />
+            <marker date="1540010021115" expanded="false" signature="1276:1385" ph="Private Variables" />
+            <marker date="1540010021115" expanded="true" signature="1395:7493" ph="MonoBehaviour CallBacks" />
+            <marker date="1540010021115" expanded="true" signature="1436:1570" ph="/// MonoBehaviour method called on GameObject by Unity during early initialization phase. ... " />
+            <marker date="1540010021115" expanded="true" signature="1598:2357" ph="{...}" />
+            <marker date="1540010021115" expanded="true" signature="1644:1764" ph="{...}" />
+            <marker date="1540010021115" expanded="true" signature="1781:1854" ph="{...}" />
+            <marker date="1540010021115" expanded="true" signature="1868:2016" ph="/* ##Important ... */" />
+            <marker date="1540010021115" expanded="true" signature="2051:2129" ph="{...}" />
+            <marker date="1540010021115" expanded="true" signature="2143:2304" ph="/* ##Critical ... */" />
+            <marker date="1540010021115" expanded="true" signature="2367:2495" ph="/// MonoBehaviour method called on GameObject by Unity during initialization phase. ... " />
+            <marker date="1540010021115" expanded="true" signature="2523:3635" ph="{...}" />
+            <marker date="1540010021115" expanded="true" signature="2647:2802" ph="{...}" />
+            <marker date="1540010021115" expanded="true" signature="2700:2788" ph="{...}" />
+            <marker date="1540010021115" expanded="true" signature="2819:2961" ph="{...}" />
+            <marker date="1540010021115" expanded="true" signature="3036:3237" ph="{...}" />
+            <marker date="1540010021115" expanded="true" signature="3254:3402" ph="{...}" />
+            <marker date="1540010021115" expanded="true" signature="3663:3781" ph="{...}" />
+            <marker date="1540010021115" expanded="true" signature="3792:4053" ph="/// MonoBehaviour method called on GameObject by Unity on every frame. ... " />
+            <marker date="1540010021115" expanded="true" signature="4082:4576" ph="{...}" />
+            <marker date="1540010021115" expanded="true" signature="4209:4405" ph="{...}" />
+            <marker date="1540010021115" expanded="true" signature="4301:4391" ph="{...}" />
+            <marker date="1540010021115" expanded="true" signature="4485:4566" ph="{...}" />
+            <marker date="1540010021115" expanded="true" signature="4586:5004" ph="/// MonoBehaviour method called when the Collider 'other' enters the trigger. ... " />
+            <marker date="1540010021115" expanded="true" signature="5055:5447" ph="{...}" />
+            <marker date="1540010021115" expanded="true" signature="5101:5153" ph="{...}" />
+            <marker date="1540010021115" expanded="true" signature="5168:5305" ph="/* We are only interested in Beamers ... */" />
+            <marker date="1540010021115" expanded="true" signature="5351:5403" ph="{...}" />
+            <marker date="1540010021115" expanded="true" signature="5457:5736" ph="/// MonoBehaviour method called once per frame for every Collider 'other' that is touching the trigger. ... " />
+            <marker date="1540010021115" expanded="true" signature="5786:6375" ph="{...}" />
+            <marker date="1540010021115" expanded="true" signature="5900:5952" ph="{...}" />
+            <marker date="1540010021115" expanded="true" signature="5966:6103" ph="/* We are only interested in Beamers ... */" />
+            <marker date="1540010021115" expanded="true" signature="6149:6201" ph="{...}" />
+            <marker date="1540010021115" expanded="true" signature="6620:6956" ph="/// MonoBehaviour method called after a new level of index 'level' was loaded. ... " />
+            <marker date="1540010021115" expanded="true" signature="7003:7473" ph="{...}" />
+            <marker date="1540010021115" expanded="true" signature="7207:7297" ph="{...}" />
+            <marker date="1540010021115" expanded="false" signature="7503:8852" ph="Private Methods" />
+            <marker date="1540010021115" expanded="true" signature="7670:7732" ph="{...}" />
+            <marker date="1540010021115" expanded="true" signature="7751:7933" ph="/// Processes the inputs. This MUST ONLY BE USED when the player has authority over this Networked GameObject (ph ... " />
+            <marker date="1540010021115" expanded="true" signature="7962:8832" ph="{...}" />
+            <marker date="1540010021115" expanded="true" signature="8018:8635" ph="{...}" />
+            <marker date="1540010021115" expanded="true" signature="8049:8372" ph="/* we don't want to fire when we interact with UI buttons for example. IsPointerOverGameObject really means IsPoi ... */" />
+            <marker date="1540010021115" expanded="true" signature="8439:8506" ph="{...}" />
+            <marker date="1540010021115" expanded="true" signature="8543:8621" ph="{...}" />
+            <marker date="1540010021115" expanded="true" signature="8680:8822" ph="{...}" />
+            <marker date="1540010021115" expanded="true" signature="8729:8808" ph="{...}" />
+            <marker date="1540010021115" expanded="true" signature="8862:9354" ph="/* ##region IPunObservable implementation ... */" />
+            <marker date="1540010021115" expanded="true" signature="9364:9961" ph="IPunObservable implementation" />
+            <marker date="1540010021115" expanded="true" signature="9489:9941" ph="{...}" />
+            <marker date="1540010021115" expanded="true" signature="9533:9719" ph="{...}" />
+            <marker date="1540010021115" expanded="true" signature="9736:9931" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

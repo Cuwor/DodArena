@@ -12,6 +12,7 @@ public abstract class MyTools : MonoBehaviour
         {
             return true;
         }
+
         return false;
     }
 }
@@ -33,13 +34,36 @@ public class RecoilRotation
 
 public class PlayerController : MyTools, IAlive
 {
+    public PhotonView photonView;
+    public GameObject plCam;
+    private GameObject sceneCam;
+    private Vector3 selfPos;
+    [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
+    public static GameObject LocalPlayerInstance;
+
+    private void Awake()
+    {
+        if (photonView.isMine)
+        {
+            sceneCam = GameObject.Find("Main Camera");
+            sceneCam.SetActive(false);
+            plCam.SetActive(true);
+        }
+        // #Important
+        // used in GameManager.cs: we keep track of the localPlayer instance to prevent instanciation when levels are synchronized
+        if (photonView.isMine)
+        {
+            LocalPlayerInstance = gameObject;
+        }
+
+        // #Critical
+        // we flag as don't destroy on load so that instance survives level synchronization, thus giving a seamless experience when levels load.
+        DontDestroyOnLoad(gameObject);
+    }
 
     public float Health
     {
-        get
-        {
-            return health.value;
-        }
+        get { return health.value; }
 
         set
         {
@@ -49,41 +73,37 @@ public class PlayerController : MyTools, IAlive
 
                 health.value = 0;
             }
+
             health.value = value;
         }
     }
 
     [Tooltip("Подвижная часть тела (следует за камерой)")]
     public GameObject body;
-    [Space(10)]
-    [Range(15, 30)]
-    [Tooltip("Скорость перемещения")]
+
+    [Space(10)] [Range(15, 30)] [Tooltip("Скорость перемещения")]
     public float speed;
+
     [Tooltip("Скорость поворота по горизонтали")]
     public float xSpeed;
+
     [Tooltip("Скорость поворота по вертикали")]
     public float ySpeed;
 
-    [Space(10)]
-    [Tooltip("Используемое в данный момент оружие")]
+    [Space(10)] [Tooltip("Используемое в данный момент оружие")]
     public Weapon weapon;
 
-    [Space(10)]
-    [Header("Гравитация")]
-    [Tooltip("Ускорение")]
+    [Space(10)] [Header("Гравитация")] [Tooltip("Ускорение")]
     public float grav;
-    [Tooltip("Сила прыжка")]
-    public float jumpSpeed;
 
-    [Space(20)]
-    [Header("Части интерфейса")]
-    [Tooltip("Количество патронов")]
+    [Tooltip("Сила прыжка")] public float jumpSpeed;
+
+    [Space(20)] [Header("Части интерфейса")] [Tooltip("Количество патронов")]
     public Text ammunitionCount;
-    [Tooltip("Слайдер для здоровья")]
-    public Slider health;
 
-    [HideInInspector]
-    public bool inDialog;
+    [Tooltip("Слайдер для здоровья")] public Slider health;
+
+    [HideInInspector] public bool inDialog;
 
 
     private Animator anim;
@@ -117,11 +137,24 @@ public class PlayerController : MyTools, IAlive
     {
         if (!inDialog)
         {
-            Move();
-            MaxSpeed();
-            Attack();
-            Reload();
+            if (photonView.isMine)
+            {
+                Move();
+                MaxSpeed();
+                Attack();
+                Reload();
+            }
+            else
+            {
+                  SmoothNetMovement();
+            }
+            
         }
+    }
+
+    void SmoothNetMovement()
+    {
+          transform.position = Vector3.Lerp(transform.position, selfPos, Time.deltaTime*8);
     }
 
     private void LateUpdate()
@@ -130,6 +163,7 @@ public class PlayerController : MyTools, IAlive
         {
             Rotate();
         }
+
         if (recoil)
         {
             StartCoroutine("Recoil");
@@ -137,21 +171,23 @@ public class PlayerController : MyTools, IAlive
     }
 
     #region Показатели
+
     public void GetDamage(float value)
     {
-
     }
+
     public void PlusHealth(float value)
     {
-
     }
+
     public void Death()
     {
-
     }
+
     #endregion
 
     #region Перемещение
+
     private void Move()
     {
         if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
@@ -169,13 +205,16 @@ public class PlayerController : MyTools, IAlive
                 vertSpeed = jumpSpeed;
             }
         }
+
         vertSpeed += grav * Time.deltaTime;
-        moveVector = new Vector3(moveVector.x * speed * movementMultiplicator * Time.fixedDeltaTime, vertSpeed * Time.deltaTime, moveVector.z * speed * movementMultiplicator * Time.fixedDeltaTime);
+        moveVector = new Vector3(moveVector.x * speed * movementMultiplicator * Time.fixedDeltaTime,
+            vertSpeed * Time.deltaTime, moveVector.z * speed * movementMultiplicator * Time.fixedDeltaTime);
         if (moveVector != Vector3.zero)
         {
             controller.Move(moveVector);
         }
     }
+
     private void Rotate()
     {
         if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
@@ -189,6 +228,7 @@ public class PlayerController : MyTools, IAlive
             body.transform.localEulerAngles = new Vector3(-rotationY, 0, 0);
         }
     }
+
     private void MaxSpeed()
     {
         if (Input.GetKey(KeyCode.LeftShift))
@@ -200,9 +240,11 @@ public class PlayerController : MyTools, IAlive
             movementMultiplicator = 1;
         }
     }
+
     #endregion
 
     #region Атака
+
     private void Attack()
     {
         if (Input.GetMouseButtonDown(0))
@@ -214,11 +256,13 @@ public class PlayerController : MyTools, IAlive
             }
         }
     }
+
     private void AttackEffect()
     {
         GetRecoilVector(weapon.backForce);
         recoil = true;
     }
+
     private void RotateToView(float force, Vector2 forceVector)
     {
         float x, y;
@@ -230,6 +274,7 @@ public class PlayerController : MyTools, IAlive
         transform.localEulerAngles = new Vector3(0, rotationX, 0);
         body.transform.localEulerAngles = new Vector3(-rotationY, 0, 0);
     }
+
     private IEnumerator Recoil()
     {
         float force = weapon.backForce;
@@ -238,18 +283,23 @@ public class PlayerController : MyTools, IAlive
             RotateToView(i / 4, view.newRotation);
             yield return new WaitForSeconds(0.025f);
         }
+
         for (int i = 0; i < force; i++)
         {
             RotateToView(0.5f, view.oldRotation);
         }
+
         recoil = false;
     }
+
     private void GetRecoilVector(float weaponRecoilForce)
     {
         view.oldRotation = new Vector2(rotationX, rotationY);
-        int[] c = { -1, 1 };
-        view.newRotation = new Vector2(rotationX + c[Random.Range(0, 2)] * weaponRecoilForce / 10, rotationY + weaponRecoilForce);
+        int[] c = {-1, 1};
+        view.newRotation = new Vector2(rotationX + c[Random.Range(0, 2)] * weaponRecoilForce / 10,
+            rotationY + weaponRecoilForce);
     }
+
     private void Reload()
     {
         if (Input.GetKeyDown(KeyCode.R))
@@ -258,6 +308,7 @@ public class PlayerController : MyTools, IAlive
             Invoke("DrawAmmo", weapon.reloadTime);
         }
     }
+
     #endregion
 
     #region Интерфйс
@@ -270,8 +321,6 @@ public class PlayerController : MyTools, IAlive
     #endregion
 
     #region Реакции
-
-   
 
     private void OnTriggerEnter(Collider other)
     {
@@ -293,8 +342,16 @@ public class PlayerController : MyTools, IAlive
 
     #endregion
 
-
-
+    private void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.isWriting)
+        {
+            stream.SendNext(transform.position);
+        }
+        else
+        {
+            selfPos = (Vector3) stream.ReceiveNext();
+        }
+    }
+    
 }
-
-
