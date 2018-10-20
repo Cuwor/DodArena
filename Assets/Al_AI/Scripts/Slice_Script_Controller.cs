@@ -10,6 +10,8 @@ public abstract class Monster :MyTools, IAlive
 {
     public GameObject target;
     
+    public EnemyState state;
+    
     public float DistanceTP;
     [Space(20)] public NavMeshAgent NavAgent;
     [Range(1, 30)] public float RadiusAttack;
@@ -24,6 +26,11 @@ public abstract class Monster :MyTools, IAlive
     protected bool alive;
     protected Animator _anim;
     protected bool wait;
+    protected float maxHP;
+    protected float size;
+    protected int attackType;
+    protected float attackDistance;
+
 
     public virtual float Health
     {
@@ -87,7 +94,33 @@ public abstract class Monster :MyTools, IAlive
     {
     }
     
+    public void Initiolize()
+    {
+        FindPlayers();
+        NavAgent = GetComponent<NavMeshAgent>();
+        _anim = GetComponent<Animator>();
+        maxHP = Health;
+        alive = true;
+        wait = false;
+        for (int i = 0; i < AttackAreas.Length; i++)
+        {
+            AttackArea proj;
+            if (MyGetComponent(out proj, AttackAreas[i]))
+            {
+                proj.Damage = AttackForce;
+            }
+        }
+
+        state = EnemyState.Stay;
+        GetAttackDistance();
+        size = transform.localScale.x;
+    }
     
+    protected void GetAttackDistance()
+    {
+        attackType = UnityEngine.Random.Range(1, 3);
+        attackDistance = attackType == 1 ? RadiusAttack : RadiusAttack - 2 * size;
+    }
     
     protected void FindPlayers()
     {
@@ -161,14 +194,10 @@ public class Slice_Script_Controller :Monster //в плеере
     
     public int bossReady = 0;
 
-    public EnemyState state;
+   
      
     private int qtyEidolons = 4;
-    private int attackType;
-    
-    private float maxHP;
-    private float attackDistance;
-    private float size;
+ 
  
     //[HideInInspector]
     public List<GameObject> Brothers;
@@ -194,7 +223,7 @@ public class Slice_Script_Controller :Monster //в плеере
                     distanceUT = Vector3.Distance(unionTarget.transform.position, transform.position);
                 }
 
-                if (DistanceTP <= RadiusView && DistanceTP > RadiusAttack)
+                if (DistanceTP <= RadiusView && DistanceTP > attackDistance)
                 {
                     state = EnemyState.Walk;
                     ready = false;
@@ -210,7 +239,7 @@ public class Slice_Script_Controller :Monster //в плеере
                 {
                     if (!boss)
                     {
-                        if (distanceUT > RadiusAttack)
+                        if (distanceUT > attackDistance)
                         {
                             state = EnemyState.Spec;
                         }
@@ -294,28 +323,6 @@ public class Slice_Script_Controller :Monster //в плеере
         Health = 0;
     }
   
-    public void Initiolize()
-    {
-        FindPlayers();
-        NavAgent = GetComponent<NavMeshAgent>();
-        _anim = GetComponent<Animator>();
-        maxHP = Health;
-        alive = true;
-        wait = false;
-        for (int i = 0; i < AttackAreas.Length; i++)
-        {
-            AttackArea proj;
-            if (MyGetComponent(out proj, AttackAreas[i]))
-            {
-                proj.Damage = AttackForce;
-            }
-        }
-
-        state = EnemyState.Stay;
-        GetAttackDistance();
-        size = transform.localScale.x;
-    }
-
     IEnumerator CreateEidolons()
     {
         yield return new WaitForSeconds(1f);
@@ -367,12 +374,6 @@ public class Slice_Script_Controller :Monster //в плеере
         }
         StartCoroutine(Destroeded());
 
-    }
-
-    private void GetAttackDistance()
-    {
-        attackType = UnityEngine.Random.Range(1, 3);
-        attackDistance = attackType == 1 ? RadiusAttack : RadiusAttack - 2 * size;
     }
 
     private Vector3 GetRandomPositionForEidolons()

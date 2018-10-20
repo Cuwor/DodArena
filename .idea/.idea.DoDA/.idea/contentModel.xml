@@ -8,6 +8,7 @@
         <e p="Al_AI" t="Include">
           <e p="Scripts" t="Include">
             <e p="Eidolon_Script_Controller.cs" t="Include" />
+            <e p="SceletonScriptController.cs" t="Include" />
             <e p="Scripts_from_other_projects" t="Include">
               <e p="DemonController.cs" t="Include" />
               <e p="EnemyDamage.cs" t="Include" />
