@@ -10,7 +10,7 @@ public class Ammunition : MonoBehaviour {
     public GameObject target;
     private Vector3 moveVector;
     public bool move;
-    public PlayerController PC;
+    public SinglePlayerController PC;
 
 
     private void Start()

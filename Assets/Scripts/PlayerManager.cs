@@ -8,16 +8,18 @@
 // <author>developer@exitgames.com</author>
 // --------------------------------------------------------------------------------------------------------------------
 
+using Photon;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 namespace ExitGames.Demos.DemoAnimator
 {
     /// <summary>
-    /// Player manager.
-    /// Handles fire Input and Beams.
+    ///     Player manager.
+    ///     Handles fire Input and Beams.
     /// </summary>
-    public class PlayerManager : Photon.PunBehaviour, IPunObservable
+    public class PlayerManager : PunBehaviour, IPunObservable
     {
         #region Public Variables
 
@@ -38,32 +40,25 @@ namespace ExitGames.Demos.DemoAnimator
         #region Private Variables
 
         //True, when the user is firing
-        bool IsFiring;
+        private bool IsFiring;
 
         #endregion
 
         #region MonoBehaviour CallBacks
 
         /// <summary>
-        /// MonoBehaviour method called on GameObject by Unity during early initialization phase.
+        ///     MonoBehaviour method called on GameObject by Unity during early initialization phase.
         /// </summary>
         public void Awake()
         {
-            if (this.Beams == null)
-            {
+            if (Beams == null)
                 Debug.LogError("<Color=Red><b>Missing</b></Color> Beams Reference.", this);
-            }
             else
-            {
-                this.Beams.SetActive(false);
-            }
+                Beams.SetActive(false);
 
             // #Important
             // used in GameManager.cs: we keep track of the localPlayer instance to prevent instanciation when levels are synchronized
-            if (photonView.isMine)
-            {
-                LocalPlayerInstance = gameObject;
-            }
+            if (photonView.isMine) LocalPlayerInstance = gameObject;
 
             // #Critical
             // we flag as don't destroy on load so that instance survives level synchronization, thus giving a seamless experience when levels load.
@@ -71,18 +66,15 @@ namespace ExitGames.Demos.DemoAnimator
         }
 
         /// <summary>
-        /// MonoBehaviour method called on GameObject by Unity during initialization phase.
+        ///     MonoBehaviour method called on GameObject by Unity during initialization phase.
         /// </summary>
         public void Start()
         {
-            CameraWork _cameraWork = gameObject.GetComponent<CameraWork>();
+            var _cameraWork = gameObject.GetComponent<CameraWork>();
 
             if (_cameraWork != null)
             {
-                if (photonView.isMine)
-                {
-                    _cameraWork.OnStartFollowing();
-                }
+                if (photonView.isMine) _cameraWork.OnStartFollowing();
             }
             else
             {
@@ -90,9 +82,9 @@ namespace ExitGames.Demos.DemoAnimator
             }
 
             // Create the UI
-            if (this.PlayerUiPrefab != null)
+            if (PlayerUiPrefab != null)
             {
-                GameObject _uiGo = Instantiate(this.PlayerUiPrefab) as GameObject;
+                var _uiGo = Instantiate(PlayerUiPrefab);
                 _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
             }
             else
@@ -100,97 +92,79 @@ namespace ExitGames.Demos.DemoAnimator
                 Debug.LogWarning("<Color=Red><b>Missing</b></Color> PlayerUiPrefab reference on player Prefab.", this);
             }
 
-			#if UNITY_5_4_OR_NEWER
+#if UNITY_5_4_OR_NEWER
             // Unity 5.4 has a new scene management. register a method to call CalledOnLevelWasLoaded.
-			UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
-            #endif
+            SceneManager.sceneLoaded += OnSceneLoaded;
+#endif
         }
 
 
-		public void OnDisable()
-		{
-			#if UNITY_5_4_OR_NEWER
-			UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
-			#endif
-		}
+        public void OnDisable()
+        {
+#if UNITY_5_4_OR_NEWER
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+#endif
+        }
 
 
         /// <summary>
-        /// MonoBehaviour method called on GameObject by Unity on every frame.
-        /// Process Inputs if local player.
-        /// Show and hide the beams
-        /// Watch for end of game, when local player health is 0.
+        ///     MonoBehaviour method called on GameObject by Unity on every frame.
+        ///     Process Inputs if local player.
+        ///     Show and hide the beams
+        ///     Watch for end of game, when local player health is 0.
         /// </summary>
         public void Update()
         {
             // we only process Inputs and check health if we are the local player
             if (photonView.isMine)
             {
-                this.ProcessInputs();
+                ProcessInputs();
 
-                if (this.Health <= 0f)
-                {
-                    GameManager.Instance.LeaveRoom();
-                }
+                if (Health <= 0f) GameManager.Instance.LeaveRoom();
             }
 
-            if (this.Beams != null && this.IsFiring != this.Beams.GetActive())
-            {
-                this.Beams.SetActive(this.IsFiring);
-            }
+            if (Beams != null && IsFiring != Beams.GetActive()) Beams.SetActive(IsFiring);
         }
 
         /// <summary>
-        /// MonoBehaviour method called when the Collider 'other' enters the trigger.
-        /// Affect Health of the Player if the collider is a beam
-        /// Note: when jumping and firing at the same, you'll find that the player's own beam intersects with itself
-        /// One could move the collider further away to prevent this or check if the beam belongs to the player.
+        ///     MonoBehaviour method called when the Collider 'other' enters the trigger.
+        ///     Affect Health of the Player if the collider is a beam
+        ///     Note: when jumping and firing at the same, you'll find that the player's own beam intersects with itself
+        ///     One could move the collider further away to prevent this or check if the beam belongs to the player.
         /// </summary>
         public void OnTriggerEnter(Collider other)
         {
-            if (!photonView.isMine)
-            {
-                return;
-            }
+            if (!photonView.isMine) return;
 
 
             // We are only interested in Beamers
             // we should be using tags but for the sake of distribution, let's simply check by name.
-            if (!other.name.Contains("Beam"))
-            {
-                return;
-            }
+            if (!other.name.Contains("Beam")) return;
 
-            this.Health -= 0.1f;
+            Health -= 0.1f;
         }
 
         /// <summary>
-        /// MonoBehaviour method called once per frame for every Collider 'other' that is touching the trigger.
-        /// We're going to affect health while the beams are interesting the player
+        ///     MonoBehaviour method called once per frame for every Collider 'other' that is touching the trigger.
+        ///     We're going to affect health while the beams are interesting the player
         /// </summary>
         /// <param name="other">Other.</param>
         public void OnTriggerStay(Collider other)
         {
             // we dont' do anything if we are not the local player.
-            if (!photonView.isMine)
-            {
-                return;
-            }
+            if (!photonView.isMine) return;
 
             // We are only interested in Beamers
             // we should be using tags but for the sake of distribution, let's simply check by name.
-            if (!other.name.Contains("Beam"))
-            {
-                return;
-            }
+            if (!other.name.Contains("Beam")) return;
 
             // we slowly affect health when beam is constantly hitting us, so player has to move to prevent death.
-            this.Health -= 0.1f*Time.deltaTime;
+            Health -= 0.1f * Time.deltaTime;
         }
 
 
-		#if !UNITY_5_4_OR_NEWER
-        /// <summary>See CalledOnLevelWasLoaded. Outdated in Unity 5.4.</summary>
+#if !UNITY_5_4_OR_NEWER
+/// <summary>See CalledOnLevelWasLoaded. Outdated in Unity 5.4.</summary>
         void OnLevelWasLoaded(int level)
         {
             this.CalledOnLevelWasLoaded(level);
@@ -199,20 +173,17 @@ namespace ExitGames.Demos.DemoAnimator
 
 
         /// <summary>
-        /// MonoBehaviour method called after a new level of index 'level' was loaded.
-        /// We recreate the Player UI because it was destroy when we switched level.
-        /// Also reposition the player if outside the current arena.
+        ///     MonoBehaviour method called after a new level of index 'level' was loaded.
+        ///     We recreate the Player UI because it was destroy when we switched level.
+        ///     Also reposition the player if outside the current arena.
         /// </summary>
         /// <param name="level">Level index loaded</param>
-        void CalledOnLevelWasLoaded(int level)
+        private void CalledOnLevelWasLoaded(int level)
         {
             // check if we are outside the Arena and if it's the case, spawn around the center of the arena in a safe zone
-            if (!Physics.Raycast(transform.position, -Vector3.up, 5f))
-            {
-                transform.position = new Vector3(0f, 5f, 0f);
-            }
+            if (!Physics.Raycast(transform.position, -Vector3.up, 5f)) transform.position = new Vector3(0f, 5f, 0f);
 
-            GameObject _uiGo = Instantiate(this.PlayerUiPrefab) as GameObject;
+            var _uiGo = Instantiate(PlayerUiPrefab);
             _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
         }
 
@@ -220,19 +191,18 @@ namespace ExitGames.Demos.DemoAnimator
 
         #region Private Methods
 
-
-		#if UNITY_5_4_OR_NEWER
-		void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode loadingMode)
-		{
-			
-			this.CalledOnLevelWasLoaded(scene.buildIndex);
-		}
-		#endif
+#if UNITY_5_4_OR_NEWER
+        private void OnSceneLoaded(Scene scene, LoadSceneMode loadingMode)
+        {
+            CalledOnLevelWasLoaded(scene.buildIndex);
+        }
+#endif
 
         /// <summary>
-        /// Processes the inputs. This MUST ONLY BE USED when the player has authority over this Networked GameObject (photonView.isMine == true)
+        ///     Processes the inputs. This MUST ONLY BE USED when the player has authority over this Networked GameObject
+        ///     (photonView.isMine == true)
         /// </summary>
-        void ProcessInputs()
+        private void ProcessInputs()
         {
             if (Input.GetButtonDown("Fire1"))
             {
@@ -243,19 +213,12 @@ namespace ExitGames.Demos.DemoAnimator
                     //	return;
                 }
 
-                if (!this.IsFiring)
-                {
-                    this.IsFiring = true;
-                }
+                if (!IsFiring) IsFiring = true;
             }
 
             if (Input.GetButtonUp("Fire1"))
-            {
-                if (this.IsFiring)
-                {
-                    this.IsFiring = false;
-                }
-            }
+                if (IsFiring)
+                    IsFiring = false;
         }
 
         #endregion
@@ -289,14 +252,14 @@ namespace ExitGames.Demos.DemoAnimator
             if (stream.isWriting)
             {
                 // We own this player: send the others our data
-                stream.SendNext(this.IsFiring);
-                stream.SendNext(this.Health);
+                stream.SendNext(IsFiring);
+                stream.SendNext(Health);
             }
             else
             {
                 // Network player, receive data
-                this.IsFiring = (bool)stream.ReceiveNext();
-                this.Health = (float)stream.ReceiveNext();
+                IsFiring = (bool) stream.ReceiveNext();
+                Health = (float) stream.ReceiveNext();
             }
         }
 

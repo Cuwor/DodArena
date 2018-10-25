@@ -9,6 +9,7 @@
         <e p="Al_AI" t="Include">
           <e p="Scripts" t="Include">
             <e p="Eidolon_Script_Controller.cs" t="Include" />
+            <e p="SceletonScriptController.cs" t="Include" />
             <e p="Scripts_from_other_projects" t="Include">
               <e p="DemonController.cs" t="Include" />
               <e p="EnemyDamage.cs" t="Include" />
@@ -22,6 +23,9 @@
           <e p="Char" t="Include">
             <e p="PlayerController.cs" t="Include" />
             <e p="PlayerUI.cs" t="Include" />
+            <e p="Single" t="Include">
+              <e p="SinglePlayerController.cs" t="Include" />
+            </e>
           </e>
           <e p="DialogSystem" t="Include">
             <e p="Dialog.cs" t="Include" />
@@ -322,6 +326,7 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="PlayerManager.cs" t="Include" />
+          <e p="SkyRotator.cs" t="Include" />
         </e>
       </e>
       <e p="DodArena.sln" t="IncludeFlat" />

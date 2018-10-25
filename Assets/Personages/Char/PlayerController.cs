@@ -3,45 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class MyTools : MonoBehaviour
-{
-    protected bool MyGetComponent<T>(out T component, GameObject obj)
-    {
-        component = obj.GetComponent<T>();
-        if (component != null)
-        {
-            return true;
-        }
 
-        return false;
-    }
-}
-
-public interface IAlive
-{
-    float Health { get; set; }
-
-    void GetDamage(float value);
-    void PlusHealth(float value);
-    void Death();
-}
-
-public class RecoilRotation
-{
-    public Vector2 newRotation;
-    public Vector2 oldRotation;
-}
-
-public class PlayerController : MyTools, IAlive
+public class PlayerController : SinglePlayerController
 {
     public PhotonView photonView;
-    public GameObject plCam;
     private GameObject sceneCam;
     private Vector3 selfPos;
+    private Quaternion selfRot;
+
     [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
     public static GameObject LocalPlayerInstance;
 
-    private void Awake()
+    protected override void Awake()
     {
         if (photonView.isMine)
         {
@@ -49,6 +22,7 @@ public class PlayerController : MyTools, IAlive
             sceneCam.SetActive(false);
             plCam.SetActive(true);
         }
+
         // #Important
         // used in GameManager.cs: we keep track of the localPlayer instance to prevent instanciation when levels are synchronized
         if (photonView.isMine)
@@ -78,33 +52,7 @@ public class PlayerController : MyTools, IAlive
         }
     }
 
-    [Tooltip("Подвижная часть тела (следует за камерой)")]
-    public GameObject body;
-
-    [Space(10)] [Range(15, 30)] [Tooltip("Скорость перемещения")]
-    public float speed;
-
-    [Tooltip("Скорость поворота по горизонтали")]
-    public float xSpeed;
-
-    [Tooltip("Скорость поворота по вертикали")]
-    public float ySpeed;
-
-    [Space(10)] [Tooltip("Используемое в данный момент оружие")]
-    public Weapon weapon;
-
-    [Space(10)] [Header("Гравитация")] [Tooltip("Ускорение")]
-    public float grav;
-
-    [Tooltip("Сила прыжка")] public float jumpSpeed;
-
-    [Space(20)] [Header("Части интерфейса")] [Tooltip("Количество патронов")]
-    public Text ammunitionCount;
-
-    [Tooltip("Слайдер для здоровья")] public Slider health;
-
-    [HideInInspector] public bool inDialog;
-
+    
 
     private Animator anim;
     private CharacterController controller;
@@ -133,7 +81,7 @@ public class PlayerController : MyTools, IAlive
         Health = 100;
     }
 
-    private void Update()
+    protected override void Update()
     {
         if (!inDialog)
         {
@@ -143,27 +91,23 @@ public class PlayerController : MyTools, IAlive
                 MaxSpeed();
                 Attack();
                 Reload();
+                Rotate();
             }
             else
             {
-                  SmoothNetMovement();
+                SmoothNetMovement();
             }
-            
         }
     }
 
     void SmoothNetMovement()
     {
-          transform.position = Vector3.Lerp(transform.position, selfPos, Time.deltaTime*8);
+        transform.position = Vector3.Lerp(transform.position, selfPos, Time.deltaTime * 8);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, selfRot, 500 * Time.deltaTime);
     }
 
     private void LateUpdate()
     {
-        if (!inDialog)
-        {
-            Rotate();
-        }
-
         if (recoil)
         {
             StartCoroutine("Recoil");
@@ -347,11 +291,12 @@ public class PlayerController : MyTools, IAlive
         if (stream.isWriting)
         {
             stream.SendNext(transform.position);
+            stream.SendNext(transform.rotation);
         }
         else
         {
             selfPos = (Vector3) stream.ReceiveNext();
+            selfRot = (Quaternion) stream.ReceiveNext();
         }
     }
-    
 }

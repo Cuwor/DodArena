@@ -3,34 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-public class SinglePLayerController : MyTools, IAlive
+public abstract class MyTools : MonoBehaviour
 {
-    public PhotonView photonView;
+    protected bool MyGetComponent<T>(out T component, GameObject obj)
+    {
+        component = obj.GetComponent<T>();
+        if (component != null)
+        {
+            return true;
+        }
+
+        return false;
+    }
+}
+
+public interface IAlive
+{
+    float Health { get; set; }
+
+    void GetDamage(float value);
+    void PlusHealth(float value);
+    void Death();
+}
+
+public class RecoilRotation
+{
+    public Vector2 newRotation;
+    public Vector2 oldRotation;
+}
+
+public class SinglePlayerController : MyTools, IAlive
+{
     public GameObject plCam;
     private GameObject sceneCam;
-    private Vector3 selfPos;
+
     [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
     public static GameObject LocalPlayerInstance;
 
-    private void Awake()
+    protected virtual void Awake()
     {
-        if (photonView.isMine)
-        {
-            sceneCam = GameObject.Find("Main Camera");
-            sceneCam.SetActive(false);
-            plCam.SetActive(true);
-        }
-        // #Important
-        // used in GameManager.cs: we keep track of the localPlayer instance to prevent instanciation when levels are synchronized
-        if (photonView.isMine)
-        {
-            LocalPlayerInstance = gameObject;
-        }
-
-        // #Critical
-        // we flag as don't destroy on load so that instance survives level synchronization, thus giving a seamless experience when levels load.
-        DontDestroyOnLoad(gameObject);
+        sceneCam = GameObject.Find("Main Camera");
+        sceneCam.SetActive(false);
+        plCam.SetActive(true);
     }
 
     public float Health
@@ -105,36 +119,21 @@ public class SinglePLayerController : MyTools, IAlive
         Health = 100;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (!inDialog)
         {
-            if (photonView.isMine)
-            {
-                Move();
-                MaxSpeed();
-                Attack();
-                Reload();
-            }
-            else
-            {
-                  SmoothNetMovement();
-            }
-            
+            Move();
+            MaxSpeed();
+            Attack();
+            Reload();
+            Rotate();
         }
     }
 
-    void SmoothNetMovement()
-    {
-          transform.position = Vector3.Lerp(transform.position, selfPos, Time.deltaTime*8);
-    }
 
     private void LateUpdate()
     {
-        if (!inDialog)
-        {
-            Rotate();
-        }
 
         if (recoil)
         {
@@ -313,17 +312,4 @@ public class SinglePLayerController : MyTools, IAlive
     }
 
     #endregion
-
-    private void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.isWriting)
-        {
-            stream.SendNext(transform.position);
-        }
-        else
-        {
-            selfPos = (Vector3) stream.ReceiveNext();
-        }
-    }
-    
 }

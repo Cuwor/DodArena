@@ -7,7 +7,7 @@ public class Dialog : MonoBehaviour {
     public DialogNode[] nodes;
     public int activeNode;
     public bool Show;
-    public PlayerController player;
+    public SinglePlayerController player;
 
 	// Use this for initialization
 	void Start () {

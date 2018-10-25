@@ -12,7 +12,7 @@
 	<key>CFBundleExecutable</key>
 	<string>123</string>
 	<key>CFBundleGetInfoString</key>
-	<string>Unity Player version 2018.2.12f1 (0a46ddfcfad4). (c) 2018 Unity Technologies ApS. All rights reserved.</string>
+	<string>Unity Player version 2018.2.13f1 (83fbdcd35118). (c) 2018 Unity Technologies ApS. All rights reserved.</string>
 	<key>CFBundleIconFile</key>
 	<string>PlayerIcon.icns</string>
 	<key>CFBundleIdentifier</key>
@@ -38,7 +38,7 @@
 	<key>NSPrincipalClass</key>
 	<string>PlayerApplication</string>
 	<key>UnityBuildNumber</key>
-	<string>0a46ddfcfad4</string>
+	<string>83fbdcd35118</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>10.9.0</string>
 </dict>

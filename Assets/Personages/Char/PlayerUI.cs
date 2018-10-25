@@ -16,7 +16,7 @@ public class PlayerUI : MyTools {
     public GameObject crossline;
 
     [HideInInspector]
-    public PlayerController pc;
+    public SinglePlayerController pc;
 
     private void Start()
     {
