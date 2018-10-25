@@ -43,9 +43,12 @@ namespace ExitGames.Demos.DemoAnimator
 
 		#region MonoBehaviour CallBacks
 
-		/// <summary>
-		/// MonoBehaviour method called on GameObject by Unity during initialization phase.
-		/// </summary>
+		private void Awake()
+		{
+			PhotonNetwork.sendRate = 60;
+			PhotonNetwork.sendRateOnSerialize = 30;
+		}
+
 		void Start()
 		{
 			Instance = this;
