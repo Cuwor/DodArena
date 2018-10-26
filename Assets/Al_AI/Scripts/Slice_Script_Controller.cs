@@ -6,23 +6,22 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
 
-public abstract class Monster :MyTools, IAlive 
+public abstract class Monster : MyTools, IAlive
 {
     public GameObject target;
-    
+
     public EnemyState state;
-    
+
     public float DistanceTP;
     [Space(20)] public NavMeshAgent NavAgent;
     [Range(1, 30)] public float RadiusAttack;
     [Range(1, 100)] public float RadiusView;
     [Range(0, 100)] public float HP;
     [Range(0, 50)] public float AttackForce;
-    public bool saled = false;
-    
+
     public GameObject[] AttackAreas;
     public GameObject[] ammos;
-    
+
     protected bool alive;
     protected Animator _anim;
     protected bool wait;
@@ -30,7 +29,6 @@ public abstract class Monster :MyTools, IAlive
     protected float size;
     protected int attackType;
     protected float attackDistance;
-
 
     public virtual float Health
     {
@@ -48,25 +46,21 @@ public abstract class Monster :MyTools, IAlive
             HP = value;
         }
     }
-      
+
     public virtual void Death()
     {
         NavAgent.enabled = false;
         _anim.SetTrigger("Dead");
-        if (saled)
-        {
-            StartCoroutine(Drop());
-        }
+        StartCoroutine(Drop());
         StartCoroutine(Destroeded());
-
     }
-    
+
     protected IEnumerator Destroeded()
     {
         yield return new WaitForSeconds(2);
         Destroy(gameObject);
     }
-    
+
     protected IEnumerator GetRandomStayState()
     {
         _anim.SetFloat("Ystate", -1);
@@ -75,7 +69,7 @@ public abstract class Monster :MyTools, IAlive
         yield return new WaitForSeconds(2);
         wait = false;
     }
-    
+
     protected IEnumerator Drop()
     {
         yield return new WaitForSeconds(2);
@@ -93,7 +87,7 @@ public abstract class Monster :MyTools, IAlive
     public void PlusHealth(float value)
     {
     }
-    
+
     public void Initiolize()
     {
         FindPlayers();
@@ -115,13 +109,13 @@ public abstract class Monster :MyTools, IAlive
         GetAttackDistance();
         size = transform.localScale.x;
     }
-    
+
     protected void GetAttackDistance()
     {
         attackType = UnityEngine.Random.Range(1, 3);
         attackDistance = attackType == 1 ? RadiusAttack : RadiusAttack - 2 * size;
     }
-    
+
     protected void FindPlayers()
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
@@ -138,9 +132,11 @@ public abstract class Monster :MyTools, IAlive
             }
         }
     }
-    
+
     protected void CaseMethod(bool navAgentEnebled, float xstate, float ysate, int attack, Vector3 destenation)
     {
+        if (NavAgent.enabled)
+            NavAgent.destination = destenation;
         NavAgent.enabled = navAgentEnebled;
         if (navAgentEnebled)
             NavAgent.destination = destenation;
@@ -148,7 +144,7 @@ public abstract class Monster :MyTools, IAlive
         _anim.SetFloat("Xstate", xstate);
         _anim.SetFloat("Ystate", ysate);
     }
-    
+
     protected void OnTriggerEnter(Collider other)
     {
         if (alive)
@@ -160,12 +156,13 @@ public abstract class Monster :MyTools, IAlive
             }
         }
     }
-    
- 
 }
 
-
-
+public static class SceneScript
+{
+    public static List<GameObject> MiddleSlame;
+    public static List<GameObject> JuniorSlame;
+}
 
 public enum EnemyState
 {
@@ -175,39 +172,42 @@ public enum EnemyState
     Spec,
 }
 
-public class Slice_Script_Controller :Monster //в плеере
+public enum SlameType
+{
+    Senior,
+    Middle,
+    Junior,
+}
+
+public class Slice_Script_Controller : Monster //в плеере
 {
     [Tooltip("Здесь объект")]
     [Header("Здесь объект")]
-        
+
     public GameObject unionTarget;
-   
+
     public float distanceUT;
-    
+
     public GameObject Eidolon;
     public GameObject god;
-    
+
+    public SlameType slameType;
 
     public bool boss = false;
-    public bool itIsBig = false;
     public bool ready = false;
-    
+    public bool saled = false;
     public int bossReady = 0;
 
-   
-     
     private int qtyEidolons = 4;
- 
- 
+
     //[HideInInspector]
     public List<GameObject> Brothers;
-
-
 
     // Use this for initialization
     public void Start()
     {
-        Initiolize();
+        if (slameType == SlameType.Senior)
+            Initiolize();
     }
 
     void FixedUpdate()
@@ -218,10 +218,8 @@ public class Slice_Script_Controller :Monster //в плеере
             {
                 DistanceTP = Vector3.Distance(target.transform.position, transform.position);
 
-                if (!boss && !itIsBig && (state == EnemyState.Stay || state == EnemyState.Spec) && unionTarget != null)
-                {
+                if (!boss && slameType != SlameType.Senior && (state == EnemyState.Stay || state == EnemyState.Spec) && unionTarget != null)
                     distanceUT = Vector3.Distance(unionTarget.transform.position, transform.position);
-                }
 
                 if (DistanceTP <= RadiusView && DistanceTP > attackDistance)
                 {
@@ -235,14 +233,12 @@ public class Slice_Script_Controller :Monster //в плеере
                     ready = false;
                     bossReady = 0;
                 }
-                else if (Brothers.Count > qtyEidolons - 2 && !itIsBig)
+                else if (Brothers.Count > qtyEidolons - 2 && slameType != SlameType.Senior)
                 {
                     if (!boss)
                     {
                         if (distanceUT > attackDistance)
-                        {
                             state = EnemyState.Spec;
-                        }
                         else
                         {
                             state = EnemyState.Stay;
@@ -271,9 +267,7 @@ public class Slice_Script_Controller :Monster //в плеере
 
             }
             else
-            {
                 FindPlayers();
-            }
 
             switch (state)
             {
@@ -303,7 +297,7 @@ public class Slice_Script_Controller :Monster //в плеере
 
     private void Unite()
     {
-        for (int i = 0; i < qtyEidolons-1; i++)
+        for (int i = 0; i < qtyEidolons - 1; i++)
         {
             var c = Brothers[0].GetComponent<Slice_Script_Controller>();
             c.saled = false;
@@ -319,10 +313,15 @@ public class Slice_Script_Controller :Monster //в плеере
         SSC.RadiusView = RadiusView + 2;
         SSC.NavAgent.speed = NavAgent.speed * size;
 
+        if (slameType == SlameType.Junior)
+            SSC.slameType = SlameType.Middle;
+        else if (slameType == SlameType.Middle)
+            slameType = SlameType.Senior;
+
         saled = false;
         Health = 0;
     }
-  
+
     IEnumerator CreateEidolons()
     {
         yield return new WaitForSeconds(1f);
@@ -330,6 +329,7 @@ public class Slice_Script_Controller :Monster //в плеере
         for (int i = 0; i < qtyEidolons; i++)
         {
             eidolons[i] = Instantiate(Eidolon, GetRandomPositionForEidolons(), Quaternion.identity);
+
             Slice_Script_Controller SSC;
             if (MyGetComponent(out SSC, eidolons[i]))
             {
@@ -339,6 +339,11 @@ public class Slice_Script_Controller :Monster //в плеере
                 SSC.AttackForce = AttackForce / 2;
                 SSC.RadiusView = RadiusView - 2;
                 SSC.NavAgent.speed = NavAgent.speed / size;
+
+                if (slameType == SlameType.Senior)
+                    SSC.slameType = SlameType.Middle;
+                else if (slameType == SlameType.Middle)
+                    slameType = SlameType.Junior;
             }
         }
 
@@ -350,30 +355,67 @@ public class Slice_Script_Controller :Monster //в плеере
             for (int j = 0; j < eidolons.Length; j++)
             {
                 if (i != j)
-                {
                     SSC.Brothers.Add(eidolons[j]);
-                }
             }
         }
         eidolons[0].GetComponent<Slice_Script_Controller>().boss = true;
         eidolons[0].name += "boss";
     }
 
-    public override void  Death()
+    public override void Death()
     {
+        if (SceneScript.MiddleSlame == null)
+            SceneScript.MiddleSlame = new List<GameObject>();
+        if (SceneScript.JuniorSlame == null)
+            SceneScript.JuniorSlame = new List<GameObject>();
         NavAgent.enabled = false;
         _anim.SetTrigger("Dead");
+        foreach (var VARIABLE in Brothers)
+            VARIABLE.GetComponent<Slice_Script_Controller>().Brothers.Remove(this.gameObject);
+        if (slameType == SlameType.Middle)
+            if (SceneScript.MiddleSlame.Count > 0)
+            {
+                foreach (var VARIABLE in Brothers)
+                    VARIABLE.GetComponent<Slice_Script_Controller>().Brothers.Add(SceneScript.MiddleSlame[0]);
+                var ssc = SceneScript.MiddleSlame[0].GetComponent<Slice_Script_Controller>();
+                ssc.Brothers = Brothers;
+                ssc.boss = boss;
+                if (boss)
+                    SceneScript.MiddleSlame[0].name += "boss";
+                SceneScript.MiddleSlame.RemoveAt(0);
+            }
+            else
+            {
+                SceneScript.MiddleSlame.AddRange(Brothers);
+                foreach (var VARIABLE in Brothers)
+                    VARIABLE.GetComponent<Slice_Script_Controller>().Brothers = new List<GameObject>();
+            }
+        if (slameType == SlameType.Junior)
+            if (SceneScript.JuniorSlame.Count > 0)
+            {
+                foreach (var VARIABLE in Brothers)
+                    VARIABLE.GetComponent<Slice_Script_Controller>().Brothers.Add(SceneScript.JuniorSlame[0]);
+                var ssc = SceneScript.JuniorSlame[0].GetComponent<Slice_Script_Controller>();
+                ssc.Brothers = Brothers;
+                ssc.boss = boss;
+                if (boss)
+                    SceneScript.JuniorSlame[0].name += "boss";
+                SceneScript.JuniorSlame.RemoveAt(0);
+            }
+            else
+            {
+                SceneScript.JuniorSlame.AddRange(Brothers);
+                foreach (var VARIABLE in Brothers)
+                    VARIABLE.GetComponent<Slice_Script_Controller>().Brothers = new List<GameObject>();
+            }
+
         if (saled)
         {
             StartCoroutine(Drop());
             StartCoroutine(CreateEidolons());
         }
-        foreach (var VARIABLE in Brothers)
-        {
-            VARIABLE.GetComponent<Slice_Script_Controller>().Brothers.Remove(this.gameObject);
-        }
-        StartCoroutine(Destroeded());
 
+        StartCoroutine(Destroeded());
     }
 
     private Vector3 GetRandomPositionForEidolons()
@@ -384,7 +426,5 @@ public class Slice_Script_Controller :Monster //в плеере
 
         return transform.position + new Vector3(x, 0, z);
     }
-
- 
 }
 
