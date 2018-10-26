@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a7225ff1-1f32-4f1d-a24a-3ee8b5cc3008" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.DodArena/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DodArena/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/123.app/Contents/Resources/Data/globalgamemanagers" beforeDir="false" afterPath="$PROJECT_DIR$/123.app/Contents/Resources/Data/globalgamemanagers" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/123.app/Contents/Resources/Data/sharedassets0.assets" beforeDir="false" afterPath="$PROJECT_DIR$/123.app/Contents/Resources/Data/sharedassets0.assets" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Night Skyboxes Pack 2/3/3.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Night Skyboxes Pack 2/3/3.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Photon Unity Networking/Demos/PunBasics-Tutorial/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon Unity Networking/Demos/PunBasics-Tutorial/Scripts/GameManager.cs" afterDir="false" />
-    </list>
+    <list default="true" id="a7225ff1-1f32-4f1d-a24a-3ee8b5cc3008" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,7 +12,7 @@
     <session id="1006124856">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.4" value="2" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.6" value="1" />
@@ -228,7 +222,7 @@
         <entry file="file://$PROJECT_DIR$/Assets/Photon Unity Networking/Demos/PunBasics-Tutorial/Scripts/GameManager.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="215">
-              <caret line="48" column="50" lean-forward="true" selection-start-line="48" selection-start-column="50" selection-end-line="48" selection-end-column="50" />
+              <caret line="48" column="50" selection-start-line="48" selection-start-column="50" selection-end-line="48" selection-end-column="50" />
               <folding>
                 <marker date="1540470675531" expanded="true" signature="0:510" ph="/*  Used in &quot;PUN Basic tutorial&quot; to handle typical game management requirements ... */" />
                 <marker date="1540470675531" expanded="false" signature="518:639" ph="..." />
@@ -785,6 +779,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>selfPos</find>
+      <find>PhotonNetwork.sendRate</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -914,12 +909,12 @@
       <workItem from="1539951690994" duration="183000" />
       <workItem from="1540009774327" duration="1823000" />
       <workItem from="1540465687958" duration="1047000" />
-      <workItem from="1540466847780" duration="1977000" />
+      <workItem from="1540466847780" duration="2298000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6235000" />
+    <option name="totallyTimeSpent" value="6556000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1859,7 +1854,7 @@
     <entry file="file://$PROJECT_DIR$/Assets/Photon Unity Networking/Demos/PunBasics-Tutorial/Scripts/GameManager.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="215">
-          <caret line="48" column="50" lean-forward="true" selection-start-line="48" selection-start-column="50" selection-end-line="48" selection-end-column="50" />
+          <caret line="48" column="50" selection-start-line="48" selection-start-column="50" selection-end-line="48" selection-end-column="50" />
           <folding>
             <marker date="1540470675531" expanded="true" signature="0:510" ph="/*  Used in &quot;PUN Basic tutorial&quot; to handle typical game management requirements ... */" />
             <marker date="1540470675531" expanded="false" signature="518:639" ph="..." />
