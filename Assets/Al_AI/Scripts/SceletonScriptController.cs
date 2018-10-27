@@ -56,21 +56,21 @@ public class SceletonScriptController : Monster
 		{
 			if (target != null)
 			{
-				DistanceTP = Vector3.Distance(target.transform.position, transform.position);
-				if (DistanceTP <= RadiusView && DistanceTP > attackDistance)
+				distanceTP = Vector3.Distance(target.transform.position, transform.position);
+				if (distanceTP <= RadiusView && distanceTP > attackDistance)
 				{
-					state = EnemyState.Walk;
+					State = EnemyState.Walk;
 					
 					
 				}
-				else if (DistanceTP <= attackDistance)
+				else if (distanceTP <= attackDistance)
 				{
-					state = EnemyState.Attack;
+					State = EnemyState.Attack;
 
 				}
 				else
 				{
-					state = EnemyState.Stay;
+					State = EnemyState.Stay;
 				}
 			}
 			else
@@ -78,7 +78,7 @@ public class SceletonScriptController : Monster
 				FindPlayers();
 			}
 			
-			switch (state)
+			switch (State)
 			{
 				case EnemyState.Stay:
 					if (!wait)

@@ -10,9 +10,7 @@ public abstract class Monster : MyTools, IAlive
 {
     public GameObject target;
 
-    public EnemyState state;
 
-    public float DistanceTP;
     [Space(20)] public NavMeshAgent NavAgent;
     [Range(1, 30)] public float RadiusAttack;
     [Range(1, 100)] public float RadiusView;
@@ -22,6 +20,8 @@ public abstract class Monster : MyTools, IAlive
     public GameObject[] AttackAreas;
     public GameObject[] ammos;
 
+    protected EnemyState state;
+    protected float distanceTP;
     protected bool alive;
     protected Animator _anim;
     protected bool wait;
@@ -44,6 +44,32 @@ public abstract class Monster : MyTools, IAlive
             }
 
             HP = value;
+        }
+    }
+
+    public virtual float DistanceTP
+    {
+        get
+        {
+            return distanceTP;
+        }
+
+        set
+        {
+            distanceTP = value;
+        }
+    }
+
+    public virtual EnemyState State
+    {
+        get
+        {
+            return state;
+        }
+
+        set
+        {
+            state = value;
         }
     }
 
@@ -105,7 +131,7 @@ public abstract class Monster : MyTools, IAlive
             }
         }
 
-        state = EnemyState.Stay;
+        State = EnemyState.Stay;
         GetAttackDistance();
         size = transform.localScale.x;
     }
@@ -179,6 +205,8 @@ public enum SlameType
     Junior,
 }
 
+public delegate void BrotherHelper(GameObject gameObject, bool Death);
+
 public class Slice_Script_Controller : Monster //в плеере
 {
     [Tooltip("Здесь объект")]
@@ -200,76 +228,72 @@ public class Slice_Script_Controller : Monster //в плеере
 
     private int qtyEidolons = 4;
 
-    //[HideInInspector]
     public List<GameObject> Brothers;
 
-    // Use this for initialization
-    public void Start()
+    public override float DistanceTP
     {
-        if (slameType == SlameType.Senior)
-            Initiolize();
-    }
+        get { return base.DistanceTP; }
 
-    void FixedUpdate()
-    {
-        if (alive)
+        set
         {
-            if (target != null)
+            distanceTP = value;
+            if (distanceTP <= RadiusView && distanceTP > attackDistance)
             {
-                DistanceTP = Vector3.Distance(target.transform.position, transform.position);
-
-                if (!boss && slameType != SlameType.Senior && (state == EnemyState.Stay || state == EnemyState.Spec) && unionTarget != null)
-                    distanceUT = Vector3.Distance(unionTarget.transform.position, transform.position);
-
-                if (DistanceTP <= RadiusView && DistanceTP > attackDistance)
+                State = EnemyState.Walk;
+                ready = false;
+                bossReady = 0;
+            }
+            else if (distanceTP <= attackDistance)
+            {
+                State = EnemyState.Attack;
+                ready = false;
+                bossReady = 0;
+            }
+            else if (Brothers.Count > qtyEidolons - 2 && slameType != SlameType.Senior)
+            {
+                if (!boss)
                 {
-                    state = EnemyState.Walk;
-                    ready = false;
-                    bossReady = 0;
-                }
-                else if (DistanceTP <= attackDistance)
-                {
-                    state = EnemyState.Attack;
-                    ready = false;
-                    bossReady = 0;
-                }
-                else if (Brothers.Count > qtyEidolons - 2 && slameType != SlameType.Senior)
-                {
-                    if (!boss)
-                    {
-                        if (distanceUT > attackDistance)
-                            state = EnemyState.Spec;
-                        else
-                        {
-                            state = EnemyState.Stay;
-                            if (!ready)
-                            {
-                                ready = true;
-                                unionTarget.GetComponent<Slice_Script_Controller>().bossReady++;
-                            }
-                        }
-                    }
+                    if (distanceUT > attackDistance)
+                        State = EnemyState.Spec;
                     else
                     {
-                        if (bossReady > qtyEidolons - 2 && !ready)
+                        State = EnemyState.Stay;
+                        if (!ready)
                         {
-                            Unite();
                             ready = true;
+                            unionTarget.GetComponent<Slice_Script_Controller>().bossReady++;
                         }
                     }
                 }
                 else
                 {
-                    ready = false;
-                    bossReady = 0;
-                    state = EnemyState.Stay;
+                    if (bossReady > qtyEidolons - 2 && !ready)
+                    {
+                        Unite();
+                        ready = true;
+                    }
                 }
-
             }
             else
-                FindPlayers();
+            {
+                ready = false;
+                bossReady = 0;
+                State = EnemyState.Stay;
+            }
+        }
+    }
 
-            switch (state)
+    public override EnemyState State
+    {
+        get
+        {
+            return state;
+        }
+
+        set
+        {
+            state = value;
+            switch (value)
             {
                 case EnemyState.Stay:
                     if (!wait)
@@ -292,6 +316,31 @@ public class Slice_Script_Controller : Monster //в плеере
                     CaseMethod(true, 0, 1, 0, unionTarget.transform.position);
                     break;
             }
+        }
+    }
+
+    public event BrotherHelper BrothersNeedChange;
+
+    // Use this for initialization
+    public void Start()
+    {
+        if (slameType == SlameType.Senior)
+            Initiolize();
+    }
+
+    void FixedUpdate()
+    {
+        if (alive)
+        {
+            if (target != null)
+            {
+                DistanceTP = Vector3.Distance(target.transform.position, transform.position);
+
+                if (!boss && slameType != SlameType.Senior && (State == EnemyState.Stay || State == EnemyState.Spec) && unionTarget != null)
+                    distanceUT = Vector3.Distance(unionTarget.transform.position, transform.position);
+            }
+            else
+                FindPlayers();
         }
     }
 
@@ -320,6 +369,19 @@ public class Slice_Script_Controller : Monster //в плеере
 
         saled = false;
         Health = 0;
+    }
+
+    public void BrotherChange(GameObject brother,bool death)
+    {
+        if (death)
+            Brothers.Remove(brother);
+        else
+            Brothers.Add(brother);
+    }
+
+    public void BrotherNeed(GameObject brother, bool death)
+    {
+        BrothersNeedChange?.Invoke(brother, death);
     }
 
     IEnumerator CreateEidolons()
@@ -364,16 +426,23 @@ public class Slice_Script_Controller : Monster //в плеере
 
     public override void Death()
     {
+        NavAgent.enabled = false;
+        _anim.SetTrigger("Dead");
         try
         {
             if (SceneScript.MiddleSlame == null)
                 SceneScript.MiddleSlame = new List<GameObject>();
             if (SceneScript.JuniorSlame == null)
                 SceneScript.JuniorSlame = new List<GameObject>();
-            NavAgent.enabled = false;
-            _anim.SetTrigger("Dead");
-            foreach (var VARIABLE in Brothers)
-                VARIABLE.GetComponent<Slice_Script_Controller>().Brothers.Remove(this.gameObject);
+            
+            //for (int i = 0; i < Brothers.Count; i++)
+            //    if (Brothers[i] != null)
+            //        Brothers[i].GetComponent<Slice_Script_Controller>().Brothers.Remove(this.gameObject);
+            //    else
+            //    {
+            //        Brothers.RemoveAt(i);
+            //        i--;
+            //    }
             if (slameType == SlameType.Middle)
                 if (SceneScript.MiddleSlame.Count > 0)
                 {
@@ -410,18 +479,9 @@ public class Slice_Script_Controller : Monster //в плеере
                     foreach (var VARIABLE in Brothers)
                         VARIABLE.GetComponent<Slice_Script_Controller>().Brothers = new List<GameObject>();
                 }
-            if (saled)
-            {
-                StartCoroutine(Drop());
-                StartCoroutine(CreateEidolons());
-            }
-
-            StartCoroutine(Destroeded());
         }
         finally
         {
-            NavAgent.enabled = false;
-            _anim.SetTrigger("Dead");
             if (saled)
             {
                 StartCoroutine(Drop());
