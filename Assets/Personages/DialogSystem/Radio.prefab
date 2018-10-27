@@ -45,6 +45,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1144127509296290
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4823438479224626}
+  - component: {fileID: 114240825226500884}
+  m_Layer: 0
+  m_Name: MusickManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1201202753302520
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,6 +143,22 @@ GameObject:
   - component: {fileID: 65991543946414214}
   m_Layer: 0
   m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1761991802167214
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4559773884912828}
+  - component: {fileID: 82763527524194556}
+  m_Layer: 0
+  m_Name: Musick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -218,6 +250,7 @@ Transform:
   - {fileID: 4214488272571024}
   - {fileID: 4725273891374846}
   - {fileID: 4282783435841456}
+  - {fileID: 4823438479224626}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -113.65101, z: -47.073}
@@ -234,6 +267,19 @@ Transform:
   m_Father: {fileID: 4401700635461010}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4559773884912828
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1761991802167214}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 46.030476, y: -0.03641939, z: 51.288383}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4823438479224626}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4725273891374846
 Transform:
   m_ObjectHideFlags: 1
@@ -247,6 +293,20 @@ Transform:
   m_Father: {fileID: 4401700635461010}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!4 &4823438479224626
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1144127509296290}
+  m_LocalRotation: {x: -0.33424446, y: 0.76737416, z: 0.21851096, w: 0.50166774}
+  m_LocalPosition: {x: 1.9770104, y: 1.6996973, z: -1.4622505}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4559773884912828}
+  m_Father: {fileID: 4401700635461010}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4912037131887702
 Transform:
   m_ObjectHideFlags: 1
@@ -578,6 +638,101 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.99999994, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!82 &82763527524194556
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1761991802167214}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 344477e4a75a35f4c9c51df42d2ca7ef, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.69
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &114005046646393174
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -602,15 +757,17 @@ MonoBehaviour:
       nextDialogNode: 1
       endDialog: 0
       actions: []
+      playList: []
     - text: "\u041D\u0443\u0436\u043D\u0430 \u043C\u0443\u0437\u044B\u043A\u0430"
-      nextDialogNode: 0
+      nextDialogNode: 3
       endDialog: 0
-      actions:
-      - {fileID: 0}
+      actions: []
+      playList: []
     - text: "\u042F \u043F\u043E\u0439\u0434\u0443"
       nextDialogNode: 0
       endDialog: 1
       actions: []
+      playList: []
   - npcText: "\u041A\u0430\u043A\u0438\u0435?"
     answers:
     - text: "\u0414\u0440\u043E\u0431\u043E\u0432\u0438\u043A"
@@ -618,10 +775,12 @@ MonoBehaviour:
       endDialog: 0
       actions:
       - {fileID: 0}
+      playList: []
     - text: "\u042F \u043F\u0435\u0440\u0435\u0434\u0443\u043C\u0430\u043B"
       nextDialogNode: 0
       endDialog: 0
       actions: []
+      playList: []
   - npcText: "\u0415\u0449\u0451?"
     answers:
     - text: "\u0414\u0440\u043E\u0431\u043E\u0432\u0438\u043A"
@@ -629,13 +788,115 @@ MonoBehaviour:
       endDialog: 0
       actions:
       - {fileID: 0}
+      playList: []
     - text: "\u0425\u0432\u0430\u0442\u0438\u0442"
       nextDialogNode: 0
       endDialog: 0
       actions: []
+      playList: []
+  - npcText: "\u041A\u0430\u043A\u0443\u044E \u0440\u0430\u0434\u0438\u043E\u0441\u0442\u0430\u043D\u0446\u0438\u044E
+      \u0432\u044B\u0431\u0438\u0440\u0430\u0435\u043C?"
+    answers:
+    - text: ElectroFM
+      nextDialogNode: 0
+      endDialog: 0
+      actions:
+      - {fileID: 114240825226500884}
+      playList:
+      - {fileID: 8300000, guid: 6b6a1c73b220bf0419f4226fb4a5e390, type: 3}
+      - {fileID: 8300000, guid: 2046e2a609d84c748b5d90417d6ac830, type: 3}
+      - {fileID: 8300000, guid: d636b83287490b1408ce9d77d87c68e1, type: 3}
+      - {fileID: 8300000, guid: 0ed720be313aa154895cf34f9aab9f64, type: 3}
+      - {fileID: 8300000, guid: 2538f59064bfc4c4ea11047baa183a15, type: 3}
+      - {fileID: 8300000, guid: 79bca8c0c576f0e4b86fd866671633ad, type: 3}
+    - text: EpicFM
+      nextDialogNode: 0
+      endDialog: 0
+      actions:
+      - {fileID: 114240825226500884}
+      playList:
+      - {fileID: 8300000, guid: a13015c47e0677c498dd928a9602db44, type: 3}
+      - {fileID: 8300000, guid: d33201a86c899744c971dbe635a9509d, type: 3}
+      - {fileID: 8300000, guid: dac4209622ec3e940a69fac9fa00ceff, type: 3}
+      - {fileID: 8300000, guid: 3ced75d71d487bf4ba5b7ad3101eeaf7, type: 3}
+    - text: FearFM
+      nextDialogNode: 0
+      endDialog: 0
+      actions:
+      - {fileID: 114240825226500884}
+      playList:
+      - {fileID: 8300000, guid: de9d37fcd6b10374eb94181f5dbb7593, type: 3}
+      - {fileID: 8300000, guid: 1b7a45f9d70840f45a3578b64ae51a65, type: 3}
+      - {fileID: 8300000, guid: 10c822fe42f97d64aa11c3b62c7d8fff, type: 3}
+    - text: FunFM
+      nextDialogNode: 0
+      endDialog: 0
+      actions:
+      - {fileID: 114240825226500884}
+      playList:
+      - {fileID: 8300000, guid: fed858695d72a9d46a4a45eba74fcae3, type: 3}
+      - {fileID: 8300000, guid: f187d41821609cf42a26d6252fe53bcf, type: 3}
+      - {fileID: 8300000, guid: 0baef91fc093ded4181b1c7f2c49ba96, type: 3}
+      - {fileID: 8300000, guid: 38db624849060ac42a6b2d0106d699f7, type: 3}
+    - text: LightFM
+      nextDialogNode: 0
+      endDialog: 0
+      actions:
+      - {fileID: 114240825226500884}
+      playList:
+      - {fileID: 8300000, guid: 4d46f8ab752e00840b2ad969e39bdbee, type: 3}
+      - {fileID: 8300000, guid: 7ff9add9537dae34093bac7d83ed3663, type: 3}
+      - {fileID: 8300000, guid: 7d7ff73f67c3cbe409883eb3106b01c6, type: 3}
+      - {fileID: 8300000, guid: f892a14ee955a1248a06a5db58a7d2af, type: 3}
+      - {fileID: 8300000, guid: c215f6f7352bb874bbd679b240f115d0, type: 3}
+    - text: RetroFM
+      nextDialogNode: 0
+      endDialog: 0
+      actions:
+      - {fileID: 114240825226500884}
+      playList:
+      - {fileID: 8300000, guid: 281cc0d2a2f92f74e91ef5e81dd3867b, type: 3}
+      - {fileID: 8300000, guid: 3986ff085effd0248905f961c341962d, type: 3}
+      - {fileID: 8300000, guid: 4fbfb5c81cc28894b881cb819356df0b, type: 3}
+      - {fileID: 8300000, guid: 993e1ef0867dc3346abd95eaf2bf6ff9, type: 3}
+    - text: RockFM
+      nextDialogNode: 0
+      endDialog: 0
+      actions:
+      - {fileID: 114240825226500884}
+      playList:
+      - {fileID: 8300000, guid: 281cc0d2a2f92f74e91ef5e81dd3867b, type: 3}
+      - {fileID: 8300000, guid: 3986ff085effd0248905f961c341962d, type: 3}
+      - {fileID: 8300000, guid: 4fbfb5c81cc28894b881cb819356df0b, type: 3}
+      - {fileID: 8300000, guid: 993e1ef0867dc3346abd95eaf2bf6ff9, type: 3}
+    - text: "\u042F \u043F\u0435\u0440\u0435\u0434\u0443\u043C\u0430\u043B"
+      nextDialogNode: 0
+      endDialog: 0
+      actions: []
+      playList: []
   activeNode: 0
   Show: 0
   player: {fileID: 0}
+--- !u!114 &114240825226500884
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1144127509296290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba2b25c9360628c4aae7757c47623bea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tip: 
+  tracks:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  aud: {fileID: 82763527524194556}
+  musicName: {fileID: 0}
+  key: 0
+  number: 0
 --- !u!114 &114721898954057240
 MonoBehaviour:
   m_ObjectHideFlags: 1

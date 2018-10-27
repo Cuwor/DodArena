@@ -364,58 +364,72 @@ public class Slice_Script_Controller : Monster //в плеере
 
     public override void Death()
     {
-        if (SceneScript.MiddleSlame == null)
-            SceneScript.MiddleSlame = new List<GameObject>();
-        if (SceneScript.JuniorSlame == null)
-            SceneScript.JuniorSlame = new List<GameObject>();
-        NavAgent.enabled = false;
-        _anim.SetTrigger("Dead");
-        foreach (var VARIABLE in Brothers)
-            VARIABLE.GetComponent<Slice_Script_Controller>().Brothers.Remove(this.gameObject);
-        if (slameType == SlameType.Middle)
-            if (SceneScript.MiddleSlame.Count > 0)
-            {
-                foreach (var VARIABLE in Brothers)
-                    VARIABLE.GetComponent<Slice_Script_Controller>().Brothers.Add(SceneScript.MiddleSlame[0]);
-                var ssc = SceneScript.MiddleSlame[0].GetComponent<Slice_Script_Controller>();
-                ssc.Brothers = Brothers;
-                ssc.boss = boss;
-                if (boss)
-                    SceneScript.MiddleSlame[0].name += "boss";
-                SceneScript.MiddleSlame.RemoveAt(0);
-            }
-            else
-            {
-                SceneScript.MiddleSlame.AddRange(Brothers);
-                foreach (var VARIABLE in Brothers)
-                    VARIABLE.GetComponent<Slice_Script_Controller>().Brothers = new List<GameObject>();
-            }
-        if (slameType == SlameType.Junior)
-            if (SceneScript.JuniorSlame.Count > 0)
-            {
-                foreach (var VARIABLE in Brothers)
-                    VARIABLE.GetComponent<Slice_Script_Controller>().Brothers.Add(SceneScript.JuniorSlame[0]);
-                var ssc = SceneScript.JuniorSlame[0].GetComponent<Slice_Script_Controller>();
-                ssc.Brothers = Brothers;
-                ssc.boss = boss;
-                if (boss)
-                    SceneScript.JuniorSlame[0].name += "boss";
-                SceneScript.JuniorSlame.RemoveAt(0);
-            }
-            else
-            {
-                SceneScript.JuniorSlame.AddRange(Brothers);
-                foreach (var VARIABLE in Brothers)
-                    VARIABLE.GetComponent<Slice_Script_Controller>().Brothers = new List<GameObject>();
-            }
-
-        if (saled)
+        try
         {
-            StartCoroutine(Drop());
-            StartCoroutine(CreateEidolons());
-        }
+            if (SceneScript.MiddleSlame == null)
+                SceneScript.MiddleSlame = new List<GameObject>();
+            if (SceneScript.JuniorSlame == null)
+                SceneScript.JuniorSlame = new List<GameObject>();
+            NavAgent.enabled = false;
+            _anim.SetTrigger("Dead");
+            foreach (var VARIABLE in Brothers)
+                VARIABLE.GetComponent<Slice_Script_Controller>().Brothers.Remove(this.gameObject);
+            if (slameType == SlameType.Middle)
+                if (SceneScript.MiddleSlame.Count > 0)
+                {
+                    foreach (var VARIABLE in Brothers)
+                        VARIABLE.GetComponent<Slice_Script_Controller>().Brothers.Add(SceneScript.MiddleSlame[0]);
+                    var ssc = SceneScript.MiddleSlame[0].GetComponent<Slice_Script_Controller>();
+                    ssc.Brothers = Brothers;
+                    ssc.boss = boss;
+                    if (boss)
+                        SceneScript.MiddleSlame[0].name += "boss";
+                    SceneScript.MiddleSlame.RemoveAt(0);
+                }
+                else
+                {
+                    SceneScript.MiddleSlame.AddRange(Brothers);
+                    foreach (var VARIABLE in Brothers)
+                        VARIABLE.GetComponent<Slice_Script_Controller>().Brothers = new List<GameObject>();
+                }
+            if (slameType == SlameType.Junior)
+                if (SceneScript.JuniorSlame.Count > 0)
+                {
+                    foreach (var VARIABLE in Brothers)
+                        VARIABLE.GetComponent<Slice_Script_Controller>().Brothers.Add(SceneScript.JuniorSlame[0]);
+                    var ssc = SceneScript.JuniorSlame[0].GetComponent<Slice_Script_Controller>();
+                    ssc.Brothers = Brothers;
+                    ssc.boss = boss;
+                    if (boss)
+                        SceneScript.JuniorSlame[0].name += "boss";
+                    SceneScript.JuniorSlame.RemoveAt(0);
+                }
+                else
+                {
+                    SceneScript.JuniorSlame.AddRange(Brothers);
+                    foreach (var VARIABLE in Brothers)
+                        VARIABLE.GetComponent<Slice_Script_Controller>().Brothers = new List<GameObject>();
+                }
+            if (saled)
+            {
+                StartCoroutine(Drop());
+                StartCoroutine(CreateEidolons());
+            }
 
-        StartCoroutine(Destroeded());
+            StartCoroutine(Destroeded());
+        }
+        finally
+        {
+            NavAgent.enabled = false;
+            _anim.SetTrigger("Dead");
+            if (saled)
+            {
+                StartCoroutine(Drop());
+                StartCoroutine(CreateEidolons());
+            }
+
+            StartCoroutine(Destroeded());
+        }
     }
 
     private Vector3 GetRandomPositionForEidolons()
