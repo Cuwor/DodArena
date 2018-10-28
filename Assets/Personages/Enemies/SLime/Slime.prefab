@@ -622,8 +622,8 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Convex: 1
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
+  m_CookingOptions: -1
+  m_SkinWidth: 1
   m_Mesh: {fileID: 4300000, guid: 7a290441fc6c04642b331b9a0886f107, type: 3}
 --- !u!65 &65171478900982920
 BoxCollider:
@@ -679,26 +679,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  unionTarget: {fileID: 0}
   NavAgent: {fileID: 0}
-  DistanceTP: 0
-  distanceUT: 0
   RadiusAttack: 7
   RadiusView: 30
   HP: 100
   AttackForce: 10
-  Eidolon: {fileID: 1483824054489608, guid: 5f16f36cae5aa4d46be9629c2af2ec91, type: 2}
-  god: {fileID: 0}
-  saled: 1
-  boss: 0
-  itIsBig: 1
-  ready: 0
-  bossReady: 0
   AttackAreas:
   - {fileID: 1200486795765350}
   ammos:
   - {fileID: 1549386376721870, guid: 5cf2e6e8b9769994c9beab133a8f837c, type: 2}
   state: 0
+  unionTarget: {fileID: 0}
+  distanceUT: 0
+  Eidolon: {fileID: 1483824054489608, guid: 5f16f36cae5aa4d46be9629c2af2ec91, type: 2}
+  god: {fileID: 0}
+  slameType: 0
+  boss: 0
+  ready: 0
+  saled: 1
+  bossReady: 0
   Brothers: []
 --- !u!137 &137984066848264024
 SkinnedMeshRenderer:

@@ -50,6 +50,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4998356161370672}
   - component: {fileID: 137434934708707994}
+  - component: {fileID: 64597371741742168}
   m_Layer: 0
   m_Name: SLame
   m_TagString: Untagged
@@ -382,7 +383,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1933890960152742}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.9496303, y: -4.084104e-17, z: 15.458195}
+  m_LocalPosition: {x: -5.9142733, y: -3.388775e-17, z: 15.261686}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 4973867198542084}
@@ -610,6 +611,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1300088694594652}
   m_Mesh: {fileID: 4300002, guid: c1980f2ca99e9e743b10367610e81949, type: 3}
+--- !u!64 &64597371741742168
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1094807839384820}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: -1
+  m_SkinWidth: 0.3
+  m_Mesh: {fileID: 4300000, guid: 7a290441fc6c04642b331b9a0886f107, type: 3}
 --- !u!65 &65622796073637964
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -664,8 +679,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  state: 0
-  DistanceTP: 0
   NavAgent: {fileID: 0}
   RadiusAttack: 3.1
   RadiusView: 0
@@ -675,6 +688,7 @@ MonoBehaviour:
   - {fileID: 1300088694594652}
   ammos:
   - {fileID: 1549386376721870, guid: 5cf2e6e8b9769994c9beab133a8f837c, type: 2}
+  state: 0
   unionTarget: {fileID: 0}
   distanceUT: 0
   Eidolon: {fileID: 0}
