@@ -6,9 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/TestConnect.unity
-    guid: 98a9b92f181b44982af918f428b7acdf
-  - enabled: 1
     path: Assets/Scenes/PunBasics-Launcher.unity
     guid: bff77b01b50254edbb6edeeaba5ae8b3
+  - enabled: 1
+    path: Assets/Scenes/Arena.unity
+    guid: 03c410c6a74d35d4d9a0acb8580d6b5d
+  - enabled: 1
+    path: Assets/Scenes/TestConnect.unity
+    guid: 98a9b92f181b44982af918f428b7acdf
   m_configObjects: {}

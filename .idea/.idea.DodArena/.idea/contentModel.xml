@@ -325,6 +325,8 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="MainMenu.cs" t="Include" />
+          <e p="PauseMenu.cs" t="Include" />
           <e p="PlayerManager.cs" t="Include" />
           <e p="SkyRotator.cs" t="Include" />
         </e>
