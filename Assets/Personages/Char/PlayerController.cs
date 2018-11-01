@@ -193,7 +193,7 @@ public class PlayerController : SinglePlayerController
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (weapon.MakeShoot())
+            if (weapon[weaponNumber].MakeShoot())
             {
                 DrawAmmo();
                 Invoke("AttackEffect", 0.02f);
@@ -203,7 +203,7 @@ public class PlayerController : SinglePlayerController
 
     private void AttackEffect()
     {
-        GetRecoilVector(weapon.backForce);
+        GetRecoilVector(weapon[weaponNumber].backForce);
         recoil = true;
     }
 
@@ -221,7 +221,7 @@ public class PlayerController : SinglePlayerController
 
     private IEnumerator Recoil()
     {
-        float force = weapon.backForce;
+        float force = weapon[weaponNumber].backForce;
         for (float i = force; i > 0; i -= 20)
         {
             RotateToView(i / 4, view.newRotation);
@@ -248,8 +248,8 @@ public class PlayerController : SinglePlayerController
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            weapon.Reload();
-            Invoke("DrawAmmo", weapon.reloadTime);
+            weapon[weaponNumber].Reload();
+            Invoke("DrawAmmo", weapon[weaponNumber].reloadTime);
         }
     }
 
@@ -259,7 +259,7 @@ public class PlayerController : SinglePlayerController
 
     public void DrawAmmo()
     {
-        ammunitionCount.text = weapon.magazin.ToString() + "/" + weapon.ammo.ToString();
+        ammunitionCount.text = weapon[weaponNumber].magazin.ToString() + "/" + weapon[weaponNumber].ammo.ToString();
     }
 
     #endregion

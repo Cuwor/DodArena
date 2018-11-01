@@ -681,7 +681,7 @@ MonoBehaviour:
   target: {fileID: 0}
   NavAgent: {fileID: 0}
   RadiusAttack: 7
-  RadiusView: 30
+  RadiusView: 55
   HP: 100
   AttackForce: 10
   AttackAreas:

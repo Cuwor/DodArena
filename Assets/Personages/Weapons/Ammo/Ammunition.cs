@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ammunition : MonoBehaviour {
+public class Ammunition : MonoBehaviour
+{
 
-    [Range(0,10)]
+    [Range(0, 10)]
     public float speed;
     public byte count;
     public GameObject target;
@@ -17,14 +18,16 @@ public class Ammunition : MonoBehaviour {
     {
         move = false;
     }
+
     // Update is called once per frame
-    void Update () {
-        transform.Rotate(transform.up, 2*Time.deltaTime);
-        if(move)
+    private void Update()
+    {
+        transform.Rotate(transform.up, 2 * Time.deltaTime);
+        if (move)
         {
             MoveToTarget();
         }
-	}
+    }
 
     private void MoveToTarget()
     {
@@ -38,7 +41,7 @@ public class Ammunition : MonoBehaviour {
         else
         {
             transform.position = target.transform.position;
-            PC.weapon.ammo += count;
+            PC.weapon[PC.weaponNumber].ammo += count;
             PC.DrawAmmo();
             Destroy(gameObject);
         }
