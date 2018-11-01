@@ -127,7 +127,7 @@ public abstract class Monster : MyTools, IAlive
         Instantiate(ammos[x], transform.position, new Quaternion());
     }
 
-    public void GetDamage(float value)
+    public virtual void GetDamage(float value)
     {
         Health -= value;
         _anim.SetInteger("Damage", (int)value);

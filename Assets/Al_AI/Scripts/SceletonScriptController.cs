@@ -8,6 +8,7 @@ public class SceletonScriptController : Monster
 	public bool key1 = false;
 	public bool key2 = false;
 	public bool key3 = false;
+	public int phase = 1;
 
 	// Use this for initialization
 	void Start () {
@@ -29,17 +30,20 @@ public class SceletonScriptController : Monster
 			else if (value <= 75 && value > 50 && !key1)
 			{
 				key1 = true;
+				phase++;
 				sceletonparts[0].GetComponent<Rigidbody>().useGravity = true;
 				sceletonparts[0].transform.SetParent(null);
 			}
 			else if (value <= 50 && value > 25 && !key2)
 			{
+				phase++;
 				key2 = true;
 				sceletonparts[1].GetComponent<Rigidbody>().useGravity = true;
 				sceletonparts[1].transform.SetParent(null);
 			}
 			else if (value <= 25 && value > 0 && !key3)
 			{
+				phase++;
 				key3 = true;
 				sceletonparts[2].GetComponent<Rigidbody>().useGravity = true;
 				sceletonparts[2].transform.SetParent(null);
@@ -48,6 +52,13 @@ public class SceletonScriptController : Monster
 			HP = value;
 		}
 		
+	}
+	
+	public override void GetDamage(float value)
+	{
+		Health -= value;
+		_anim.SetInteger("Health", (int)Health);
+		_anim.SetTrigger("GetDamage");
 	}
 	// Update is called once per frame
 	void FixedUpdate () 
