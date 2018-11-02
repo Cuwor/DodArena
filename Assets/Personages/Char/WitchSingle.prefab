@@ -336,9 +336,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4924135457334948}
   - component: {fileID: 95949261268280904}
-  - component: {fileID: 114419775609650666}
   - component: {fileID: 143153214464483888}
-  - component: {fileID: 114813724661986676}
+  - component: {fileID: 114733463249369294}
+  - component: {fileID: 114079671107903086}
   m_Layer: 0
   m_Name: WitchSingle
   m_TagString: Player
@@ -1139,7 +1139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4964708654381074}
   - component: {fileID: 33475563624441174}
-  - component: {fileID: 23257162900315262}
+  - component: {fileID: 137112823013729060}
   m_Layer: 0
   m_Name: Object004
   m_TagString: Untagged
@@ -2303,7 +2303,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1033835761941374}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.09, y: 1.5, z: -4.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4269215194724616}
@@ -2399,7 +2399,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1159757858031396}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -133.93275, y: -3.0806926e-17, z: 13.874207}
+  m_LocalPosition: {x: -1.5938425, y: 0.024070263, z: 1.8981681}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224560275368991760}
@@ -2527,7 +2527,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.74
+  near clip plane: 0.67
   far clip plane: 100
   field of view: 60
   orthographic: 0
@@ -2563,41 +2563,6 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100006, guid: 18c9de225b3324442a219dfd4325d9e7, type: 3}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!23 &23257162900315262
-MeshRenderer:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1777127046765728}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
-  m_Materials:
-  - {fileID: 2100000, guid: 2db39d5a4838202498a618e6469c0897, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3398,7 +3363,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 701d6637134516547a45fd783fc3f679, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -3437,6 +3402,32 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: New Text
+--- !u!114 &114079671107903086
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1159757858031396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8c7a731d3c7e4c57933f2805e9f380d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plCam: {fileID: 1033835761941374}
+  body: {fileID: 1804321925182852}
+  speed: 20
+  xSpeed: 2
+  ySpeed: 2
+  weapon:
+  - {fileID: 114930151625761780}
+  - {fileID: 114346642871236794}
+  - {fileID: 114219354545586484}
+  grav: -50
+  jumpSpeed: 25
+  ammunitionCount: {fileID: 114033146788962372}
+  health: {fileID: 114090103673472526}
+  inDialog: 0
+  weaponNumber: 0
 --- !u!114 &114090103673472526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3523,24 +3514,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa0c1d5153b969747afe9fba9bc63630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 1833655452465638, guid: ffd5c80e8de37124c8110fb96c43f3dd, type: 2}
-  gilz: {fileID: 1168718194262746, guid: 5552e33e5576bcb499e14a39d449a4d6, type: 2}
-  fireZone: {fileID: 4692011201167554}
-  gilzZone: {fileID: 4685620255806398}
+  pS: []
+  bulletInShoot: 0
+  projectile: {fileID: 0}
+  gilz: {fileID: 0}
+  fireZone: {fileID: 0}
+  gilzZone: {fileID: 0}
   type: 0
-  weaponDamage: 30
-  maxAmmo: 255
-  shootForce: 100
+  weaponDamage: 0
+  maxAmmo: 0
+  shootForce: 0
   backForce: 0
-  pauseTime: 1.1
-  reloadTime: 2.1
+  pauseTime: 0
+  reloadTime: 0
   sounds:
     shoot: {fileID: 8300000, guid: 8602b7d5cd15c1943a50aa53f171c8cf, type: 3}
     reload: {fileID: 8300000, guid: 3c5c1d4d7b9307c458890a4beb12e4ae, type: 3}
-    noAmmo: {fileID: 8300000, guid: a9646a6173bb6ad4b951ea60adaaa407, type: 3}
-  ammo: 2
+    noAmmo: {fileID: 8300000, guid: 756c4e23e8553954fa91b4cc2936afa0, type: 3}
+  ammo: 0
   magazin: 0
-  particleSystem: {fileID: 198856988871502036}
+  player: {fileID: 114079671107903086}
 --- !u!114 &114230197382572312
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3600,24 +3593,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa0c1d5153b969747afe9fba9bc63630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 1833655452465638, guid: ffd5c80e8de37124c8110fb96c43f3dd, type: 2}
-  gilz: {fileID: 1168718194262746, guid: 5552e33e5576bcb499e14a39d449a4d6, type: 2}
-  fireZone: {fileID: 4880676444217436}
-  gilzZone: {fileID: 4318765575579762}
+  pS: []
+  bulletInShoot: 0
+  projectile: {fileID: 0}
+  gilz: {fileID: 0}
+  fireZone: {fileID: 0}
+  gilzZone: {fileID: 0}
   type: 0
-  weaponDamage: 30
-  maxAmmo: 255
-  shootForce: 100
+  weaponDamage: 0
+  maxAmmo: 0
+  shootForce: 0
   backForce: 0
-  pauseTime: 1.1
-  reloadTime: 2.1
+  pauseTime: 0
+  reloadTime: 0
   sounds:
-    shoot: {fileID: 8300000, guid: 8602b7d5cd15c1943a50aa53f171c8cf, type: 3}
+    shoot: {fileID: 8300000, guid: a9646a6173bb6ad4b951ea60adaaa407, type: 3}
     reload: {fileID: 8300000, guid: 3c5c1d4d7b9307c458890a4beb12e4ae, type: 3}
-    noAmmo: {fileID: 8300000, guid: a9646a6173bb6ad4b951ea60adaaa407, type: 3}
-  ammo: 2
+    noAmmo: {fileID: 8300000, guid: 756c4e23e8553954fa91b4cc2936afa0, type: 3}
+  ammo: 0
   magazin: 0
-  particleSystem: {fileID: 198436255516905078}
+  player: {fileID: 114079671107903086}
 --- !u!114 &114360030356876214
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3645,32 +3640,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114419775609650666
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1159757858031396}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8c7a731d3c7e4c57933f2805e9f380d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  plCam: {fileID: 1033835761941374}
-  body: {fileID: 1804321925182852}
-  speed: 20
-  xSpeed: 2
-  ySpeed: 2
-  weapon:
-  - {fileID: 114930151625761780}
-  - {fileID: 114346642871236794}
-  - {fileID: 114219354545586484}
-  grav: -45
-  jumpSpeed: 15
-  ammunitionCount: {fileID: 114033146788962372}
-  health: {fileID: 114090103673472526}
-  inDialog: 0
-  weaponNumber: 0
 --- !u!114 &114593035416577720
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3704,6 +3673,24 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: New Text
+--- !u!114 &114733463249369294
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1159757858031396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40bb07addc9b35048b746999d2a4766a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 1033835761941374}
+  minScale: 0
+  maxScale: 0
+  scale: 0
+  tipText: {fileID: 114937207297401020}
+  crossline: {fileID: 1005414319420852}
+  pc: {fileID: 0}
 --- !u!114 &114775946101394400
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3720,24 +3707,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114813724661986676
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1159757858031396}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40bb07addc9b35048b746999d2a4766a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 1033835761941374}
-  minScale: 3
-  maxScale: 1
-  scale: 0
-  tipText: {fileID: 114937207297401020}
-  crossline: {fileID: 1005414319420852}
-  pc: {fileID: 0}
 --- !u!114 &114853604247627254
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3803,24 +3772,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa0c1d5153b969747afe9fba9bc63630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 1833655452465638, guid: ffd5c80e8de37124c8110fb96c43f3dd, type: 2}
-  gilz: {fileID: 1168718194262746, guid: 5552e33e5576bcb499e14a39d449a4d6, type: 2}
-  fireZone: {fileID: 4743893314225760}
-  gilzZone: {fileID: 4053337448371222}
+  pS: []
+  bulletInShoot: 0
+  projectile: {fileID: 0}
+  gilz: {fileID: 0}
+  fireZone: {fileID: 0}
+  gilzZone: {fileID: 0}
   type: 0
-  weaponDamage: 30
-  maxAmmo: 255
-  shootForce: 100
+  weaponDamage: 0
+  maxAmmo: 0
+  shootForce: 0
   backForce: 0
-  pauseTime: 1.1
-  reloadTime: 2.1
+  pauseTime: 0
+  reloadTime: 0
   sounds:
-    shoot: {fileID: 8300000, guid: 8602b7d5cd15c1943a50aa53f171c8cf, type: 3}
-    reload: {fileID: 8300000, guid: 3c5c1d4d7b9307c458890a4beb12e4ae, type: 3}
-    noAmmo: {fileID: 8300000, guid: a9646a6173bb6ad4b951ea60adaaa407, type: 3}
-  ammo: 2
+    shoot: {fileID: 8300000, guid: a9646a6173bb6ad4b951ea60adaaa407, type: 3}
+    reload: {fileID: 8300000, guid: 06df58efa12d0b04a8e5bb2fc2dd7ace, type: 3}
+    noAmmo: {fileID: 8300000, guid: 756c4e23e8553954fa91b4cc2936afa0, type: 3}
+  ammo: 0
   magazin: 0
-  particleSystem: {fileID: 198174673153356350}
+  player: {fileID: 0}
 --- !u!114 &114937207297401020
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3854,6 +3825,53 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: New Text
+--- !u!137 &137112823013729060
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1777127046765728}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 2100000, guid: 2db39d5a4838202498a618e6469c0897, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 4300022, guid: 18c9de225b3324442a219dfd4325d9e7, type: 3}
+  m_Bones: []
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 0}
+  m_AABB:
+    m_Center: {x: 0.0000038146973, y: 0.3858261, z: 1.9675406}
+    m_Extent: {x: 0.5487722, y: 0.692465, z: 0.09673126}
+  m_DirtyAABB: 0
 --- !u!137 &137681940043941000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -3958,7 +3976,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 3.4, z: 0}
+  m_Center: {x: 0, y: 3.6, z: 0}
 --- !u!198 &198174673153356350
 ParticleSystem:
   m_ObjectHideFlags: 1
