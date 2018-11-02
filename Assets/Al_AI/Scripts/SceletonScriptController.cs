@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SceletonScriptController : Monster
 {
@@ -71,8 +72,6 @@ public class SceletonScriptController : Monster
 				if (distanceTP <= RadiusView && distanceTP > attackDistance)
 				{
 					State = EnemyState.Walk;
-					
-					
 				}
 				else if (distanceTP <= attackDistance)
 				{
@@ -94,7 +93,8 @@ public class SceletonScriptController : Monster
 				case EnemyState.Stay:
 					if (!wait)
 					{
-						wait = true;  CaseMethod(false, UnityEngine.Random.Range(-1, 1.1f), -1, 0, target.transform.position);
+						wait = true;  
+						CaseMethod(false, UnityEngine.Random.Range(-1, 1.1f), -1, 0, target.transform.position);
 						StartCoroutine(GetRandomStayState());
 					}
 					break;

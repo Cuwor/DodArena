@@ -3,34 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ScarecrowScriptController : Monster
+public class PumpcinheadScriptController : Monster
 {
-
-	public PumpcinheadScriptController PHSC;
+	public ScarecrowScriptController SCSC;
+	public bool OnScareCrow;
 	
-
-	public override void Death()
-	{
-		
-		NavAgent.enabled = false;
-		PHSC._anim.enabled = true;
-		PHSC.gameObject.transform.parent = null;
-		_anim.SetTrigger("Dead");
-		StartCoroutine(Drop());
-		StartCoroutine(Destroeded());
-	}
-
-
-
+	
 	void Start () 
 	{
 		Initiolize();
-		PHSC._anim.enabled = false;
 	}
 	
 	void FixedUpdate () 
 	{
-		if (alive)
+		if (alive && !OnScareCrow)
 		{
 			if (target != null)
 			{

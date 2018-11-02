@@ -353,15 +353,7 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Skeleton' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
-      improve retargeting quality.\n\t'Spine001' is inbetween humanoid transforms
-      and has rotation animation that will be discarded.\n\t'UpperArmR' has translation
-      animation that will be discarded.\n\t'LowerArmR' has translation animation that
-      will be discarded.\n\t'HandR' has translation animation that will be discarded.\n\t'LowerArmL'
-      has translation animation that will be discarded.\n\t'HandL' has translation
-      animation that will be discarded.\n\t'ThighR' has translation animation that
-      will be discarded.\n"
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -1164,7 +1156,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 3
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

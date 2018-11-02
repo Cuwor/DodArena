@@ -17,10 +17,11 @@ public abstract class Monster : MyTools, IAlive
 
 
     [Space(20)] public NavMeshAgent NavAgent;
-    [Range(1, 30)] public float RadiusAttack;
-    [Range(1, 100)] public float RadiusView;
-    [Range(0, 100)] public float HP;
-    [Range(0, 50)] public float AttackForce;
+    [Range(1, 30)] public float RadiusAttack= 5;
+    [Range(1, 100)] public float RadiusView = 15;
+    [Range(0, 100)] public float HP = 100;
+    [Range(0, 50)] public float AttackForce = 20;
+    [HideInInspector] public Animator _anim;
 
     public GameObject[] AttackAreas;
     public GameObject[] ammos;
@@ -28,7 +29,7 @@ public abstract class Monster : MyTools, IAlive
     public EnemyState state;
     protected float distanceTP;
     protected bool alive;
-    protected Animator _anim;
+ 
     protected bool wait;
     protected float maxHP;
     protected float size;
@@ -131,7 +132,7 @@ public abstract class Monster : MyTools, IAlive
         Instantiate(ammos[x], transform.position, new Quaternion());
     }
 
-    public void GetDamage(float value)
+    public virtual void GetDamage(float value)
     {
         if (alive)
         {
@@ -141,7 +142,7 @@ public abstract class Monster : MyTools, IAlive
         }
     }
 
-    public void PlusHealth(float value)
+    public  void PlusHealth(float value)
     {
     }
 
@@ -172,6 +173,7 @@ public abstract class Monster : MyTools, IAlive
     {
         if (NavAgent.enabled)
         {
+            Debug.Log(destenation);
             NavAgent.destination = destenation;
         }
 
