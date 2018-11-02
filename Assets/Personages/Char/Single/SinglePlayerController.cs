@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using Assets
+
 public abstract class MyTools : MonoBehaviour
 {
     protected bool MyGetComponent<T>(out T component, GameObject obj)
@@ -14,6 +16,11 @@ public abstract class MyTools : MonoBehaviour
         }
         return false;
     }
+}
+
+public interface IHaveWeapons
+{
+    void AddAmmos(WeaponType type, int qty);
 }
 
 public interface IAlive
@@ -31,7 +38,7 @@ public class RecoilRotation
     public Vector2 oldRotation;
 }
 
-public class SinglePlayerController : MyTools, IAlive
+public class SinglePlayerController : MyTools, IAlive, IHaveWeapons
 {
     public GameObject plCam;
     private GameObject sceneCam;
@@ -77,7 +84,8 @@ public class SinglePlayerController : MyTools, IAlive
     [Tooltip("Скорость поворота по вертикали")]
     public float ySpeed;
 
-    [Space(10)] [Tooltip("Используемое в данный момент оружие")]
+    [Space(10)]
+    [Tooltip("Используемое в данный момент оружие")]
     public Weapon[] weapon;
 
     [Space(10)]
@@ -110,7 +118,7 @@ public class SinglePlayerController : MyTools, IAlive
     private bool recoil;
     private bool reload;
 
-    void Start()
+    private void Start()
     {
         weaponNumber = 0;
         Cursor.lockState = CursorLockMode.Locked;
@@ -351,7 +359,6 @@ public class SinglePlayerController : MyTools, IAlive
         if (MyGetComponent(out amun, other.gameObject))
         {
             amun.target = gameObject;
-            amun.PC = this;
             amun.move = true;
         }
 
@@ -360,6 +367,17 @@ public class SinglePlayerController : MyTools, IAlive
         if (MyGetComponent(out at, other.gameObject))
         {
             Health -= at.Damage;
+        }
+    }
+
+    public void AddAmmos(WeaponType type, int qty)
+    {
+        foreach (var wea in weapon)
+        {
+            if (wea.type == type)
+            {
+                wea.ammo += qty;
+            }
         }
     }
 

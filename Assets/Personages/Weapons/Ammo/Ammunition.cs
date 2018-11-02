@@ -11,16 +11,16 @@ public class Ammunition : MonoBehaviour
     public GameObject target;
     private Vector3 moveVector;
     public bool move;
-    public SinglePlayerController PC;
-
+    public WeaponType weaponType;
+    public IHaveWeapons haveWeapons;
 
     private void Start()
     {
         move = false;
     }
 
-    // Update is called once per frame
-    private void Update()
+    //Update is called once per frame
+    private void FixedUpdate()
     {
         transform.Rotate(transform.up, 2 * Time.deltaTime);
         if (move)
@@ -41,8 +41,7 @@ public class Ammunition : MonoBehaviour
         else
         {
             transform.position = target.transform.position;
-            PC.weapon[PC.weaponNumber].ammo += count;
-            PC.DrawAmmo();
+            haveWeapons.AddAmmos(weaponType,count);
             Destroy(gameObject);
         }
     }

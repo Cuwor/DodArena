@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Assets;
 
 public class ScarecrowScriptController : Monster
 {
