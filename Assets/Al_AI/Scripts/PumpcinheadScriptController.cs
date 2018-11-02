@@ -1,69 +1,79 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.AI;
+﻿using UnityEngine;
 
-public class PumpcinheadScriptController : Monster
+namespace Al_AI.Scripts
 {
-	public ScarecrowScriptController SCSC;
-	public bool OnScareCrow;
-	
-	
-	void Start () 
+	public class PumpcinheadScriptController : Monster
 	{
-		Initiolize();
-	}
+		public ScarecrowScriptController SCSC;
+		public bool OnScareCrow = true;
 	
-	void FixedUpdate () 
-	{
-		if (alive && !OnScareCrow)
+	
+		void Start () 
 		{
-			if (target != null)
+			Initiolize();
+		}
+		public override void Death()
+		{
+		
+			NavAgent.enabled = false;
+			SCSC.IsNotPumkinHead = true;
+			SCSC._anim.enabled = false;
+			SCSC.NavAgent.enabled = false;
+			_anim.SetTrigger("Dead");
+			StartCoroutine(Drop());
+			StartCoroutine(Destroeded());
+		}
+		void FixedUpdate () 
+		{
+			if (alive && !OnScareCrow)
 			{
-				distanceTP = Vector3.Distance(target.transform.position, transform.position);
-				if (distanceTP <= RadiusView && distanceTP > attackDistance)
+				if (target != null)
 				{
-					State = EnemyState.Walk;
+					distanceTP = Vector3.Distance(target.transform.position, transform.position);
+					if (distanceTP <= RadiusView && distanceTP > attackDistance)
+					{
+						State = EnemyState.Walk;
 					
 					
-				}
-				else if (distanceTP <= attackDistance)
-				{
-					State = EnemyState.Attack;
+					}
+					else if (distanceTP <= attackDistance)
+					{
+						State = EnemyState.Attack;
 
+					}
+					else
+					{	
+						State = EnemyState.Stay;
+					}
 				}
 				else
-				{	
-					State = EnemyState.Stay;
+				{
+					FindPlayers();
 				}
-			}
-			else
-			{
-				FindPlayers();
-			}
 			
-			switch (State)
-			{
-				case EnemyState.Stay:
-					if (!wait)
-					{
-						wait = true;  CaseMethod(false, UnityEngine.Random.Range(-1, 1.1f), -1, 0, target.transform.position);
-						StartCoroutine(GetRandomStayState());
-					}
-					break;
+				switch (State)
+				{
+					case EnemyState.Stay:
+						if (!wait)
+						{
+							wait = true;  CaseMethod(false, UnityEngine.Random.Range(-1, 1.1f), -1, 0, target.transform.position);
+							StartCoroutine(GetRandomStayState());
+						}
+						break;
 
-				case EnemyState.Walk:
-					CaseMethod(true, 0, 1, 0, target.transform.position);
-					break;
+					case EnemyState.Walk:
+						CaseMethod(true, 0, 1, 0, target.transform.position);
+						break;
 
-				case EnemyState.Attack:
-					GetAttackDistance();
-					CaseMethod(false, 0, 0, attackType, target.transform.position);
-					break;
+					case EnemyState.Attack:
+						GetAttackDistance();
+						CaseMethod(false, 0, 0, attackType, target.transform.position);
+						break;
 
 				
+				}
 			}
-		}
 		
+		}
 	}
 }

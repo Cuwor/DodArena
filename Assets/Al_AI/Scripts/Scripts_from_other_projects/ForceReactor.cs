@@ -1,26 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ForceReactor : MonoBehaviour {
+namespace Al_AI.Scripts.Scripts_from_other_projects
+{
+	public class ForceReactor : MonoBehaviour {
 
-    private Rigidbody _rb;
+		private Rigidbody _rb;
 
-	// Use this for initialization
-	void Start () {
-        _rb = GetComponent<Rigidbody>();
-	}
+		// Use this for initialization
+		void Start () {
+			_rb = GetComponent<Rigidbody>();
+		}
 	
-	// Update is called once per frame
-	void Update () {
+		// Update is called once per frame
+		void Update () {
 		
-	}
+		}
 
-    private void OnTriggerEnter(Collider other)//sda
-    {
-        if(other.tag.Equals("Force"))
-        {
-            Vector3 forceVector;
+		private void OnTriggerEnter(Collider other)//sda
+		{
+			if(other.tag.Equals("Force"))
+			{
+				Vector3 forceVector;
 //            if (other.GetComponent<ForceScript>().Type == ForceType.impulse)
 //            {
 //                forceVector = other.transform.up;
@@ -29,7 +29,8 @@ public class ForceReactor : MonoBehaviour {
 //            {
 //                forceVector = -other.transform.up;
 //            }
-           // _rb.AddForce(forceVector.normalized * 100,ForceMode.Impulse);
-        }
-    }
+				// _rb.AddForce(forceVector.normalized * 100,ForceMode.Impulse);
+			}
+		}
+	}
 }

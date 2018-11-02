@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-using Assets
-
 public abstract class MyTools : MonoBehaviour
 {
     protected bool MyGetComponent<T>(out T component, GameObject obj)

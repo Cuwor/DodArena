@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.EventSystems;
 
-namespace Assets
+namespace Al_AI.Scripts
 {
     public abstract class Monster : MyTools, IAlive
     {

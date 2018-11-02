@@ -1,44 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.AI;
 
-public class TestScript : MyTools
+namespace Al_AI.Scripts
 {
-	public float Health;
-
-	public Material mainmat;
-
-	public Material damagedmat;
-	
-	// Use this for initialization
-	void Start ()
+	public class TestScript : MyTools
 	{
-		gameObject.GetComponent<Renderer>().material = mainmat;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+		public NavMeshAgent NavAgent;
+		public Transform goal;
 
-	private void OnTriggerEnter(Collider other)
-	{
-		Projectile proj;
-		if (MyGetComponent(out proj, other.gameObject))
+		// Use this for initialization
+		void Start ()
 		{
-			GetDamage(proj.damage);
+			NavAgent = gameObject.GetComponent<NavMeshAgent>();
 		}
-	}
-	public void GetDamage(float value)
-	{
-		Health -= value;
-		gameObject.GetComponent<Renderer>().material = damagedmat;
-		Invoke("ResetRet",1f);
-		
-	}
+	
+		// Update is called once per frame
+		void Update ()
+		{
+			NavAgent.SetDestination(goal.position);
+		}
 
-	public void ResetRet()
-	{
-		gameObject.GetComponent<Renderer>().material = mainmat;
 	}
 }
