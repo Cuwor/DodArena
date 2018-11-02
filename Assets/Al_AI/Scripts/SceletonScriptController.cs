@@ -94,7 +94,7 @@ public class SceletonScriptController : Monster
 				case EnemyState.Stay:
 					if (!wait)
 					{
-						wait = true;
+						wait = true;  CaseMethod(false, UnityEngine.Random.Range(-1, 1.1f), -1, 0, target.transform.position);
 						StartCoroutine(GetRandomStayState());
 					}
 					break;

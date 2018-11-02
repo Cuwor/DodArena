@@ -47,7 +47,7 @@ AnimatorController:
   - m_Name: phase
     m_Type: 3
     m_DefaultFloat: 0
-    m_DefaultInt: 0
+    m_DefaultInt: 1
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
   m_AnimatorLayers:
@@ -95,7 +95,7 @@ BlendTree:
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400022, guid: 5374ba9b3e06664409b7b30cfd4c5ba5, type: 3}
+    m_Motion: {fileID: 7400004, guid: b3802bc1c51bafe458e1f6873b9f8316, type: 3}
     m_Threshold: 1
     m_Position: {x: 0, y: 1}
     m_TimeScale: 1
@@ -141,7 +141,7 @@ BlendTree:
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400010, guid: 5374ba9b3e06664409b7b30cfd4c5ba5, type: 3}
+    m_Motion: {fileID: 7400002, guid: b3802bc1c51bafe458e1f6873b9f8316, type: 3}
     m_Threshold: 1
     m_Position: {x: 0, y: 1}
     m_TimeScale: 1
@@ -187,7 +187,7 @@ BlendTree:
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400010, guid: 5374ba9b3e06664409b7b30cfd4c5ba5, type: 3}
+    m_Motion: {fileID: 7400002, guid: b3802bc1c51bafe458e1f6873b9f8316, type: 3}
     m_Threshold: 1
     m_Position: {x: 0, y: 1}
     m_TimeScale: 1
@@ -233,7 +233,7 @@ BlendTree:
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400022, guid: 5374ba9b3e06664409b7b30cfd4c5ba5, type: 3}
+    m_Motion: {fileID: 7400004, guid: b3802bc1c51bafe458e1f6873b9f8316, type: 3}
     m_Threshold: 1
     m_Position: {x: 0, y: 1}
     m_TimeScale: 1
@@ -1714,16 +1714,19 @@ AnimatorStateTransition:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 6
+    m_ConditionEvent: phase
+    m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102179753728844586}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25000048
+  m_TransitionDuration: 0.060735703
   m_TransitionOffset: 0
-  m_ExitTime: 0.9320814
+  m_ExitTime: 0.99513876
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -2479,7 +2482,7 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: -156, y: 0, z: 0}
+  m_AnyStatePosition: {x: -156, y: -120, z: 0}
   m_EntryPosition: {x: 96, y: -384, z: 0}
   m_ExitPosition: {x: 1152, y: -24, z: 0}
   m_ParentStateMachinePosition: {x: 564, y: 12, z: 0}
