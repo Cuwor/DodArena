@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 namespace Asset
 {
-
     public class PlayerokConroller : MyTools, IAlive, IHaveWeapons
     {
         public GameObject plCam;

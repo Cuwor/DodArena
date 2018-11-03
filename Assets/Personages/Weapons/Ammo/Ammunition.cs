@@ -19,7 +19,7 @@ public class Ammunition : MonoBehaviour
         move = false;
     }
 
-    //Update is called once per frame
+    //Update is called once per frame//kkj
     private void FixedUpdate()
     {
         transform.Rotate(transform.up, 2 * Time.deltaTime);

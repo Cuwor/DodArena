@@ -22,8 +22,8 @@ public class DamageScript : MonoBehaviour
         {
             pauseTime = value;
             // Debug.Log("PauseTime = " + value);
-            burst1.repeatInterval = value;
-            particleSystem.emission.SetBurst(1, burst1);
+            burst.repeatInterval = value;
+            particleSystem.emission.SetBurst(0, burst);
         }
     }
 
@@ -79,9 +79,9 @@ public class DamageScript : MonoBehaviour
     private void Start()
     {
         particleSystem = gameObject.GetComponent<ParticleSystem>();
-        burst = new ParticleSystem.Burst(0, 1, BulletInShoot, 0.01f);
-        burst1 = new ParticleSystem.Burst(0, 0, 1, PauseTime);
-        particleSystem.emission.SetBursts(new ParticleSystem.Burst[] { burst, burst1 });
+        burst = new ParticleSystem.Burst(0, BulletInShoot, 1, PauseTime);
+        //burst1 = new ParticleSystem.Burst(0, 0, 1, PauseTime);
+        particleSystem.emission.SetBurst(0,burst);
     }
 
     // Update is called once per frame
