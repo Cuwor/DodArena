@@ -9,6 +9,9 @@
         <e p="Al_AI" t="Include">
           <e p="Scripts" t="Include">
             <e p="Eidolon_Script_Controller.cs" t="Include" />
+            <e p="Monster.cs" t="Include" />
+            <e p="PumpcinheadScriptController.cs" t="Include" />
+            <e p="ScarecrowScriptController.cs" t="Include" />
             <e p="SceletonScriptController.cs" t="Include" />
             <e p="Scripts_from_other_projects" t="Include">
               <e p="DemonController.cs" t="Include" />
@@ -17,6 +20,8 @@
               <e p="Move_Script.cs" t="Include" />
             </e>
             <e p="Slice_Script_Controller.cs" t="Include" />
+            <e p="Spavn.cs" t="Include" />
+            <e p="TestScript.cs" t="Include" />
           </e>
         </e>
         <e p="Personages" t="Include">
@@ -24,6 +29,7 @@
             <e p="PlayerController.cs" t="Include" />
             <e p="PlayerUI.cs" t="Include" />
             <e p="Single" t="Include">
+              <e p="PlayerokController.cs" t="Include" />
               <e p="SinglePlayerController.cs" t="Include" />
             </e>
           </e>
@@ -48,6 +54,7 @@
                 <e p="ReadMe!.txt" t="Include" />
               </e>
             </e>
+            <e p="DamageScript.cs" t="Include" />
             <e p="Guns" t="Include">
               <e p="Weapon.cs" t="Include" />
             </e>
@@ -325,6 +332,8 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="Bonus.cs" t="Include" />
+          <e p="BonusUp.cs" t="Include" />
           <e p="MainMenu.cs" t="Include" />
           <e p="PauseMenu.cs" t="Include" />
           <e p="PlayerManager.cs" t="Include" />

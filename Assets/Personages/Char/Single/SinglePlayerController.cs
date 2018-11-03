@@ -36,7 +36,7 @@ public class RecoilRotation
     public Vector2 oldRotation;
 }
 
-public class SinglePlayerController : MyTools, IAlive, IHaveWeapons
+public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, Bonus.IHaveBonus
 {
     public GameObject plCam;
     private GameObject sceneCam;
@@ -361,6 +361,13 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons
         }
 
 
+        BonusUp bon;
+        if (MyGetComponent(out bon, other.gameObject))
+        {
+            bon.target = gameObject;
+            bon.move = true;
+        }
+        
         AttackArea at;
         if (MyGetComponent(out at, other.gameObject))
         {
@@ -378,6 +385,16 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons
             }
         }
     }
+    
+    public void AddBonus(Bonus.BonusType bonusType)
+    {
+        if (bonusType == Bonus.BonusType.SpeedUp)
+        {
+            this.speed = 40;
+        }
+    }
 
     #endregion
+
+    
 }
