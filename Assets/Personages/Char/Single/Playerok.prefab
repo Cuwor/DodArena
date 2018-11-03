@@ -206,8 +206,8 @@ GameObject:
   - component: {fileID: 4143125795874268}
   - component: {fileID: 143923317801517396}
   - component: {fileID: 95249297162692812}
-  - component: {fileID: 114665484874976260}
   - component: {fileID: 114608061953432558}
+  - component: {fileID: 114283863396715868}
   m_Layer: 0
   m_Name: Playerok
   m_TagString: Player
@@ -887,7 +887,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1116572885877178}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.59, z: 0}
+  m_LocalPosition: {x: -178, y: 3.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4788078005003716}
@@ -2953,6 +2953,28 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114283863396715868
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1116572885877178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94f589938de4f1743886ebe8c5c87fc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plCam: {fileID: 1995002569155032}
+  body: {fileID: 1436242645514522}
+  speed: 20
+  xSpeed: 2
+  ySpeed: 2
+  weapon: {fileID: 114413185454524210}
+  grav: -45
+  jumpSpeed: 20
+  ammunitionCount: {fileID: 114172017037311490}
+  health: {fileID: 114170785383521208}
+  inDialog: 0
 --- !u!114 &114287002932555004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3090,30 +3112,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4932b3a866c6df14fb5c5f4ea3f09f15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114665484874976260
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1116572885877178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8c7a731d3c7e4c57933f2805e9f380d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  plCam: {fileID: 1995002569155032}
-  body: {fileID: 1436242645514522}
-  speed: 19
-  xSpeed: 2
-  ySpeed: 2
-  weapon:
-  - {fileID: 114413185454524210}
-  grav: -45
-  jumpSpeed: 20
-  ammunitionCount: {fileID: 114172017037311490}
-  health: {fileID: 114170785383521208}
-  inDialog: 0
-  weaponNumber: 1
 --- !u!114 &114852204152066266
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3345,7 +3343,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 50
+      scalar: 100
       minScalar: 5
       maxCurve:
         serializedVersion: 2

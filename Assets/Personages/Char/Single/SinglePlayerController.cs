@@ -103,6 +103,7 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, Bonus.IHave
     [HideInInspector] public bool inDialog;
 
     public int weaponNumber;
+    public int weaponPre;
 
     private Animator anim;
     private CharacterController controller;
@@ -113,7 +114,7 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, Bonus.IHave
     private float rotationX, rotationY;
     private float movementMultiplicator;
     private float vertSpeed;
-    private bool recoil;
+    //private bool recoil;
     private bool reload;
 
     private void Start()
@@ -124,14 +125,14 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, Bonus.IHave
         controller = GetComponent<CharacterController>();
         gravVector = Vector3.down;
         movementMultiplicator = speed;
-        recoil = false;
+        //recoil = false;
         ammunitionCount.text = "2/0";
         view = new RecoilRotation();
         GetComponent<PlayerUI>().pc = this;
         Health = 100;
     }
 
-    protected virtual void Update()
+    protected virtual void FixedUpdate()
     {
         if (!inDialog)
         {
@@ -144,16 +145,10 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, Bonus.IHave
             LeftWeapon();
             RightWeapon();
         }
-    }
-
-
-    private void LateUpdate()
-    {
-
-        if (recoil)
-        {
-            StartCoroutine("Recoil");
-        }
+        //if (recoil)
+        //{
+        //    StartCoroutine(Recoil());
+        //}
     }
 
     #region Показатели
@@ -249,25 +244,36 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, Bonus.IHave
 
     private void Attack()
     {
-        if (Input.GetMouseButtonDown(0))
+
+        if (Input.GetMouseButton(0))
         {
             if (weapon[weaponNumber].MakeShoot())
             {
                 anim.SetBool("Shoot", true);
                 DrawAmmo();
-                Invoke("AttackEffect", 0.02f);
+                //Invoke("AttackEffect", 0.02f);
             }
         }
+        if (weapon[weaponNumber].auto)
+            if (Input.GetMouseButtonDown(0))
+                if (weapon[weaponNumber].MakeShoot())
+                {
+                    //anim.SetBool("Shoot", true);
+                    DrawAmmo();
+                    //Invoke("AttackEffect", 0.02f);
+                }
         if (Input.GetMouseButtonUp(0))
         {
+            //weapon[weaponNumber].StopShooting();
             anim.SetBool("Shoot", false);
         }
+
     }
-    private void AttackEffect()
-    {
-        GetRecoilVector(weapon[weaponNumber].backForce);
-        recoil = true;
-    }
+    //private void AttackEffect()
+    //{
+    //    GetRecoilVector(weapon[weaponNumber].backForce);
+    //    recoil = true;
+    //}
 
     private void RotateToView(float force, Vector2 forceVector)
     {
@@ -281,22 +287,22 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, Bonus.IHave
         body.transform.localEulerAngles = new Vector3(-rotationY, 0, 0);
     }
 
-    private IEnumerator Recoil()
-    {
-        float force = weapon[weaponNumber].backForce;
-        for (float i = force; i > 0; i -= 20)
-        {
-            RotateToView(i / 4, view.newRotation);
-            yield return new WaitForSeconds(0.025f);
-        }
+    //private IEnumerator Recoil()
+    //{
+    //    float force = weapon[weaponNumber].backForce;
+    //    for (float i = force; i > 0; i -= 20)
+    //    {
+    //        RotateToView(i / 4, view.newRotation);
+    //        yield return new WaitForSeconds(0.025f);
+    //    }
 
-        for (int i = 0; i < force; i++)
-        {
-            RotateToView(0.5f, view.oldRotation);
-        }
+    //    for (int i = 0; i < force; i++)
+    //    {
+    //        RotateToView(0.5f, view.oldRotation);
+    //    }
 
-        recoil = false;
-    }
+    //    recoil = false;
+    //}
 
     private void GetRecoilVector(float weaponRecoilForce)
     {
@@ -320,10 +326,7 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, Bonus.IHave
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            weapon[weaponNumber].gameObject.SetActive(false);
-            weaponNumber = (weaponNumber == 0 ? weapon.Length - 1 : weaponNumber - 1);
-            anim.SetInteger("WeaponNumber", weaponNumber);
-            weapon[weaponNumber].gameObject.SetActive(true);
+            SetWeapon(false);
         }
     }
 
@@ -331,11 +334,25 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, Bonus.IHave
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            weapon[weaponNumber].gameObject.SetActive(false);
-            weaponNumber = (weaponNumber == weapon.Length - 1 ? 0 : weaponNumber + 1);
-            anim.SetInteger("WeaponNumber", weaponNumber);
-            weapon[weaponNumber].gameObject.SetActive(true);
+            SetWeapon(true);
         }
+    }
+
+    private void SetWeapon(bool up)
+    {
+        weaponPre = weaponNumber;
+        if (up)
+            weaponNumber = (weaponNumber == weapon.Length - 1 ? 0 : weaponNumber + 1);
+        else
+            weaponNumber = (weaponNumber == 0 ? weapon.Length - 1 : weaponNumber - 1);
+        anim.SetInteger("WeaponNumber", weaponNumber);
+    }
+
+    public void SetVisibleWeapon()
+    {
+        weapon[weaponPre].gameObject.SetActive(false);
+        weapon[weaponNumber].gameObject.SetActive(true);
+        DrawAmmo();
     }
 
     #endregion
@@ -357,6 +374,7 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, Bonus.IHave
         if (MyGetComponent(out amun, other.gameObject))
         {
             amun.target = gameObject;
+            amun.haveWeapons = this;
             amun.move = true;
         }
 
@@ -367,7 +385,7 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, Bonus.IHave
             bon.target = gameObject;
             bon.move = true;
         }
-        
+
         AttackArea at;
         if (MyGetComponent(out at, other.gameObject))
         {
@@ -385,16 +403,16 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, Bonus.IHave
             }
         }
     }
-    
+
     public void AddBonus(Bonus.BonusType bonusType)
     {
         if (bonusType == Bonus.BonusType.SpeedUp)
         {
-            this.speed = 40;
+            speed = 40;
         }
     }
 
     #endregion
 
-    
+
 }

@@ -7,7 +7,7 @@ public class Ammunition : MonoBehaviour
 
     [Range(0, 10)]
     public float speed;
-    public byte count;
+    public short count;
     public GameObject target;
     private Vector3 moveVector;
     public bool move;

@@ -1,38 +1,31 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-public class PlayerController : SinglePlayerController
+public interface IHit
 {
-    public PhotonView photonView;
+    void Hit();
+}
+
+
+public class PlayeroController : MyTools, IAlive, IHaveWeapons, IHit
+{
+    public GameObject plCam;
     private GameObject sceneCam;
-    private Vector3 selfPos;
-    private Quaternion selfRot;
 
     [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
     public static GameObject LocalPlayerInstance;
 
-    protected override void Awake()
+    protected virtual void Awake()
     {
-        if (photonView.isMine)
-        {
-            sceneCam = GameObject.Find("Main Camera");
-            sceneCam.SetActive(false);
-            plCam.SetActive(true);
-        }
-
-        // #Important
-        // used in GameManager.cs: we keep track of the localPlayer instance to prevent instanciation when levels are synchronized
-        if (photonView.isMine)
-        {
-            LocalPlayerInstance = gameObject;
-        }
-
-        // #Critical
-        // we flag as don't destroy on load so that instance survives level synchronization, thus giving a seamless experience when levels load.
-        DontDestroyOnLoad(gameObject);
+        sceneCam = GameObject.Find("Main Camera");
+        sceneCam.SetActive(false);
+        plCam.SetActive(true);
     }
 
     public float Health
@@ -52,11 +45,55 @@ public class PlayerController : SinglePlayerController
         }
     }
 
-    
+    public Weapon Weapon
+    {
+        get
+        {
+            return weapon;
+        }
 
-    private Animator anim;
+        set
+        {
+            weapon = value;
+        }
+    }
+
+    [Tooltip("Подвижная часть тела (следует за камерой)")]
+    public GameObject body;
+
+    [Space(10)]
+    [Range(15, 30)]
+    [Tooltip("Скорость перемещения")]
+    public float speed;
+
+    [Tooltip("Скорость поворота по горизонтали")]
+    public float xSpeed;
+
+    [Tooltip("Скорость поворота по вертикали")]
+    public float ySpeed;
+
+    [Space(10)]
+    [Tooltip("Используемое в данный момент оружие")]
+    public Weapon weapon;
+
+    [Space(10)]
+    [Header("Гравитация")]
+    [Tooltip("Ускорение")]
+    public float grav;
+
+    [Tooltip("Сила прыжка")] public float jumpSpeed;
+
+    [Space(20)]
+    [Header("Части интерфейса")]
+    [Tooltip("Количество патронов")]
+    public Text ammunitionCount;
+
+    [Tooltip("Слайдер для здоровья")] public Slider health;
+
+    [HideInInspector] public bool inDialog;
+
     private CharacterController controller;
-    private Vector3 gravVector;
+    //private Vector3 gravVector;
     private Vector3 moveVector;
     private RecoilRotation view;
     private const float minY = -100, maxY = 70;
@@ -66,37 +103,29 @@ public class PlayerController : SinglePlayerController
     //private bool recoil;
     private bool reload;
 
-
-    void Start()
+    private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        anim = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
-        gravVector = Vector3.down;
+        //gravVector = Vector3.down;
         movementMultiplicator = speed;
-       // recoil = false;
+        //recoil = false;
         ammunitionCount.text = "2/0";
         view = new RecoilRotation();
-        GetComponent<PlayerUI>().pc = this;
+        GetComponent<PlayerUI>().pc = null;
         Health = 100;
+        weapon.player = this;
     }
 
-    protected override void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if (!inDialog)
         {
-            if (photonView.isMine)
-            {
-                Move();
-                MaxSpeed();
-                Attack();
-                Reload();
-                Rotate();
-            }
-            else
-            {
-                SmoothNetMovement();
-            }
+            Move();
+            MaxSpeed();
+            Attack();
+            Reload();
+            Rotate();
         }
         //if (recoil)
         //{
@@ -104,11 +133,6 @@ public class PlayerController : SinglePlayerController
         //}
     }
 
-    void SmoothNetMovement()
-    {
-        transform.position = Vector3.Lerp(transform.position, selfPos, Time.deltaTime * 8);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, selfRot, 500 * Time.deltaTime);
-    }
 
     #region Показатели
 
@@ -134,9 +158,10 @@ public class PlayerController : SinglePlayerController
         {
             var x = Input.GetAxis("Horizontal");
             var z = Input.GetAxis("Vertical");
-            moveVector = transform.right * x + transform.forward * z;
+            Vector3 forvardVec = new Vector3(plCam.transform.forward.x, 0, plCam.transform.forward.z);
+            Vector3 rightVec = new Vector3(plCam.transform.right.x, 0, plCam.transform.right.z);
+            moveVector = rightVec * x + forvardVec * z;
         }
-
         if (controller.isGrounded)
         {
             vertSpeed = 0;
@@ -167,6 +192,7 @@ public class PlayerController : SinglePlayerController
             transform.localEulerAngles = new Vector3(0, rotationX, 0);
             body.transform.localEulerAngles = new Vector3(-rotationY, 0, 0);
         }
+
     }
 
     private void MaxSpeed()
@@ -189,17 +215,21 @@ public class PlayerController : SinglePlayerController
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (weapon[weaponNumber].MakeShoot())
+            if (weapon.MakeShoot())
             {
                 DrawAmmo();
                 //Invoke("AttackEffect", 0.02f);
             }
+            else
+            {
+                weapon.Reload();
+                Invoke("DrawAmmo", weapon.reloadTime);
+            }
         }
     }
-
     //private void AttackEffect()
     //{
-    //    //GetRecoilVector(weapon[weaponNumber].backForce);
+    //    //GetRecoilVector(weapon.backForce);
     //    recoil = true;
     //}
 
@@ -217,7 +247,7 @@ public class PlayerController : SinglePlayerController
 
     //private IEnumerator Recoil()
     //{
-    //    float force = weapon[weaponNumber].backForce;
+    //    float force = weapon.backForce;
     //    for (float i = force; i > 0; i -= 20)
     //    {
     //        RotateToView(i / 4, view.newRotation);
@@ -235,17 +265,17 @@ public class PlayerController : SinglePlayerController
     private void GetRecoilVector(float weaponRecoilForce)
     {
         view.oldRotation = new Vector2(rotationX, rotationY);
-        int[] c = {-1, 1};
-        view.newRotation = new Vector2(rotationX + c[Random.Range(0, 2)] * weaponRecoilForce / 10,
+        int[] c = { -1, 1 };
+        view.newRotation = new Vector2(rotationX + c[UnityEngine.Random.Range(0, 2)] * weaponRecoilForce / 10,
             rotationY + weaponRecoilForce);
     }
 
     private void Reload()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && weapon.ammo > 0 && weapon.magazin < weapon.maxAmmo)
         {
-            weapon[weaponNumber].Reload();
-            Invoke("DrawAmmo", weapon[weaponNumber].reloadTime);
+            weapon.Reload();
+            Invoke("DrawAmmo", weapon.reloadTime);
         }
     }
 
@@ -255,7 +285,7 @@ public class PlayerController : SinglePlayerController
 
     public void DrawAmmo()
     {
-        ammunitionCount.text = weapon[weaponNumber].magazin.ToString() + "/" + weapon[weaponNumber].ammo.ToString();
+        ammunitionCount.text = weapon.magazin.ToString() + "/" + weapon.ammo.ToString();
     }
 
     #endregion
@@ -268,6 +298,7 @@ public class PlayerController : SinglePlayerController
         if (MyGetComponent(out amun, other.gameObject))
         {
             amun.target = gameObject;
+            amun.haveWeapons = this;
             amun.move = true;
         }
 
@@ -279,19 +310,15 @@ public class PlayerController : SinglePlayerController
         }
     }
 
-    #endregion
-
-    private void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    public void AddAmmos(WeaponType type, int qty)
     {
-        if (stream.isWriting)
-        {
-            stream.SendNext(transform.position);
-            stream.SendNext(transform.rotation);
-        }
-        else
-        {
-            selfPos = (Vector3) stream.ReceiveNext();
-            selfRot = (Quaternion) stream.ReceiveNext();
-        }
+        weapon.ammo += qty;
     }
+
+    public void Hit()
+    {
+        throw new NotImplementedException();
+    }
+
+    #endregion
 }

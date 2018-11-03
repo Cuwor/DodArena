@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Al_AI.Scripts
 {
@@ -9,6 +11,10 @@ namespace Al_AI.Scripts
         public float cooldown = 5;
         public GameObject enemy;
 
+        public short maximum = 10;
+
+        public List<GameObject> gameObjects = new List<GameObject>();
+
         // Use this for initialization
         private void Start()
         {
@@ -16,10 +22,11 @@ namespace Al_AI.Scripts
         }
 
         // Update is called once per frame
-        private void Update()
+        private void FixedUpdate()
         {
-
+            
         }
+
 
         private Vector3 GetRandomPositionForEidolons()
         {
@@ -32,7 +39,22 @@ namespace Al_AI.Scripts
 
         private void State()
         {
-            Instantiate(enemy, GetRandomPositionForEidolons(), Quaternion.identity);
+            if (gameObjects.Count < maximum)
+            {
+               gameObjects.Add( Instantiate(enemy, GetRandomPositionForEidolons(), Quaternion.identity));
+
+            }
+            else
+            {
+                for(int i=0;i< gameObjects.Count; i++)
+                {
+                    if (gameObjects[i] == null)
+                    {
+                        gameObjects.RemoveAt(i);
+                        i--;
+                    }
+                }
+            }
             Invoke("State", cooldown);
         }
     }
