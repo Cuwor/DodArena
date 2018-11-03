@@ -53,6 +53,7 @@ namespace Al_AI.Scripts
 
         public bool boss = false;
         public bool ready = false;
+        public bool key;
         [HideInInspector]
         public bool saled = false;
         public int bossReady = 0;
@@ -346,6 +347,7 @@ namespace Al_AI.Scripts
             SSC.NavAgent.speed = (up ? NavAgent.speed * SSC.size : NavAgent.speed / SSC.size);
             SSC.Brothers = brothers;
         }
+    
         public override void Death()
         {
             try
@@ -387,6 +389,7 @@ namespace Al_AI.Scripts
                 StartCoroutine(Destroeded());
             }
         }
+     
         private void ReBro(ref List<Slice_Script_Controller> gameObjects)
         {
             if (gameObjects == null)
@@ -417,6 +420,33 @@ namespace Al_AI.Scripts
                 gameObjects.AddRange(Brothers);
                 MeChangedInvoke(null, 2);
                 //Debug.Log(gameObjects[0].slameType + " " + gameObjects.Count);
+            }
+        }
+        
+        protected override void OnTriggerEnter(Collider other)
+        {
+            if (alive)
+            {
+                Projectile proj;
+                if (MyGetComponent(out proj, other.gameObject))
+                {
+                    GetDamage(proj.damage);
+                }
+            }
+            if (key)
+            {
+                ObstacleScript OS;
+                if (MyGetComponent(out OS, other.gameObject))
+                {
+                    _anim.SetTrigger("Spec");
+                    key = false;
+                }
+
+				
+            }
+            else
+            {
+                key = true;
             }
         }
 

@@ -3292,7 +3292,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1953060838038010, guid: 94ccde4f3ddaeaa4ba7a20acc2c43508, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94ccde4f3ddaeaa4ba7a20acc2c43508, type: 2}
@@ -7249,6 +7249,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NavAgent: {fileID: 0}
   goal: {fileID: 0}
+  anim: {fileID: 0}
+  key: 0
 --- !u!65 &1806206058
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8184,6 +8186,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NavAgent: {fileID: 0}
   goal: {fileID: 0}
+  anim: {fileID: 0}
+  key: 0
 --- !u!65 &2016953935
 BoxCollider:
   m_ObjectHideFlags: 0

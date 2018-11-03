@@ -182,7 +182,7 @@ namespace Al_AI.Scripts
             _anim.SetFloat("Ystate", ysate);
         }
 
-        protected void OnTriggerEnter(Collider other)
+        protected virtual void OnTriggerEnter(Collider other)
         {
             if (alive)
             {
