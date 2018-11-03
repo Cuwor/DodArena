@@ -168,7 +168,6 @@ namespace Al_AI.Scripts
         {
             if (NavAgent.enabled)
             {
-                Debug.Log(destenation);
                 NavAgent.destination = destenation;
             }
 

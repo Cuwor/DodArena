@@ -17,6 +17,7 @@ namespace Al_AI.Scripts
 		{
 			Initiolize();
 			NavAgent = nav;
+            alive = false;
 		}
 
 		public override float Health
@@ -34,26 +35,26 @@ namespace Al_AI.Scripts
 				else if (value <= 75 && value > 50 && !key1)
 				{
 					key1 = true;
-					phase++;
+					phase = 2;
 					sceletonparts[0].GetComponent<Rigidbody>().useGravity = true;
 					sceletonparts[0].transform.SetParent(null);
 				}
 				else if (value <= 50 && value > 25 && !key2)
 				{
-					phase++;
+					phase = 3;
 					key2 = true;
 					sceletonparts[1].GetComponent<Rigidbody>().useGravity = true;
 					sceletonparts[1].transform.SetParent(null);
 				}
 				else if (value <= 25 && value > 0 && !key3)
 				{
-					phase++;
+					phase = 4;
 					key3 = true;
 					sceletonparts[2].GetComponent<Rigidbody>().useGravity = true;
 					sceletonparts[2].transform.SetParent(null);
 				}
-
-				HP = value;
+                _anim.SetInteger("phase", phase);
+                HP = value;
 			}
 		
 		}
@@ -79,7 +80,7 @@ namespace Al_AI.Scripts
 					else if (distanceTP <= attackDistance)
 					{
 						State = EnemyState.Attack;
-
+                        alive = false;
 					}
 					else
 					{
@@ -114,9 +115,11 @@ namespace Al_AI.Scripts
 				
 				}
 			}
-		
 		}
 
-	
+	    private void StartMove()
+        {
+            alive = true;
+        }
 	}
 }
