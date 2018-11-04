@@ -114,7 +114,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: BodyOnly
     m_StateMachine: {fileID: 1107948235832345748}
-    m_Mask: {fileID: 31900000, guid: f23c86dd022bb744aa52097c3b195d55, type: 2}
+    m_Mask: {fileID: 31900000, guid: 6c2ebd1c90c3a794ea3ec336c3b08794, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
