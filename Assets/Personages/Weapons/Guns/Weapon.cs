@@ -42,6 +42,8 @@ public class Weapon : MonoBehaviour
     public WeaponType type;
     [Tooltip("Урон пули")]
     public float weaponDamage;
+    [Tooltip("Разброс")]
+    public float range;
     [Tooltip("Потронов в обойме")]
     public int maxAmmo;
     [Tooltip("Автоматический режим")]
@@ -91,6 +93,7 @@ public class Weapon : MonoBehaviour
             damageScript[i] = pS[i].GetComponent<DamageScript>();
             damageScript[i].PauseTime = pauseTime;
             damageScript[i].Auto = auto;
+            damageScript[i].Radius = range;
             damageScript[i].Damage = weaponDamage;
             damageScript[i].BulletInShoot = bulletInShoot;
             ShootNow += damageScript[i].Fire;
