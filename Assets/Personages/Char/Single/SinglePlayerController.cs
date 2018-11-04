@@ -253,15 +253,17 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, Bonus.IHave
                 DrawAmmo();
                 //Invoke("AttackEffect", 0.02f);
             }
+            else if (weapon[weaponNumber].ammo > 0 && weapon[weaponNumber].magazin < 1)
+            {
+                anim.SetTrigger("Reload");
+                weapon[weaponNumber].Reload();
+                Invoke("DrawAmmo", weapon[weaponNumber].reloadTime);
+            }
         }
-        if (weapon[weaponNumber].auto)
+        if (weapon[weaponNumber].auto && weapon[weaponNumber].magazin > 0)
             if (Input.GetMouseButton(0))
                 if (weapon[weaponNumber].MakeShoot())
-                {
-                    //anim.SetBool("Shoot", true);
                     DrawAmmo();
-                    //Invoke("AttackEffect", 0.02f);
-                }
         if (Input.GetMouseButtonUp(0))
         {
             //weapon[weaponNumber].StopShooting();
@@ -350,7 +352,9 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, Bonus.IHave
 
     public void SetVisibleWeapon()
     {
+        Debug.Log("SetVisibleWeapon");
         weapon[weaponPre].gameObject.SetActive(false);
+        Debug.Log(weapon[weaponPre].gameObject.activeSelf +"   "+ weapon[weaponPre].gameObject.activeInHierarchy);
         weapon[weaponNumber].gameObject.SetActive(true);
         DrawAmmo();
     }
@@ -402,7 +406,7 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, Bonus.IHave
                 wea.ammo += qty;
             }
         }
-        DrawAmmo(); 
+        DrawAmmo();
     }
 
     public void AddBonus(Bonus.BonusType bonusType)

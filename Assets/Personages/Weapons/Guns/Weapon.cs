@@ -76,8 +76,8 @@ public class Weapon : MonoBehaviour
     private DamageScript[] damageScript;
 
     public IHit player;
-
-    private void Start()
+    
+    private void Awake()
     {
         ready = true;
         magazin = maxAmmo;
@@ -117,7 +117,6 @@ public class Weapon : MonoBehaviour
             if (magazin > 0)
             {
                 ShootNowInvoke(true);
-                //ShootProject();
                 magazin -= 1;
                 PlayThisClip(sounds.shoot);
                 ready = false;
@@ -164,10 +163,16 @@ public class Weapon : MonoBehaviour
             ready = false;
             PlayThisClip(sounds.reload);
             Invoke("ReadyAttack", reloadTime);
-            while (magazin < maxAmmo && ammo > 0)
+            var x = maxAmmo - magazin;
+            if (x < ammo)
             {
-                magazin++;
-                ammo--;
+                ammo -= x;
+                magazin += x;
+            }
+            else
+            {
+                magazin += ammo;
+                ammo = 0;
             }
         }
         else

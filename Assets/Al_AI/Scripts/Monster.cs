@@ -129,6 +129,12 @@ namespace Al_AI.Scripts
             _anim.SetFloat("Xstate", xstate);
             _anim.SetFloat("Ystate", ysate);
         }
+        private void StartMove()
+        {
+            alive = true;
+            NavAgent.enabled = true;
+        }
+
 
         #endregion
 

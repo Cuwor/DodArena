@@ -14,32 +14,23 @@ public class DamageScript : MonoBehaviour
 
     public float PauseTime
     {
-        get
-        {
-            return pauseTime;
-        }
+        get { return pauseTime; }
 
         set
         {
             pauseTime = value;
-            // Debug.Log("PauseTime = " + value);
             burst.repeatInterval = value;
-            main.duration = value;
+           //main.duration = value;
             emission.SetBurst(0, burst);
         }
     }
 
     public short BulletInShoot
     {
-        get
-        {
-            return bulletInShoot;
-        }
-
+        get { return bulletInShoot; }
         set
         {
             bulletInShoot = value;
-            //Debug.Log("BulletInShoot = "+ value);
             burst.count = value;
             emission.SetBurst(0, burst);
         }
@@ -53,18 +44,12 @@ public class DamageScript : MonoBehaviour
             return damage;
         }
 
-        set
-        {
-            damage = value;
-        }
+        set { damage = value; }
     }
 
     public float Radius
     {
-        get
-        {
-            return radius;
-        }
+        get { return radius; }
 
         set
         {
@@ -75,69 +60,37 @@ public class DamageScript : MonoBehaviour
 
     public bool Auto
     {
-        get
-        {
-            return auto;
-        }
+        get { return auto; }
 
-        set
-        {
-            auto = value;
-            //main.loop = value;
-        }
+        set { auto = value; }
     }
 
     private ParticleSystem.Burst burst;
     private ParticleSystem.Burst burst1;
     private new ParticleSystem particleSystem;
     private ParticleSystem.ShapeModule shape;
-    private ParticleSystem.MainModule main;
+    //private ParticleSystem.MainModule main;
     private ParticleSystem.EmissionModule emission;
     public event HitHelper hit;
 
     // Use this for initialization
-    private void Start()
+    private void Awake()
     {
         particleSystem = gameObject.GetComponent<ParticleSystem>();
         shape = particleSystem.shape;
-        main = particleSystem.main;
+        //main = particleSystem.main;
         emission = particleSystem.emission;
         burst = new ParticleSystem.Burst(0, BulletInShoot, 1, PauseTime);
         emission.SetBurst(0, burst);
-        //if (auto)
-        //{
-        //    emission.enabled = false;
-        //    particleSystem.Play();
-
-        //}
     }
 
-    // Update is called once per frame
-    private void Update()
-    {
-
-    }
 
     public void Fire(bool start)
     {
-        //if (auto)
-        //{
-        //    if (start)
-        //    {
-        //        emission.enabled = true;
-        //        particleSystem.Play();
-        //    }
-        //    else
-        //        emission.enabled = false;
-        //}
-        //else
-        //{
-            if (start)
-                particleSystem.Play();
-            else
-                particleSystem.Stop();
-        //}
-       
+        if (start)
+            particleSystem.Play();
+        else
+            particleSystem.Stop();
     }
 
     public void HitInvoke()

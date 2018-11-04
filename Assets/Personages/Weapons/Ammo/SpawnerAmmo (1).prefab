@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4150229735960870}
   - component: {fileID: 114600641378797396}
   m_Layer: 0
-  m_Name: SpawnerAmmo (1)
+  m_Name: SpawnerAmmoPistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
