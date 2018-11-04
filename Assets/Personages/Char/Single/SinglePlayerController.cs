@@ -245,7 +245,7 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, Bonus.IHave
     private void Attack()
     {
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
             if (weapon[weaponNumber].MakeShoot())
             {
@@ -255,7 +255,7 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, Bonus.IHave
             }
         }
         if (weapon[weaponNumber].auto)
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButton(0))
                 if (weapon[weaponNumber].MakeShoot())
                 {
                     //anim.SetBool("Shoot", true);
