@@ -124,7 +124,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4275412689313328}
-  - component: {fileID: 33892001846665278}
   - component: {fileID: 65171478900982920}
   - component: {fileID: 114121166597881528}
   m_Layer: 0
@@ -574,7 +573,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1953060838038010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.97, y: -4.1168792e-17, z: 15.753407}
+  m_LocalPosition: {x: -19.1, y: -4.1168792e-17, z: -1.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4997130033064508}
@@ -604,13 +603,6 @@ Transform:
   m_Father: {fileID: 4977839446039790}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0.0000068302033, y: 89.71314, z: -85.601326}
---- !u!33 &33892001846665278
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1200486795765350}
-  m_Mesh: {fileID: 4300002, guid: c1980f2ca99e9e743b10367610e81949, type: 3}
 --- !u!64 &64298717084017950
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -684,6 +676,7 @@ MonoBehaviour:
   RadiusView: 55
   HP: 100
   AttackForce: 10
+  _anim: {fileID: 0}
   AttackAreas:
   - {fileID: 1200486795765350}
   ammos:
@@ -696,6 +689,7 @@ MonoBehaviour:
   slameType: 0
   boss: 0
   ready: 0
+  key: 0
   saled: 1
   bossReady: 0
   Brothers: []

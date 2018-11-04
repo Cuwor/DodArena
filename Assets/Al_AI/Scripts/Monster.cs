@@ -47,7 +47,6 @@ namespace Al_AI.Scripts
                 HP = value;
             }
         }
-
         public virtual float DistanceTP
         {
             get
@@ -60,7 +59,6 @@ namespace Al_AI.Scripts
                 distanceTP = value;
             }
         }
-
         public virtual EnemyState State
         {
             get
@@ -74,13 +72,7 @@ namespace Al_AI.Scripts
             }
         }
 
-        public virtual void Death()
-        {
-            NavAgent.enabled = false;
-            _anim.SetTrigger("Dead");
-            StartCoroutine(Drop());
-            StartCoroutine(Destroeded());
-        }
+        #region Логика
 
         public virtual void Initiolize()
         {
@@ -99,54 +91,11 @@ namespace Al_AI.Scripts
                     proj.Damage = AttackForce;
                 }
             }
-
+            StopAttack();
             State = EnemyState.Stay;
             GetAttackDistance();
             size = transform.localScale.x;
         }
-
-        protected IEnumerator Destroeded()
-        {
-            yield return new WaitForSeconds(2);
-            Destroy(gameObject);
-        }
-
-        protected IEnumerator GetRandomStayState()
-        {
-            //_anim.SetFloat("Ystate", -1);
-            //_anim.SetFloat("Xstate", UnityEngine.Random.Range(-1, 1.1f));
-            //FindPlayers();
-            yield return new WaitForSeconds(2);
-            wait = false;
-        }
-
-        protected IEnumerator Drop()
-        {
-            yield return new WaitForSeconds(2);
-            int x = UnityEngine.Random.Range(0, ammos.Length);
-            Instantiate(ammos[x], transform.position, new Quaternion());
-        }
-
-        public virtual void GetDamage(float value)
-        {
-            if (alive)
-            {
-                Health -= value;
-                _anim.SetInteger("Damage", (int)value);
-                _anim.SetTrigger("GetDamage");
-            }
-        }
-
-        public void PlusHealth(float value)
-        {
-        }
-
-        protected void GetAttackDistance()
-        {
-            attackType = UnityEngine.Random.Range(1, 3);
-            attackDistance = attackType == 1 ? RadiusAttack : RadiusAttack - 2 * size;
-        }
-
         protected void FindPlayers()
         {
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
@@ -163,7 +112,6 @@ namespace Al_AI.Scripts
                 }
             }
         }
-
         protected void CaseMethod(bool navAgentEnebled, float xstate, float ysate, int attack, Vector3 destenation)
         {
             if (NavAgent.enabled)
@@ -181,7 +129,83 @@ namespace Al_AI.Scripts
             _anim.SetFloat("Xstate", xstate);
             _anim.SetFloat("Ystate", ysate);
         }
+        private void StartMove()
+        {
+            alive = true;
+            NavAgent.enabled = true;
+        }
 
+
+        #endregion
+
+        #region Атака
+
+        protected virtual void GetAttackDistance()
+        {
+            attackType = UnityEngine.Random.Range(1, 3);
+            attackDistance = attackType == 1 ? RadiusAttack : RadiusAttack - 2 * size;
+        }
+        private void StartAttack(int trigger)
+        {
+            AttackAreas[trigger].SetActive(true);
+        }
+        private void StopAttack()
+        {
+            foreach (var trigger in AttackAreas)
+            {
+                trigger.SetActive(false);
+            }
+        }
+
+        #endregion
+
+        #region Здлоровье и смерть
+
+        public void PlusHealth(float value)
+        {
+        }
+        public virtual void GetDamage(float value)
+        {
+            if (alive)
+            {
+                alive = false;
+                NavAgent.enabled = false;
+                Health -= value;
+                _anim.SetInteger("Damage", (int)value);
+                _anim.SetTrigger("GetDamage");
+            }
+        }
+        public virtual void Death()
+        {
+            NavAgent.enabled = false;
+            _anim.SetTrigger("Dead");
+            StartCoroutine(Drop());
+            StartCoroutine(Destroeded());
+        }
+        protected IEnumerator Destroeded()
+        {
+            yield return new WaitForSeconds(2);
+            Destroy(gameObject);
+        }
+
+        #endregion
+
+        #region Дополнительное
+
+        protected IEnumerator GetRandomStayState()
+        {
+            //_anim.SetFloat("Ystate", -1);
+            //_anim.SetFloat("Xstate", UnityEngine.Random.Range(-1, 1.1f));
+            //FindPlayers();
+            yield return new WaitForSeconds(2);
+            wait = false;
+        }
+        protected IEnumerator Drop()
+        {
+            yield return new WaitForSeconds(2);
+            int x = UnityEngine.Random.Range(0, ammos.Length);
+            Instantiate(ammos[x], transform.position, new Quaternion());
+        }
         protected virtual void OnTriggerEnter(Collider other)
         {
             if (alive)
@@ -193,7 +217,6 @@ namespace Al_AI.Scripts
                 }
             }
         }
-
         public void OnParticleCollision(GameObject other)
         {
             //Debug.Log("OnParticleCollision");
@@ -203,5 +226,7 @@ namespace Al_AI.Scripts
                 GetDamage(ds.Damage);
             }
         }
+        #endregion
+
     }
 }

@@ -61,6 +61,8 @@ namespace Al_AI.Scripts
 	
 		public override void GetDamage(float value)
 		{
+            alive = false;
+            NavAgent.enabled = false;
 			Health -= value;
 			_anim.SetInteger("Health", (int)Health);
 			_anim.SetTrigger("GetDamage");
@@ -80,7 +82,7 @@ namespace Al_AI.Scripts
 					else if (distanceTP <= attackDistance)
 					{
 						State = EnemyState.Attack;
-                        alive = false;
+                        NavAgent.enabled = false;
 					}
 					else
 					{
@@ -111,15 +113,50 @@ namespace Al_AI.Scripts
 						GetAttackDistance();
 						CaseMethod(false, 0, 0, attackType, target.transform.position);
 						break;
-
-				
 				}
 			}
 		}
 
-	    private void StartMove()
+        protected override void GetAttackDistance()
         {
-            alive = true;
+            if(phase != 4)
+            {
+                attackType = UnityEngine.Random.Range(1, 3);
+            }
+            else
+            {
+                attackType = 1;
+            }
+
+            switch (phase)
+            {
+                case 1:
+                    attackDistance = attackType == 1 ? RadiusAttack : RadiusAttack - 2;
+                    break;
+                case 2:
+                    if(attackType == 1)
+                    {
+                        attackDistance = RadiusAttack - 2;
+                    }
+                    else
+                    {
+                        attackDistance = RadiusAttack / 2.1f;
+                    }
+                    break;
+                case 3:
+                    if (attackType == 1)
+                    {
+                    attackDistance = RadiusAttack / 2;
+                    }
+                    else
+                    {
+                        attackDistance = RadiusAttack / 2.1f;
+                    }
+                    break;
+                case 4:
+                    attackDistance = RadiusAttack / 2.1f;
+                    break;
+            }
         }
-	}
+    }
 }

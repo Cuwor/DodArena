@@ -402,6 +402,7 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, Bonus.IHave
                 wea.ammo += qty;
             }
         }
+        DrawAmmo(); 
     }
 
     public void AddBonus(Bonus.BonusType bonusType)
