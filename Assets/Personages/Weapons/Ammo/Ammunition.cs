@@ -14,16 +14,11 @@ public class Ammunition : MonoBehaviour
     public WeaponType weaponType;
     public IHaveWeapons haveWeapons;
 
-    private void Start()
-    {
-        move = false;
-    }
-
     //Update is called once per frame//kkj
     private void FixedUpdate()
     {
         transform.Rotate(transform.up, 2 * Time.deltaTime);
-        if (move)
+        if (target != null)
         {
             MoveToTarget();
         }
