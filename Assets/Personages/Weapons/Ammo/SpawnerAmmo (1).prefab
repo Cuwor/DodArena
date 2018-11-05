@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4150229735960870}
   - component: {fileID: 114600641378797396}
   m_Layer: 0
-  m_Name: SpawnerAmmoPistol
+  m_Name: SpawnerAmmo (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,5 +55,3 @@ MonoBehaviour:
   max: 30
   cooldown: 5
   enemy: {fileID: 1553534972256596, guid: 20c0183607404d249b852882243f6e0b, type: 2}
-  maximum: 10
-  gameObjects: []

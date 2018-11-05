@@ -12,6 +12,7 @@ public abstract class MyTools : MonoBehaviour
         {
             return true;
         }
+
         return false;
     }
 }
@@ -19,6 +20,11 @@ public abstract class MyTools : MonoBehaviour
 public interface IHaveWeapons
 {
     void AddAmmos(WeaponType type, int qty);
+}
+
+public interface IHaveBonus
+{
+    void AddBonus(BonusType type);
 }
 
 public interface IAlive
@@ -36,7 +42,7 @@ public class RecoilRotation
     public Vector2 oldRotation;
 }
 
-public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, Bonus.IHaveBonus
+public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus
 {
     public GameObject plCam;
     private GameObject sceneCam;
@@ -71,9 +77,7 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, Bonus.IHave
     [Tooltip("Подвижная часть тела (следует за камерой)")]
     public GameObject body;
 
-    [Space(10)]
-    [Range(15, 30)]
-    [Tooltip("Скорость перемещения")]
+    [Space(10)] [Range(15, 40)] [Tooltip("Скорость перемещения")]
     public float speed;
 
     [Tooltip("Скорость поворота по горизонтали")]
@@ -82,20 +86,15 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, Bonus.IHave
     [Tooltip("Скорость поворота по вертикали")]
     public float ySpeed;
 
-    [Space(10)]
-    [Tooltip("Используемое в данный момент оружие")]
+    [Space(10)] [Tooltip("Используемое в данный момент оружие")]
     public Weapon[] weapon;
 
-    [Space(10)]
-    [Header("Гравитация")]
-    [Tooltip("Ускорение")]
+    [Space(10)] [Header("Гравитация")] [Tooltip("Ускорение")]
     public float grav;
 
     [Tooltip("Сила прыжка")] public float jumpSpeed;
 
-    [Space(20)]
-    [Header("Части интерфейса")]
-    [Tooltip("Количество патронов")]
+    [Space(20)] [Header("Части интерфейса")] [Tooltip("Количество патронов")]
     public Text ammunitionCount;
 
     [Tooltip("Слайдер для здоровья")] public Slider health;
@@ -113,7 +112,9 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, Bonus.IHave
     private const float minY = -100, maxY = 70;
     private float rotationX, rotationY;
     private float movementMultiplicator;
+
     private float vertSpeed;
+
     //private bool recoil;
     private bool reload;
 
@@ -145,6 +146,7 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, Bonus.IHave
             LeftWeapon();
             RightWeapon();
         }
+
         //if (recoil)
         //{
         //    StartCoroutine(Recoil());
@@ -244,7 +246,6 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, Bonus.IHave
 
     private void Attack()
     {
-
         if (Input.GetMouseButtonDown(0))
         {
             if (weapon[weaponNumber].MakeShoot())
@@ -260,6 +261,7 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, Bonus.IHave
                 Invoke("DrawAmmo", weapon[weaponNumber].reloadTime);
             }
         }
+
         if (weapon[weaponNumber].auto && weapon[weaponNumber].magazin > 0)
             if (Input.GetMouseButton(0))
                 if (weapon[weaponNumber].MakeShoot())
@@ -269,7 +271,6 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, Bonus.IHave
             //weapon[weaponNumber].StopShooting();
             anim.SetBool("Shoot", false);
         }
-
     }
     //private void AttackEffect()
     //{
@@ -309,14 +310,15 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, Bonus.IHave
     private void GetRecoilVector(float weaponRecoilForce)
     {
         view.oldRotation = new Vector2(rotationX, rotationY);
-        int[] c = { -1, 1 };
+        int[] c = {-1, 1};
         view.newRotation = new Vector2(rotationX + c[Random.Range(0, 2)] * weaponRecoilForce / 10,
             rotationY + weaponRecoilForce);
     }
 
     private void Reload()
     {
-        if (Input.GetKeyDown(KeyCode.R) && weapon[weaponNumber].ammo > 0 && weapon[weaponNumber].magazin < weapon[weaponNumber].maxAmmo)
+        if (Input.GetKeyDown(KeyCode.R) && weapon[weaponNumber].ammo > 0 &&
+            weapon[weaponNumber].magazin < weapon[weaponNumber].maxAmmo)
         {
             anim.SetTrigger("Reload");
             weapon[weaponNumber].Reload();
@@ -354,7 +356,7 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, Bonus.IHave
     {
         Debug.Log("SetVisibleWeapon");
         weapon[weaponPre].gameObject.SetActive(false);
-        Debug.Log(weapon[weaponPre].gameObject.activeSelf +"   "+ weapon[weaponPre].gameObject.activeInHierarchy);
+        Debug.Log(weapon[weaponPre].gameObject.activeSelf + "   " + weapon[weaponPre].gameObject.activeInHierarchy);
         weapon[weaponNumber].gameObject.SetActive(true);
         DrawAmmo();
     }
@@ -387,6 +389,7 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, Bonus.IHave
         if (MyGetComponent(out bon, other.gameObject))
         {
             bon.target = gameObject;
+            bon.haveBonus = this;
             bon.move = true;
         }
 
@@ -406,18 +409,22 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, Bonus.IHave
                 wea.ammo += qty;
             }
         }
+
         DrawAmmo();
     }
 
-    public void AddBonus(Bonus.BonusType bonusType)
+    public void AddBonus(BonusType type)
     {
-        if (bonusType == Bonus.BonusType.SpeedUp)
+        if (type == BonusType.SpeedUp)
         {
             speed = 40;
+        }
+
+        if (type == BonusType.GravityDown)
+        {
+            grav = -20;
         }
     }
 
     #endregion
-
-
 }

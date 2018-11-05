@@ -739,7 +739,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4064607924614878, guid: 5cf2e6e8b9769994c9beab133a8f837c, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 8.47
+      value: -134.4
       objectReference: {fileID: 0}
     - target: {fileID: 4064607924614878, guid: 5cf2e6e8b9769994c9beab133a8f837c, type: 2}
       propertyPath: m_LocalPosition.y
@@ -747,7 +747,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4064607924614878, guid: 5cf2e6e8b9769994c9beab133a8f837c, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 33.09
+      value: 28.3
       objectReference: {fileID: 0}
     - target: {fileID: 4064607924614878, guid: 5cf2e6e8b9769994c9beab133a8f837c, type: 2}
       propertyPath: m_LocalRotation.x
@@ -771,9 +771,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1549386376721870, guid: 5cf2e6e8b9769994c9beab133a8f837c, type: 2}
       propertyPath: m_Name
-      value: ShotgunAmmoBigPack (1)
+      value: Bon
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114689314795329912, guid: 5cf2e6e8b9769994c9beab133a8f837c, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 5cf2e6e8b9769994c9beab133a8f837c, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &412801179
@@ -1343,6 +1344,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4977839446039790, guid: 94ccde4f3ddaeaa4ba7a20acc2c43508, type: 2}
       propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953060838038010, guid: 94ccde4f3ddaeaa4ba7a20acc2c43508, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1969,6 +1974,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1957428580 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1549386376721870, guid: 5cf2e6e8b9769994c9beab133a8f837c,
+    type: 2}
+  m_PrefabInternal: {fileID: 339436766}
+--- !u!114 &1957428581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1957428580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b798fec46f3174399b7408aa56550fe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1.15
+  target: {fileID: 0}
+  move: 0
+  bonusType: 1
 --- !u!1 &2004732799
 GameObject:
   m_ObjectHideFlags: 0

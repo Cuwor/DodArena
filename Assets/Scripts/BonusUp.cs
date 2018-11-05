@@ -9,8 +9,8 @@ public class BonusUp : MonoBehaviour
     public GameObject target;
     private Vector3 moveVector;
     public bool move;
-    public Bonus.BonusType bonusType;
-    public Bonus.IHaveBonus haveBonus;
+    public BonusType bonusType;
+    public IHaveBonus haveBonus;
 
 
     private void Start()
