@@ -129,10 +129,13 @@ namespace Al_AI.Scripts
             _anim.SetFloat("Xstate", xstate);
             _anim.SetFloat("Ystate", ysate);
         }
-        private void StartMove()
+        protected void StartMove()
         {
-            alive = true;
-            NavAgent.enabled = true;
+            if(Health>0)
+            {
+                alive = true;
+                NavAgent.enabled = true;
+            }
         }
 
 
@@ -176,6 +179,7 @@ namespace Al_AI.Scripts
         }
         public virtual void Death()
         {
+            alive = false;
             NavAgent.enabled = false;
             _anim.SetTrigger("Dead");
             StartCoroutine(Drop());

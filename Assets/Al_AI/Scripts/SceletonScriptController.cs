@@ -61,11 +61,14 @@ namespace Al_AI.Scripts
 	
 		public override void GetDamage(float value)
 		{
-            alive = false;
-            NavAgent.enabled = false;
-			Health -= value;
-			_anim.SetInteger("Health", (int)Health);
-			_anim.SetTrigger("GetDamage");
+            if(Health > 0)
+            {
+                alive = false;
+                NavAgent.enabled = false;
+                Health -= value;
+                _anim.SetInteger("Health", (int)Health);
+                _anim.SetTrigger("GetDamage");
+            }
 		}
 		// Update is called once per frame
 		void FixedUpdate () 
