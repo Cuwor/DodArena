@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public delegate void NextMusicHandler();
+
 public class PlayerUI : MyTools {
 
     public GameObject cam;
@@ -11,12 +13,14 @@ public class PlayerUI : MyTools {
     [HideInInspector]
     public float scale;
     public Text tipText;
+    public Slider musickSlider;
 
     private float crosslineScale;
     public GameObject crossline;
 
     [HideInInspector]
     public SinglePlayerController pc;
+    private event NextMusicHandler musicEvent;
 
     private void Start()
     {
@@ -80,7 +84,7 @@ public class PlayerUI : MyTools {
         UsedObject obj;
         if(MyGetComponent(out obj, other.gameObject))
         {
-            if(Input.GetKeyDown(KeyCode.E) && !pc.inDialog)
+            if(Input.GetKeyDown(KeyCode.F) && !pc.inDialog)
             {
                 Dialog dialog;
                 if(MyGetComponent(out dialog, other.gameObject))
@@ -106,5 +110,20 @@ public class PlayerUI : MyTools {
     private void CleanTip()
     {
         tipText.text = string.Empty;
+    }
+
+    private void NextMusic()
+    {
+        if(Input.GetKey(KeyCode.C))
+        {
+            musickSlider.value += 0.5f;
+            if(musickSlider.value >= 100)
+            {
+                if(musicEvent != null)
+                {
+                    musicEvent.Invoke();
+                }
+            }
+        }
     }
 }

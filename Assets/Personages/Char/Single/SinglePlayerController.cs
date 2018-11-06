@@ -42,6 +42,7 @@ public class RecoilRotation
     public Vector2 oldRotation;
 }
 
+
 public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus
 {
     public GameObject plCam;
