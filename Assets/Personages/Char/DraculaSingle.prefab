@@ -1027,7 +1027,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1805759414975958
 GameObject:
   m_ObjectHideFlags: 1
@@ -1138,7 +1138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1912524218683988
 GameObject:
   m_ObjectHideFlags: 1
@@ -3500,6 +3500,7 @@ MonoBehaviour:
   maxScale: 3
   scale: 0
   tipText: {fileID: 114698696741760892}
+  musickSlider: {fileID: 0}
   crossline: {fileID: 1553726327714186}
   pc: {fileID: 0}
 --- !u!137 &137641340532646982
