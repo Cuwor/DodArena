@@ -16,16 +16,20 @@ public class PlayerUI : MyTools {
     public Slider musickSlider;
 
     private float crosslineScale;
+    private bool lockMusicKey;
+    
     public GameObject crossline;
 
     [HideInInspector]
     public SinglePlayerController pc;
-    private event NextMusicHandler musicEvent;
+    public event NextMusicHandler musicEvent;
 
     private void Start()
     {
         crosslineScale = 1;
         tipText.text = string.Empty;
+        lockMusicKey = false;
+
     }
 
     private void Update()
@@ -34,6 +38,11 @@ public class PlayerUI : MyTools {
         if(scale != crosslineScale)
         {
             StartCoroutine("ChangeScale");
+        }
+
+        if (!lockMusicKey)
+        {
+            NextMusic();
         }
     }
 
@@ -73,9 +82,11 @@ public class PlayerUI : MyTools {
 
     private void OnTriggerEnter(Collider other)
     {
+        
         UsedObject obj;
         if (MyGetComponent(out obj, other.gameObject))
         {
+            
             tipText.text = obj.tip;
         }
     }
@@ -116,14 +127,29 @@ public class PlayerUI : MyTools {
     {
         if(Input.GetKey(KeyCode.C))
         {
-            musickSlider.value += 0.5f;
-            if(musickSlider.value >= 100)
+            
+            musickSlider.value += 0.5f*Time.deltaTime;
+            if(musickSlider.value >= 1)
             {
+                Debug.Log("!");
                 if(musicEvent != null)
                 {
+                    musickSlider.value = 0;
                     musicEvent.Invoke();
+                    lockMusicKey = true;
+                    Invoke("BackFalseLock",2);
                 }
             }
         }
+
+        if (Input.GetKeyUp(KeyCode.C))
+        {
+            musickSlider.value = 0;
+        }
+    }
+
+    private void BackFalseLock()
+    {
+        lockMusicKey = false;
     }
 }

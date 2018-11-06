@@ -26,12 +26,13 @@
             <e p="TestScript.cs" t="Include" />
           </e>
         </e>
+        <e p="animScriptATP.cs" t="Include" />
         <e p="Personages" t="Include">
           <e p="Char" t="Include">
             <e p="PlayerController.cs" t="Include" />
             <e p="PlayerUI.cs" t="Include" />
             <e p="Single" t="Include">
-              <e p="PlayerokController.cs" t="Include" />
+              <e p="PlayeroController.cs" t="Include" />
               <e p="SinglePlayerController.cs" t="Include" />
             </e>
           </e>

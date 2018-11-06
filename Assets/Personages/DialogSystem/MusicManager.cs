@@ -63,4 +63,9 @@ public class MusicManager : UsedObject
         }
         key = true;
     }
+
+    public void OnNextTreck()
+    {
+        Next();
+    }
 }

@@ -35,7 +35,10 @@ public class Dialog : MonoBehaviour {
                         UsedObject obj = nodes[activeNode].answers[i].actions[j];
                         if (obj is MusicManager)
                         {
-                            obj.GetComponent<MusicManager>().tracks = nodes[activeNode].answers[i].playList;
+                            MusicManager MM = obj.GetComponent<MusicManager>();
+                            MM.tracks = nodes[activeNode].answers[i].playList;
+                            player.gameObject.GetComponent<PlayerUI>().musicEvent+=MM.OnNextTreck;
+                            
                         }
                         nodes[activeNode].answers[i].actions[j].Use();
 
