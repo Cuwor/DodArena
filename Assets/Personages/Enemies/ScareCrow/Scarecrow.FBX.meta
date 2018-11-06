@@ -263,16 +263,16 @@ ModelImporter:
     4300010: Crow005
     4300012: Crow007
     7400000: ScareCrowFool
-    7400002: ScareCrowStay
-    7400004: ScareCrowDefault1
-    7400006: ScareCrowDefault2
-    7400008: ScareCrowWalk
-    7400010: ScareCrowDamage1
-    7400012: ScareCrowDamage2
-    7400014: ScareCrowAttack1
-    7400016: ScareCrowAttack2
-    7400018: ScareCrowDead
-    7400020: ScareCrowBorn
+    7400002: ScareCrowBorn
+    7400004: ScareCrowStay
+    7400006: ScareCrowDefault1
+    7400008: ScareCrowDefault2
+    7400010: ScareCrowWalk
+    7400012: ScareCrowDamage1
+    7400014: ScareCrowDamage2
+    7400016: ScareCrowAttack1
+    7400018: ScareCrowAttack2
+    7400020: ScareCrowDead
     9500000: //RootNode
     13700000: Crow003
     13700002: Crow005
@@ -337,6 +337,34 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
+      name: ScareCrowBorn
+      takeName: ScareCrowFool
+      firstFrame: 0
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
       name: ScareCrowStay
       takeName: ScareCrowFool
       firstFrame: 490
@@ -347,7 +375,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -424,7 +452,7 @@ ModelImporter:
       name: ScareCrowWalk
       takeName: ScareCrowFool
       firstFrame: 150
-      lastFrame: 190
+      lastFrame: 200
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -565,34 +593,6 @@ ModelImporter:
       takeName: ScareCrowFool
       firstFrame: 290
       lastFrame: 350
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: ScareCrowBorn
-      takeName: ScareCrowFool
-      firstFrame: 0
-      lastFrame: 60
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
