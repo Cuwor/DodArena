@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a1880a2-3b84-4186-b95f-314dc81ff06b" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.DoDA/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DoDA/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Area/Area2.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Area/Area2.FBX.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Personages/Char/PlayerUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Personages/Char/PlayerUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Personages/DialogSystem/Dialog.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Personages/DialogSystem/Dialog.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Personages/DialogSystem/MusicManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Personages/DialogSystem/MusicManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/AreaTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/AreaTest.unity" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -159,7 +153,7 @@
         <entry file="file://$PROJECT_DIR$/Assets/Personages/Char/PlayerUI.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="342">
-              <caret line="137" column="40" lean-forward="true" selection-start-line="137" selection-start-column="40" selection-end-line="137" selection-end-column="40" />
+              <caret line="137" column="40" selection-start-line="137" selection-start-column="40" selection-end-line="137" selection-end-column="40" />
               <folding>
                 <marker date="1541505598558" expanded="true" signature="7:101" ph="..." />
                 <marker date="1541505598558" expanded="true" signature="177:3631" ph="{...}" />
@@ -426,12 +420,12 @@
       <workItem from="1541137704661" duration="3532000" />
       <workItem from="1541154516336" duration="8981000" />
       <workItem from="1541230486692" duration="3107000" />
-      <workItem from="1541500624993" duration="3763000" />
+      <workItem from="1541500624993" duration="4564000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68984000" />
+    <option name="totallyTimeSpent" value="69785000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1128,7 +1122,7 @@
     <entry file="file://$PROJECT_DIR$/Assets/Personages/Char/PlayerUI.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
-          <caret line="137" column="40" lean-forward="true" selection-start-line="137" selection-start-column="40" selection-end-line="137" selection-end-column="40" />
+          <caret line="137" column="40" selection-start-line="137" selection-start-column="40" selection-end-line="137" selection-end-column="40" />
           <folding>
             <marker date="1541505598558" expanded="true" signature="7:101" ph="..." />
             <marker date="1541505598558" expanded="true" signature="177:3631" ph="{...}" />
