@@ -249,6 +249,11 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224560275368991760, guid: 8bd8bd73767e1f44ea284c9f8acbfa59,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bd8bd73767e1f44ea284c9f8acbfa59, type: 2}
   m_IsPrefabAsset: 0
@@ -1838,7 +1843,7 @@ MonoBehaviour:
   speed: 1.15
   target: {fileID: 0}
   move: 0
-  bonusType: 1
+  bonusType: 0
 --- !u!1 &2004732799
 GameObject:
   m_ObjectHideFlags: 0

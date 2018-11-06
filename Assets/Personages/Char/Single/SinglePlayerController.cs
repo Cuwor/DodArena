@@ -418,12 +418,24 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus
         if (type == BonusType.SpeedUp)
         {
             speed = 40;
+            Invoke("ReturnSpeed", 5f);
         }
 
         if (type == BonusType.GravityDown)
         {
             grav = -20;
+            Invoke("ReturnGrav", 5f);
         }
+    }
+
+    public void ReturnSpeed()
+    {
+        speed = 20;
+    }
+
+    public void ReturnGrav()
+    {
+        grav = -40;
     }
 
     #endregion

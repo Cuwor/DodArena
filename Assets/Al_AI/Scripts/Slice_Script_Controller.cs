@@ -44,6 +44,8 @@ namespace Al_AI.Scripts
         [HideInInspector]
         public GameObject unionTarget;
 
+        public AudioClip[] Moves;
+
         public float distanceUT;
 
         public GameObject Eidolon;
@@ -62,6 +64,11 @@ namespace Al_AI.Scripts
 
         public List<Slice_Script_Controller> Brothers;
 
+        public void MoveAudioChoose(int audio)
+        {
+            
+        }
+        
         public override float DistanceTP
         {
             get { return base.DistanceTP; }
