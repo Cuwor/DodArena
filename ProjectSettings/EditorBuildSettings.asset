@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ModeScenes/WaveScene.unity
     guid: 338f735c10e79654bb1c27884d50cdf3
+  - enabled: 1
+    path: Assets/Scenes/ModeScenes/TimerScene.unity
+    guid: 6eefb6b18c902b749b132370b54c498f
   m_configObjects: {}
