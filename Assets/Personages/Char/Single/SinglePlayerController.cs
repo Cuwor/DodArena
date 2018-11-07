@@ -67,8 +67,6 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus
             if (value <= 0)
                 Death();
 
-
-
             if (value < startRegen)
             {
                 regen = true;
@@ -127,8 +125,14 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus
     private float movementMultiplicator;
     private bool regen= false;
     private float vertSpeed;
+    public bool death = false;
 
     private PlayerUI playerUI;
+    [Space(20)]
+    [Header("Звук")]
+    public AudioSource audioSource;
+    public AudioClip damageClip;
+    public AudioClip deadClip;
 
     //private bool recoil;
     private bool reload;
@@ -158,20 +162,22 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus
 
     protected virtual void FixedUpdate()
     {
-        if (regen)
-            Regeneration();
-        if (!inDialog)
+        if (!death)
         {
-            Move();
-            MaxSpeed();
-            Attack();
-            Reload();
-            Rotate();
-            anim.SetBool("OnGround", controller.isGrounded);
-            LeftWeapon();
-            RightWeapon();
+            if (regen)
+                Regeneration();
+            if (!inDialog)
+            {
+                Move();
+                MaxSpeed();
+                Attack();
+                Reload();
+                Rotate();
+                anim.SetBool("OnGround", controller.isGrounded);
+                LeftWeapon();
+                RightWeapon();
+            }
         }
-
         //if (recoil)
         //{
         //    StartCoroutine(Recoil());
@@ -182,17 +188,31 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus
 
     public void GetDamage(float value)
     {
-        Health -= value;
-        playerUI.ActiveDamagePanel(true);
+        if (!death)
+        {
+            Health -= value;
+            playerUI.ActiveDamagePanel();
+            PlayThisClip(damageClip);
+        }
     }
-
+    private void PlayThisClip(AudioClip audioClip)
+    {
+        if (audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
+        audioSource.clip = audioClip;
+        audioSource.Play();
+    }
     public void PlusHealth(float value)
     {
     }
 
     public void Death()
     {
-
+        playerUI.deadPanel.SetTrigger("Death");
+        PlayThisClip(deadClip);
+        death = true;
     }
 
     public void Regeneration()

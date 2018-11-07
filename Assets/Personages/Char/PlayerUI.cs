@@ -51,6 +51,8 @@ public class PlayerUI : MyTools, IHit, IPinChanged
     public Animator damagePanelAnim;
     private float hit = 0;
 
+    public Animator deadPanel;
+
     public float Hit1
     {
         get
@@ -77,7 +79,6 @@ public class PlayerUI : MyTools, IHit, IPinChanged
         musicAnim.SetBool("On", false);
         damagePanelAnim.SetFloat("LowToNormal", 1);
         SetToPistol();
-        ActiveDamagePanel(false);
     }
 
     private void FixedUpdate()
@@ -87,17 +88,20 @@ public class PlayerUI : MyTools, IHit, IPinChanged
         //{
         //    StartCoroutine("ChangeScale");
         //}
-        if (Hit1 > 0)
+        if (!pc.death)
         {
-            Hit1 -= 0.1f;
-        }
-        if (!lockMusicKey)
-        {
-            NextMusic();
+            if (Hit1 > 0)
+            {
+                Hit1 -= 0.1f;
+            }
+            if (!lockMusicKey)
+            {
+                NextMusic();
+            }
         }
     }
 
-    public void ActiveDamagePanel(bool active)
+    public void ActiveDamagePanel()
     {
         damagePanelAnim.SetTrigger("Damage");
     }
@@ -154,7 +158,6 @@ public class PlayerUI : MyTools, IHit, IPinChanged
             crossline.transform.localScale = new Vector3(scale, scale, 0);
             yield return new WaitForSeconds(0.1f);
         }
-
     }
 
     private void OnTriggerEnter(Collider other)
