@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Al_AI.Scripts
 {
@@ -38,29 +39,83 @@ namespace Al_AI.Scripts
 		{
 			if (alive && !IsNotPumkinHead)
 			{
-				if (target != null)
+				if (SceneManager.GetActiveScene().name == WS.name && true) // WaveMode is on && radio is on
 				{
-					distanceTP = Vector3.Distance(target.transform.position, transform.position);
-					if (distanceTP <= RadiusView && distanceTP > attackDistance)
+					if (target != null)
 					{
-						State = EnemyState.Walk;
-					
-					
-					}
-					else if (distanceTP <= attackDistance)
-					{
-						State = EnemyState.Attack;
-
+						distanceTP = Vector3.Distance(target.transform.position, transform.position);
+						if (distanceTP <= RadiusView && distanceTP > attackDistance)
+						{
+							State = EnemyState.Walk;
+						}
+						else if (distanceTP <= attackDistance)
+						{
+							State = EnemyState.Attack;
+							NavAgent.enabled = false;
+						}
+						else // движение и атака радио игорь помоги портировать с демонконтроллера систему аларма
+						{
+							if (Alarm)
+							{
+								//???
+							}
+							else // хуйня какая то
+							{
+								target = radio;
+							}
+						}
 					}
 					else
-					{	
-						State = EnemyState.Stay;
+					{
+						FindPlayers();
 					}
 				}
-				else
+				else if (SceneManager.GetActiveScene().name == TS.name && true) // TimerMode is on && radio is on
 				{
-					FindPlayers();
+					if (target != null)
+					{
+						distanceTP = Vector3.Distance(target.transform.position, transform.position);
+						if (distanceTP > attackDistance) // либо идет либо атакует
+						{
+							State = EnemyState.Walk;
+						}
+						else if (distanceTP <= attackDistance) 
+						{
+							State = EnemyState.Attack;
+							NavAgent.enabled = false;
+						}
+					}
+					else
+					{
+						FindPlayers();
+					}
 				}
+				else //radio is off
+				{
+					if (target != null) // стандартный код
+					{
+						distanceTP = Vector3.Distance(target.transform.position, transform.position);
+						if (distanceTP <= RadiusView && distanceTP > attackDistance)
+						{
+							State = EnemyState.Walk;
+						}
+						else if (distanceTP <= attackDistance)
+						{
+							State = EnemyState.Attack;
+							NavAgent.enabled = false;
+						}
+						else
+						{
+							State = EnemyState.Stay;
+						}
+					}
+					else
+					{
+						FindPlayers();
+					}
+				}
+
+
 			
 				switch (State)
 				{

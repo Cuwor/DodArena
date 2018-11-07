@@ -102,6 +102,7 @@ namespace Al_AI.Scripts
             GetAttackDistance();
             size = transform.localScale.x;
         }
+        
         protected void FindPlayers()
         {
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
@@ -118,6 +119,7 @@ namespace Al_AI.Scripts
                 }
             }
         }
+        
         protected void CaseMethod(bool navAgentEnebled, float xstate, float ysate, int attack, Vector3 destenation)
         {
             if (NavAgent.enabled)
@@ -135,6 +137,7 @@ namespace Al_AI.Scripts
             _anim.SetFloat("Xstate", xstate);
             _anim.SetFloat("Ystate", ysate);
         }
+        
         protected void StartMove()
         {
             if(Health>0)
