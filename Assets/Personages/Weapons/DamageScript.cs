@@ -20,7 +20,7 @@ public class DamageScript : MonoBehaviour
         {
             pauseTime = value;
             burst.repeatInterval = value;
-           //main.duration = value;
+            //main.duration = value;
             emission.SetBurst(0, burst);
         }
     }
@@ -73,6 +73,8 @@ public class DamageScript : MonoBehaviour
     private ParticleSystem.EmissionModule emission;
     public event HitHelper hit;
 
+    public GameObject cam;
+
     // Use this for initialization
     private void Awake()
     {
@@ -88,7 +90,12 @@ public class DamageScript : MonoBehaviour
     public void Fire(bool start)
     {
         if (start)
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(cam.transform.position + cam.transform.forward *5, cam.transform.forward, out hit, 150))
+                transform.LookAt(hit.point);
             particleSystem.Play();
+        }
         else
             particleSystem.Stop();
     }

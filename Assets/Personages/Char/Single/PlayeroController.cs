@@ -13,7 +13,7 @@ public interface IHit
 }
 
 
-public class PlayeroController : MyTools, IAlive, IHaveWeapons, IHit
+public class PlayeroController : MyTools, IAlive, IHaveWeapons
 {
     public GameObject plCam;
     private GameObject sceneCam;
@@ -114,7 +114,6 @@ public class PlayeroController : MyTools, IAlive, IHaveWeapons, IHit
         view = new RecoilRotation();
         GetComponent<PlayerUI>().pc = null;
         Health = 100;
-        weapon.player = this;
     }
 
     protected virtual void FixedUpdate()
@@ -315,10 +314,6 @@ public class PlayeroController : MyTools, IAlive, IHaveWeapons, IHit
         weapon.ammo += qty;
     }
 
-    public void Hit()
-    {
-        throw new NotImplementedException();
-    }
-
+    
     #endregion
 }
