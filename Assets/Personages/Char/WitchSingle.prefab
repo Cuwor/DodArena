@@ -2685,7 +2685,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1159757858031396}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -133.93275, y: -3.0806926e-17, z: 13.874207}
+  m_LocalPosition: {x: -52.245865, y: 0.03, z: -56.94706}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224560275368991760}
@@ -3793,7 +3793,7 @@ MonoBehaviour:
   jumpSpeed: 25
   maxHealth: 100
   startRegen: 30
-  regenValue: 0.498
+  regenValue: 0.18
   inDialog: 0
   weaponNumber: 0
   ammunitionCount: {fileID: 114033146788962372}
@@ -3934,14 +3934,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pS:
   - {fileID: 1308925981074244}
-  bulletInShoot: 20
+  bulletInShoot: 30
   type: 0
-  weaponDamage: 30
+  weaponDamage: 50
   range: 15
   maxAmmo: 6
   auto: 0
-  pauseTime: 1
-  reloadTime: 3
+  pauseTime: 0.6665
+  reloadTime: 1.555
   sounds:
     shoot: {fileID: 8300000, guid: 8602b7d5cd15c1943a50aa53f171c8cf, type: 3}
     reload: {fileID: 8300000, guid: 3c5c1d4d7b9307c458890a4beb12e4ae, type: 3}
@@ -4152,8 +4152,8 @@ MonoBehaviour:
   range: 0
   maxAmmo: 30
   auto: 1
-  pauseTime: 0.05
-  reloadTime: 1
+  pauseTime: 0.222
+  reloadTime: 2
   sounds:
     shoot: {fileID: 8300000, guid: 756c4e23e8553954fa91b4cc2936afa0, type: 3}
     reload: {fileID: 8300000, guid: 3c5c1d4d7b9307c458890a4beb12e4ae, type: 3}
@@ -4654,8 +4654,8 @@ MonoBehaviour:
   range: 0
   maxAmmo: 10
   auto: 0
-  pauseTime: 0.326
-  reloadTime: 1
+  pauseTime: 0.222
+  reloadTime: 1.666
   sounds:
     shoot: {fileID: 8300000, guid: 756c4e23e8553954fa91b4cc2936afa0, type: 3}
     reload: {fileID: 8300000, guid: 06df58efa12d0b04a8e5bb2fc2dd7ace, type: 3}
