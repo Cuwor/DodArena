@@ -93,9 +93,16 @@ namespace Al_AI.Scripts
 							State = EnemyState.Attack;
 							NavAgent.enabled = false;
 						}
-						else // движение и атака радио
+						else // движение и атака радио игорь помоги портировать с демонконтроллера систему аларма
 						{
-							State = EnemyState.Stay;
+							if (Alarm)
+							{
+								//???
+							}
+							else // хуйня какая то
+							{
+								target = radio;
+							}
 						}
 					}
 					else

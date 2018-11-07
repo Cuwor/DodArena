@@ -13,7 +13,8 @@ namespace Al_AI.Scripts
 
         public Scene WS;
         public Scene TS;
-        
+        public GameObject radio;
+        public bool Alarm;
 
 
         [Space(20)] public NavMeshAgent NavAgent;
