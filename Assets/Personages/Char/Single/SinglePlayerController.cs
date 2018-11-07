@@ -60,18 +60,22 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus
 
     public float Health
     {
-        get { return health.value; }
+        get { return playerUI.health.value; }
 
         set
         {
             if (value <= 0)
-            {
                 Death();
 
-                health.value = 0;
+
+
+            if (value < startRegen)
+            {
+                regen = true;
+                playerUI.damagePanelAnim.SetFloat("LowToNormal", value / (float)startRegen);
             }
 
-            health.value = value;
+            playerUI.health.value = value;
         }
     }
 
@@ -87,23 +91,31 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus
     [Tooltip("Скорость поворота по вертикали")]
     public float ySpeed;
 
-    [Space(10)] [Tooltip("Используемое в данный момент оружие")]
+    [Space(10)] [Tooltip("Оружие")]
     public Weapon[] weapon;
 
     [Space(10)] [Header("Гравитация")] [Tooltip("Ускорение")]
     public float grav;
 
-    [Tooltip("Сила прыжка")] public float jumpSpeed;
+    [Tooltip("Сила прыжка")]
+    public float jumpSpeed;
 
-    [Space(20)] [Header("Части интерфейса")] [Tooltip("Количество патронов")]
-    public Text ammunitionCount;
+    [Tooltip("Макимальное здоровье")]
+    public short maxHealth;
 
-    [Tooltip("Слайдер для здоровья")] public Slider health;
+    public short startRegen;
+    [Range(0, 1)]
+    public float regenValue;
 
     [HideInInspector] public bool inDialog;
 
     public int weaponNumber;
-    public int weaponPre;
+
+    [Space(20)]
+    [Header("Части интерфейса")]
+    [Tooltip("Количество патронов")]
+    public Text ammunitionCount;
+    public Image WeaponSprite;
 
     private Animator anim;
     private CharacterController controller;
@@ -113,8 +125,10 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus
     private const float minY = -100, maxY = 70;
     private float rotationX, rotationY;
     private float movementMultiplicator;
-
+    private bool regen= false;
     private float vertSpeed;
+
+    private PlayerUI playerUI;
 
     //private bool recoil;
     private bool reload;
@@ -127,15 +141,25 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus
         controller = GetComponent<CharacterController>();
         gravVector = Vector3.down;
         movementMultiplicator = speed;
-        //recoil = false;
-        ammunitionCount.text = "2/0";
         view = new RecoilRotation();
-        GetComponent<PlayerUI>().pc = this;
-        Health = 100;
+        playerUI = gameObject.GetComponent<PlayerUI>();
+        playerUI.health.maxValue = maxHealth;
+        playerUI.pc = this;
+        playerUI.SetToPistol();
+        Health = maxHealth;
+        for(int i = 0; i < weapon.Length; i++)
+        {
+            weapon[i].playerUI = playerUI;
+            if (i != weaponNumber)
+                weapon[i].gameObject.SetActive(false);
+        }
+        DrawAmmo();
     }
 
     protected virtual void FixedUpdate()
     {
+        if (regen)
+            Regeneration();
         if (!inDialog)
         {
             Move();
@@ -158,6 +182,8 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus
 
     public void GetDamage(float value)
     {
+        Health -= value;
+        playerUI.ActiveDamagePanel(true);
     }
 
     public void PlusHealth(float value)
@@ -166,8 +192,15 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus
 
     public void Death()
     {
+
     }
 
+    public void Regeneration()
+    {
+        Health += regenValue;
+        if (Health >= startRegen)
+            regen = false;
+    }
     #endregion
 
     #region Перемещение
@@ -251,7 +284,10 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus
         {
             if (weapon[weaponNumber].MakeShoot())
             {
-                anim.SetBool("Shoot", true);
+                if(weapon[weaponNumber].auto)
+                    anim.SetBool("Shoot", true);
+                else
+                    anim.SetTrigger("ShootTrig");
                 DrawAmmo();
                 //Invoke("AttackEffect", 0.02f);
             }
@@ -267,7 +303,7 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus
             if (Input.GetMouseButton(0))
                 if (weapon[weaponNumber].MakeShoot())
                     DrawAmmo();
-        if (Input.GetMouseButtonUp(0))
+        if (weapon[weaponNumber].auto && Input.GetMouseButtonUp(0))
         {
             //weapon[weaponNumber].StopShooting();
             anim.SetBool("Shoot", false);
@@ -345,19 +381,35 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus
 
     private void SetWeapon(bool up)
     {
-        weaponPre = weaponNumber;
         if (up)
             weaponNumber = (weaponNumber == weapon.Length - 1 ? 0 : weaponNumber + 1);
         else
             weaponNumber = (weaponNumber == 0 ? weapon.Length - 1 : weaponNumber - 1);
+        SwitdhUI();
+
         anim.SetInteger("WeaponNumber", weaponNumber);
+    }
+
+    private void SwitdhUI()
+    {
+        switch (weapon[weaponNumber].type)
+        {
+            case WeaponType.AutoGun:
+                playerUI.SetToAutogun();
+                break;
+            case WeaponType.Pistol:
+                playerUI.SetToPistol();
+                break;
+            case WeaponType.Shotgun:
+                playerUI.SetToShotgun();
+                break;
+        }
     }
 
     public void SetVisibleWeapon()
     {
-        Debug.Log("SetVisibleWeapon");
-        weapon[weaponPre].gameObject.SetActive(false);
-        Debug.Log(weapon[weaponPre].gameObject.activeSelf + "   " + weapon[weaponPre].gameObject.activeInHierarchy);
+        foreach(var wea in weapon)
+            wea.gameObject.SetActive(false); 
         weapon[weaponNumber].gameObject.SetActive(true);
         DrawAmmo();
     }
@@ -369,6 +421,7 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus
     public void DrawAmmo()
     {
         ammunitionCount.text = weapon[weaponNumber].magazin.ToString() + "/" + weapon[weaponNumber].ammo.ToString();
+        WeaponSprite.sprite = weapon[weaponNumber].sprite;
     }
 
     #endregion
@@ -397,7 +450,7 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus
         AttackArea at;
         if (MyGetComponent(out at, other.gameObject))
         {
-            Health -= at.Damage;
+            GetDamage(at.Damage);
         }
     }
 

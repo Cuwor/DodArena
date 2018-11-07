@@ -829,9 +829,10 @@ MonoBehaviour:
   - {fileID: 1553534972256596, guid: 20c0183607404d249b852882243f6e0b, type: 2}
   state: 0
   unionTarget: {fileID: 0}
+  Moves: []
   distanceUT: 0
   Eidolon: {fileID: 0}
-  god: {fileID: 1576295921092616, guid: 5f16f36cae5aa4d46be9629c2af2ec91, type: 2}
+  god: {fileID: 1977064886193366, guid: 5f16f36cae5aa4d46be9629c2af2ec91, type: 2}
   slameType: 2
   boss: 0
   ready: 0

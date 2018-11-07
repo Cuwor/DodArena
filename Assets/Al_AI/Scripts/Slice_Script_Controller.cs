@@ -66,9 +66,9 @@ namespace Al_AI.Scripts
 
         public void MoveAudioChoose(int audio)
         {
-            
+
         }
-        
+
         public override float DistanceTP
         {
             get { return base.DistanceTP; }
@@ -130,8 +130,31 @@ namespace Al_AI.Scripts
 
             set
             {
-
                 state = value;
+                switch (state)
+                {
+                    case EnemyState.Stay:
+                        if (!wait)
+                        {
+                            wait = true;
+                            CaseMethod(false, UnityEngine.Random.Range(-1, 1.1f), -1, 0, target.transform.position);
+                            StartCoroutine(GetRandomStayState());
+                        }
+                        break;
+
+                    case EnemyState.Walk:
+                        CaseMethod(true, 0, 1, 0, target.transform.position);
+                        break;
+
+                    case EnemyState.Attack:
+                        GetAttackDistance();
+                        CaseMethod(false, 0, 0, attackType, target.transform.position);
+                        break;
+
+                    case EnemyState.Spec:
+                        CaseMethod(true, 0, 1, 0, unionTarget.transform.position);
+                        break;
+                }
             }
         }
 
@@ -143,8 +166,6 @@ namespace Al_AI.Scripts
             ready = false;
             bossReady = 0;
         }
-
-
 
         // Use this for initialization
         private void Start()
@@ -167,31 +188,6 @@ namespace Al_AI.Scripts
                     }
 
                     DistanceTP = Vector3.Distance(target.transform.position, transform.position);
-
-                    switch (state)
-                    {
-                        case EnemyState.Stay:
-                            if (!wait)
-                            {
-                                wait = true;
-                                CaseMethod(false, UnityEngine.Random.Range(-1, 1.1f), -1, 0, target.transform.position);
-                                StartCoroutine(GetRandomStayState());
-                            }
-                            break;
-
-                        case EnemyState.Walk:
-                            CaseMethod(true, 0, 1, 0, target.transform.position);
-                            break;
-
-                        case EnemyState.Attack:
-                            GetAttackDistance();
-                            CaseMethod(false, 0, 0, attackType, target.transform.position);
-                            break;
-
-                        case EnemyState.Spec:
-                            CaseMethod(true, 0, 1, 0, unionTarget.transform.position);
-                            break;
-                    }
                 }
                 else
                 {
@@ -354,7 +350,7 @@ namespace Al_AI.Scripts
             SSC.NavAgent.speed = (up ? NavAgent.speed * SSC.size : NavAgent.speed / SSC.size);
             SSC.Brothers = brothers;
         }
-    
+
         public override void Death()
         {
             try
@@ -396,7 +392,7 @@ namespace Al_AI.Scripts
                 StartCoroutine(Destroeded());
             }
         }
-     
+
         private void ReBro(ref List<Slice_Script_Controller> gameObjects)
         {
             if (gameObjects == null)
@@ -429,7 +425,7 @@ namespace Al_AI.Scripts
                 //Debug.Log(gameObjects[0].slameType + " " + gameObjects.Count);
             }
         }
-        
+
         protected override void OnTriggerEnter(Collider other)
         {
             if (alive)
@@ -449,7 +445,7 @@ namespace Al_AI.Scripts
                     key = false;
                 }
 
-				
+
             }
             else
             {

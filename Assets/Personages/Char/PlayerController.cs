@@ -34,26 +34,6 @@ public class PlayerController : SinglePlayerController
         // we flag as don't destroy on load so that instance survives level synchronization, thus giving a seamless experience when levels load.
         DontDestroyOnLoad(gameObject);
     }
-
-    public float Health
-    {
-        get { return health.value; }
-
-        set
-        {
-            if (value <= 0)
-            {
-                Death();
-
-                health.value = 0;
-            }
-
-            health.value = value;
-        }
-    }
-
-    
-
     private Animator anim;
     private CharacterController controller;
     private Vector3 gravVector;

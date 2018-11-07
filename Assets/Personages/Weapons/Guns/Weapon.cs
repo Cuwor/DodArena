@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum WeaponType
 {
@@ -76,10 +77,11 @@ public class Weapon : MonoBehaviour
 
     // private ParticleSystem[] particleSystem;
     private DamageScript[] damageScript;
+    public Sprite sprite;
 
-    public IHit player;
-    
-    private void Awake()
+    public PlayerUI playerUI;
+
+    private void Start()
     {
         ready = true;
         magazin = maxAmmo;
@@ -92,6 +94,7 @@ public class Weapon : MonoBehaviour
             //damageScript[i].hit += player.IHit;
             damageScript[i] = pS[i].GetComponent<DamageScript>();
             damageScript[i].PauseTime = pauseTime;
+            damageScript[i].cam = playerUI.cam;
             damageScript[i].Auto = auto;
             damageScript[i].Radius = range;
             damageScript[i].Damage = weaponDamage;
@@ -161,11 +164,11 @@ public class Weapon : MonoBehaviour
 
     public void Reload()
     {
-        if (ammo > 0 && magazin < maxAmmo && ready)
+        if (ammo > 0 && magazin < maxAmmo )
         {
-            ready = false;
+            //ready = false;
             PlayThisClip(sounds.reload);
-            Invoke("ReadyAttack", reloadTime);
+            //Invoke("ReadyAttack", reloadTime);
             var x = maxAmmo - magazin;
             if (x < ammo)
             {
