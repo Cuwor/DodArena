@@ -45,7 +45,7 @@ public class Ammunition : MonoBehaviour
             else
             {
                 transform.position = target.transform.position;
-                haveWeapons.AddAmmos(weaponType,count);
+                      Adder();
                 Destroy(gameObject);
             }
         }
@@ -60,11 +60,16 @@ public class Ammunition : MonoBehaviour
                 else
                 {
                     transform.position = target.transform.position;
-                    haveWeapons.AddAmmos(weaponType,count);
+                    Adder();
                     Destroy(gameObject);
                 }
             }
             
         }
+    }
+
+    public virtual void Adder()
+    {
+        haveWeapons.AddAmmos(weaponType,count);
     }
 }

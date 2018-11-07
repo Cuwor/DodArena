@@ -26,7 +26,10 @@ public interface IHaveBonus
 {
     void AddBonus(BonusType type);
 }
-
+public interface IHaveCandy
+{
+    void AddCandy(Candy type);
+}
 public interface IAlive
 {
     float Health { get; set; }
@@ -43,7 +46,7 @@ public class RecoilRotation
 }
 
 
-public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus
+public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus , IHaveCandy
 {
     public GameObject plCam;
     private GameObject sceneCam;
@@ -117,6 +120,8 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus
     public Text ammunitionCount;
     public Image WeaponSprite;
 
+    [SerializeField] private int Candies = 0;
+    
     private Animator anim;
     private CharacterController controller;
     private Vector3 gravVector;
@@ -466,6 +471,13 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus
             bon.target = gameObject;
             bon.haveBonus = this;
         }
+        
+        CandyCount can;
+        if (MyGetComponent(out can, other.gameObject))
+        {
+            can.target = gameObject;
+            can.candy = this;
+        }
 
         AttackArea at;
         if (MyGetComponent(out at, other.gameObject))
@@ -507,6 +519,19 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus
             Invoke("ReturnMagnetto", durationBonus);
         }
     }
+    
+    public void AddCandy(Candy type)
+    {
+        switch (type)
+        {
+                case Candy.Candies:
+                    Candies += 1; break;
+                case Candy.CandyOnBowler:Candies += 2; break;
+                case Candy.CandyOnBucket:Candies += 3; break;
+                case Candy.CandyOnDump:Candies += 4; break;
+                case Candy.CandyOnPum:Candies += 5; break;
+        }
+    }
 
     public void ReturnSpeed()
     {
@@ -523,6 +548,8 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus
         magnettoBonus = false;
     }
     
-
+    
     #endregion
+
+    
 }
