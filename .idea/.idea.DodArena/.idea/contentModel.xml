@@ -337,6 +337,7 @@
         <e p="Scripts" t="Include">
           <e p="Bonus.cs" t="Include" />
           <e p="BonusUp.cs" t="Include" />
+          <e p="CandyCount.cs" t="Include" />
           <e p="MainMenu.cs" t="Include" />
           <e p="PauseMenu.cs" t="Include" />
           <e p="PlayerManager.cs" t="Include" />
