@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestConnect.unity
     guid: 98a9b92f181b44982af918f428b7acdf
+  - enabled: 1
+    path: Assets/Scenes/ModeScenes/WaveScene.unity
+    guid: 338f735c10e79654bb1c27884d50cdf3
   m_configObjects: {}

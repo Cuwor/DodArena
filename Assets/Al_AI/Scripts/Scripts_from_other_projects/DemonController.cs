@@ -76,8 +76,6 @@ namespace Al_AI.Scripts.Scripts_from_other_projects
                     Attack();
                 }
             }
-
-        
         }
 
         private float DistanceToPlayer()

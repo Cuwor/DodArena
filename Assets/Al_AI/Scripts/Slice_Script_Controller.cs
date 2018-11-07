@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 namespace Al_AI.Scripts
 {
@@ -50,6 +51,7 @@ namespace Al_AI.Scripts
 
         public GameObject Eidolon;
         public GameObject god;
+        public GameObject Player;
 
         public SlameType slameType;
 
@@ -75,51 +77,122 @@ namespace Al_AI.Scripts
 
             set
             {
+
                 distanceTP = value;
-                if (distanceTP <= RadiusView && distanceTP > attackDistance)
+                 if (SceneManager.GetActiveScene().buildIndex == WS.buildIndex && MusicManager.musicKey) // WaveMode is on && radio is on
                 {
-                    State = EnemyState.Walk;
-                    ready = false;
-                    bossReady = 0;
-                }
-                else if (distanceTP <= attackDistance)
-                {
-                    State = EnemyState.Attack;
-                    ready = false;
-                    bossReady = 0;
-                }
-                else if (Brothers.Count > qtyEidolons - 2 && slameType != SlameType.Senior)
-                {
-                    if (!boss && unionTarget != null)
+                  
+                    if (target != null)
                     {
-                        if (distanceUT > attackDistance + 2)
+                        Debug.Log(Alarm);
+                      
+                        if (Alarm)
                         {
-                            State = EnemyState.Spec;
+                            FindPlayers();
+                            Debug.Log(target.name);
+                            Alarm = false;
                         }
-                        else
+                        else if (distanceTP <= RadiusView && distanceTP > attackDistance)
                         {
-                            State = EnemyState.Stay;
-                            if (!ready)
+                            State = EnemyState.Walk;
+                        }
+                        else if (distanceTP <= attackDistance)
+                        {
+                            State = EnemyState.Attack;
+                            NavAgent.enabled = false;
+                        }
+                        else 
+                        {
+                            
+                            
                             {
-                                ready = true;
-                                MeChangedInvoke(null, 3);
+                                target = radio;
+                                State = EnemyState.Walk;
                             }
                         }
                     }
-                    if (boss)
+                    else
                     {
-                        State = EnemyState.Stay;
-                        if (bossReady > qtyEidolons - 2 && !ready)
-                        {
-                            StartCoroutine(Unite());
-                            ready = true;
-                        }
-
+                       
+                        FindPlayers();
                     }
                 }
-                else
+                else if (SceneManager.GetActiveScene().buildIndex == TS.buildIndex && MusicManager.musicKey) // TimerMode is on && radio is on
                 {
-                    State = EnemyState.Stay;
+                    if (target != null)
+                    {
+                        distanceTP = Vector3.Distance(target.transform.position, transform.position);
+                        if (distanceTP > attackDistance) // либо идет либо атакует
+                        {
+                            State = EnemyState.Walk;
+                        }
+                        else if (distanceTP <= attackDistance) 
+                        {
+                            State = EnemyState.Attack;
+                            NavAgent.enabled = false;
+                        }
+                    }
+                    else
+                    {
+                        FindPlayers();
+                    }
+                }
+                else //radio is off
+                {
+
+                    if (!boss && slameType != SlameType.Senior && (State == EnemyState.Stay || State == EnemyState.Spec) && unionTarget != null)
+                    {
+                        
+                        distanceUT = Vector3.Distance(unionTarget.transform.position, transform.position);
+                        
+                    }
+                    
+                    if (distanceTP <= RadiusView && distanceTP > attackDistance)
+                    {
+                        State = EnemyState.Walk;
+                        ready = false;
+                        bossReady = 0;
+                    }
+                    else if (distanceTP <= attackDistance)
+                    {
+                        State = EnemyState.Attack;
+                        ready = false;
+                        bossReady = 0;
+                    }
+                    else if (Brothers.Count > qtyEidolons - 2 && slameType != SlameType.Senior)
+                    {
+                        if (!boss && unionTarget != null)
+                        {
+                            if (distanceUT > attackDistance + 2)
+                            {
+                                State = EnemyState.Spec;
+                            }
+                            else
+                            {
+                                State = EnemyState.Stay;
+                                if (!ready)
+                                {
+                                    ready = true;
+                                    MeChangedInvoke(null, 3);
+                                }
+                            }
+                        }
+
+                        if (boss)
+                        {
+                            State = EnemyState.Stay;
+                            if (bossReady > qtyEidolons - 2 && !ready)
+                            {
+                                StartCoroutine(Unite());
+                                ready = true;
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        State = EnemyState.Stay;
+                    }
                 }
             }
         }
@@ -162,6 +235,7 @@ namespace Al_AI.Scripts
 
         public override void Initiolize()
         {
+            Player = GameObject.FindGameObjectWithTag("Player");
             base.Initiolize();
             ready = false;
             bossReady = 0;
@@ -180,20 +254,9 @@ namespace Al_AI.Scripts
         {
             if (alive)
             {
-                if (target != null)
-                {
-                    if (!boss && slameType != SlameType.Senior && (State == EnemyState.Stay || State == EnemyState.Spec) && unionTarget != null)
-                    {
-
-                        distanceUT = Vector3.Distance(unionTarget.transform.position, transform.position);
-                    }
-
-                    DistanceTP = Vector3.Distance(target.transform.position, transform.position);
-                }
-                else
-                {
-                    FindPlayers();
-                }
+                
+                DistanceTP = Vector3.Distance(target.transform.position, transform.position);
+               
             }
         }
 

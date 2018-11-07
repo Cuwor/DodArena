@@ -11,7 +11,7 @@ namespace Al_AI.Scripts
         [Header("Здесь объект")]
         public GameObject target;
 
-        public Scene WS;
+        public Scene WS; 
         public Scene TS;
         public GameObject radio;
         public bool Alarm;
@@ -62,7 +62,86 @@ namespace Al_AI.Scripts
 
             set
             {
-                distanceTP = value;
+                if (SceneManager.GetActiveScene().name == WS.name && MusicManager.musicKey) // WaveMode is on && radio is on
+                {
+                    
+                    if (target != null)
+                    {
+                       
+                        distanceTP = Vector3.Distance(target.transform.position, transform.position);
+                        if (distanceTP <= RadiusView && distanceTP > attackDistance)
+                        {
+                            State = EnemyState.Walk;
+                        }
+                        else if (distanceTP <= attackDistance)
+                        {
+                            State = EnemyState.Attack;
+                            NavAgent.enabled = false;
+                        }
+                        else // движение и атака радио игорь помоги портировать с демонконтроллера систему аларма
+                        {
+                            if (Alarm)
+                            {
+                                FindPlayers();
+                                Alarm = false;
+                            }
+                            else // хуйня какая то
+                            {
+                                target = radio;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        FindPlayers();
+                    }
+                }
+                else if (SceneManager.GetActiveScene().name == TS.name && MusicManager.musicKey) // TimerMode is on && radio is on
+                {
+                    Debug.Log("!!!");
+                    if (target != null)
+                    {
+                        distanceTP = Vector3.Distance(target.transform.position, transform.position);
+                        if (distanceTP > attackDistance) // либо идет либо атакует
+                        {
+                            State = EnemyState.Walk;
+                        }
+                        else if (distanceTP <= attackDistance) 
+                        {
+                            State = EnemyState.Attack;
+                            NavAgent.enabled = false;
+                        }
+                    }
+                    else
+                    {
+                        FindPlayers();
+                    }
+                }
+                else //radio is off
+                {
+                    Debug.Log("!!!!");
+                    if (target != null) // стандартный код
+                    {
+                        distanceTP = Vector3.Distance(target.transform.position, transform.position);
+                        if (distanceTP <= RadiusView && distanceTP > attackDistance)
+                        {
+                            State = EnemyState.Walk;
+                        }
+                        else if (distanceTP <= attackDistance)
+                        {
+                            State = EnemyState.Attack;
+                            NavAgent.enabled = false;
+                        }
+                        else
+                        {
+                            State = EnemyState.Stay;
+                        }
+                    }
+                    else
+                    {
+                        FindPlayers();
+                    }
+                }
             }
         }
         public virtual EnemyState State
@@ -82,6 +161,8 @@ namespace Al_AI.Scripts
 
         public virtual void Initiolize()
         {
+            WS = SceneManager.GetSceneByBuildIndex(3);
+            TS = SceneManager.GetSceneByBuildIndex(4);
             FindPlayers();
             gameObject.AddComponent<Rigidbody>().isKinematic = true;
             NavAgent = GetComponent<NavMeshAgent>();
@@ -180,6 +261,7 @@ namespace Al_AI.Scripts
         {
             if (alive)
             {
+                Alarm = true;
                 NavAgent.enabled = false;
                 Health -= value;
                 _anim.SetInteger("Damage", (int)value);
@@ -232,11 +314,13 @@ namespace Al_AI.Scripts
         public void OnParticleCollision(GameObject other)
         {
             //Debug.Log("OnParticleCollision");
+            
             DamageScript ds;
             if (MyGetComponent(out ds, other))
             {
                 GetDamage(ds.Damage);
             }
+            
         }
         #endregion
 

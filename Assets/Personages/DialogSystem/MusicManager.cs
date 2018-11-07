@@ -10,6 +10,7 @@ public class MusicManager : UsedObject
     public AudioSource aud;
     public Text musicName;
     public bool key;
+    public static bool musicKey;
     public int number;
 
     private void Start()
@@ -35,6 +36,8 @@ public class MusicManager : UsedObject
 
     public override void Use()
     {
+        Debug.Log("!");
+        musicKey = true;
         if(aud.isPlaying)
         {
             aud.Stop();
