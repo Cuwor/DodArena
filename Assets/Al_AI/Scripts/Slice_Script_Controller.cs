@@ -184,6 +184,7 @@ namespace Al_AI.Scripts
                 {
                     if (!boss && slameType != SlameType.Senior && (State == EnemyState.Stay || State == EnemyState.Spec) && unionTarget != null)
                     {
+
                         distanceUT = Vector3.Distance(unionTarget.transform.position, transform.position);
                     }
 
@@ -441,6 +442,7 @@ namespace Al_AI.Scripts
                 ObstacleScript OS;
                 if (MyGetComponent(out OS, other.gameObject))
                 {
+                    Debug.Log("!");
                     _anim.SetTrigger("Spec");
                     key = false;
                 }
