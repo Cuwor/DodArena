@@ -71,7 +71,7 @@ public class DamageScript : MonoBehaviour
     private ParticleSystem.ShapeModule shape;
     //private ParticleSystem.MainModule main;
     private ParticleSystem.EmissionModule emission;
-    public event HitHelper hit;
+    public event HitHelper hitHandler;
 
     public GameObject cam;
 
@@ -92,7 +92,8 @@ public class DamageScript : MonoBehaviour
         if (start)
         {
             RaycastHit hit;
-            if (Physics.Raycast(cam.transform.position + cam.transform.forward *5, cam.transform.forward, out hit, 150))
+            Ray ray = new Ray(cam.transform.position + cam.transform.forward * 5, cam.transform.forward);
+            if (Physics.Raycast(ray, out hit, 150))
                 transform.LookAt(hit.point);
             particleSystem.Play();
         }
@@ -102,9 +103,7 @@ public class DamageScript : MonoBehaviour
 
     public void HitInvoke()
     {
-        if (hit != null)
-        {
-            hit.Invoke();
-        }
+        if (hitHandler != null)
+            hitHandler.Invoke();
     }
 }

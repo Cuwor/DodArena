@@ -5,7 +5,12 @@ using UnityEngine.UI;
 
 public delegate void NextMusicHandler();
 
-public class PlayerUI : MyTools, IHit
+public interface IPinChanged
+{
+    void PinChanged(bool pin);
+}
+
+public class PlayerUI : MyTools, IHit, IPinChanged
 {
 
     public GameObject cam;
@@ -27,11 +32,16 @@ public class PlayerUI : MyTools, IHit
     public Image damagePanel;
 
     public GameObject pinShotgun;
+    [HideInInspector]
+    public Animator pinShotgunAnim;
     public Image[] linesShotgun;
 
     public GameObject pinPistol;
+    [HideInInspector]
+    public Animator pinPistolAnim;
     public Image[] linesAutogun;
 
+    public Animator pinHit;
     [HideInInspector]
     public SinglePlayerController pc;
     public event NextMusicHandler musicEvent;
@@ -39,14 +49,26 @@ public class PlayerUI : MyTools, IHit
     private Animator musicAnim;
     [HideInInspector]
     public Animator damagePanelAnim;
-    public Color32 damageColor;
-    public Color32 nullColor;
-    public Color32 mainColor;
+    private float hit = 0;
 
-    private bool setColor;
+    public float Hit1
+    {
+        get
+        {
+            return hit;
+        }
+
+        set
+        {
+            hit = value;
+            pinHit.SetFloat("Hit", value);
+        }
+    }
 
     private void Start()
     {
+        pinPistolAnim = pinPistol.gameObject.GetComponent<Animator>();
+        pinShotgunAnim = pinShotgun.gameObject.GetComponent<Animator>();
         crosslineScale = 1;
         tipText.text = string.Empty;
         lockMusicKey = false;
@@ -58,14 +80,17 @@ public class PlayerUI : MyTools, IHit
         ActiveDamagePanel(false);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         //DrawCrossline();
         //if(scale != crosslineScale)
         //{
         //    StartCoroutine("ChangeScale");
         //}
-
+        if (Hit1 > 0)
+        {
+            Hit1 -= 0.1f;
+        }
         if (!lockMusicKey)
         {
             NextMusic();
@@ -96,10 +121,7 @@ public class PlayerUI : MyTools, IHit
     public void SetToShotgun()
     {
         pinShotgun.SetActive(true);
-
         pinPistol.SetActive(false);
-        foreach (var im in linesAutogun)
-            im.gameObject.SetActive(false);
     }
 
     private void DrawCrossline()
@@ -211,6 +233,17 @@ public class PlayerUI : MyTools, IHit
 
     public void Hit()
     {
-        throw new System.NotImplementedException();
+        Hit1++;
+    }
+
+    public void PinChanged(bool pin)
+    {
+        if (pin)
+        {
+            if (pinShotgun.activeSelf)
+            {
+
+            }
+        }
     }
 }

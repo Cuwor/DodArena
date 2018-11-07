@@ -71,9 +71,10 @@ public class Weapon : MonoBehaviour
     public int magazin;
 
     private AudioSource sound;
-    private bool ready;
+    private bool ready = true;
+    private bool readyReload = true;
 
-    public event ShootHelper ShootNow;
+    public event ShootHelper ShootHendler;
 
     // private ParticleSystem[] particleSystem;
     private DamageScript[] damageScript;
@@ -83,15 +84,14 @@ public class Weapon : MonoBehaviour
 
     private void Start()
     {
-        ready = true;
+        ShootHendler+=playerUI.PinChanged;
         magazin = maxAmmo;
-        ammo = 0;
+        ammo = magazin;
         sound = GetComponent<AudioSource>();
         sound.clip = sounds.shoot;
         damageScript = new DamageScript[pS.Length];
         for (int i = 0; i < pS.Length; i++)
         {
-            //damageScript[i].hit += player.IHit;
             damageScript[i] = pS[i].GetComponent<DamageScript>();
             damageScript[i].PauseTime = pauseTime;
             damageScript[i].cam = playerUI.cam;
@@ -99,26 +99,20 @@ public class Weapon : MonoBehaviour
             damageScript[i].Radius = range;
             damageScript[i].Damage = weaponDamage;
             damageScript[i].BulletInShoot = bulletInShoot;
-            ShootNow += damageScript[i].Fire;
+            damageScript[i].hitHandler += playerUI.Hit;
+            ShootHendler += damageScript[i].Fire;
         }
-    }
-
-    private void Start2()
-    {
-        
     }
 
     public void ShootNowInvoke(bool start)
     {
-        if (ShootNow != null)
-        {
-            ShootNow.Invoke(start);
-        }
+        if (ShootHendler != null)
+            ShootHendler.Invoke(start);
     }
 
     public bool MakeShoot()
     {
-        if (ready)
+        if (ready && readyReload)
         {
             if (magazin > 0)
             {
@@ -164,11 +158,11 @@ public class Weapon : MonoBehaviour
 
     public void Reload()
     {
-        if (ammo > 0 && magazin < maxAmmo )
+        if (ammo > 0 && magazin < maxAmmo && readyReload)
         {
-            //ready = false;
+            readyReload = false;
             PlayThisClip(sounds.reload);
-            //Invoke("ReadyAttack", reloadTime);
+            Invoke("ReadyReload", reloadTime);
             var x = maxAmmo - magazin;
             if (x < ammo)
             {
@@ -187,6 +181,10 @@ public class Weapon : MonoBehaviour
         }
     }
 
+    private void ReadyReload()
+    {
+        readyReload = true;
+    }
 
     private void ReadyAttack()
     {
