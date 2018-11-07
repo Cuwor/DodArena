@@ -242,7 +242,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1608684153990198}
   m_LocalRotation: {x: 0.33424446, y: -0.76737416, z: -0.21851096, w: 0.50166774}
-  m_LocalPosition: {x: -44.67, y: 1.58, z: -63.63}
+  m_LocalPosition: {x: -44.48, y: 1.58, z: -63.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4449416442038966}
@@ -753,13 +753,8 @@ MonoBehaviour:
       \u0441\u043B\u0443\u0445. \u042F \u0432\u044B\u0431\u0438\u0440\u0430\u044E
       \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435."
     answers:
-    - text: "\u041D\u0443\u0436\u043D\u044B \u043F\u0430\u0442\u0440\u043E\u043D\u044B"
+    - text: "\u041D\u0443\u0436\u043D\u044B \u043C\u0443\u0437\u044B\u043A\u0430"
       nextDialogNode: 1
-      endDialog: 0
-      actions: []
-      playList: []
-    - text: "\u041D\u0443\u0436\u043D\u0430 \u043C\u0443\u0437\u044B\u043A\u0430"
-      nextDialogNode: 3
       endDialog: 0
       actions: []
       playList: []
@@ -768,37 +763,11 @@ MonoBehaviour:
       endDialog: 1
       actions: []
       playList: []
-  - npcText: "\u041A\u0430\u043A\u0438\u0435?"
-    answers:
-    - text: "\u0414\u0440\u043E\u0431\u043E\u0432\u0438\u043A"
-      nextDialogNode: 2
-      endDialog: 0
-      actions:
-      - {fileID: 0}
-      playList: []
-    - text: "\u042F \u043F\u0435\u0440\u0435\u0434\u0443\u043C\u0430\u043B"
-      nextDialogNode: 0
-      endDialog: 0
-      actions: []
-      playList: []
-  - npcText: "\u0415\u0449\u0451?"
-    answers:
-    - text: "\u0414\u0440\u043E\u0431\u043E\u0432\u0438\u043A"
-      nextDialogNode: 2
-      endDialog: 0
-      actions:
-      - {fileID: 0}
-      playList: []
-    - text: "\u0425\u0432\u0430\u0442\u0438\u0442"
-      nextDialogNode: 0
-      endDialog: 0
-      actions: []
-      playList: []
   - npcText: "\u041A\u0430\u043A\u0443\u044E \u0440\u0430\u0434\u0438\u043E\u0441\u0442\u0430\u043D\u0446\u0438\u044E
       \u0432\u044B\u0431\u0438\u0440\u0430\u0435\u043C?"
     answers:
     - text: ElectroFM
-      nextDialogNode: 0
+      nextDialogNode: 1
       endDialog: 0
       actions:
       - {fileID: 114240825226500884}
@@ -810,7 +779,7 @@ MonoBehaviour:
       - {fileID: 8300000, guid: 2538f59064bfc4c4ea11047baa183a15, type: 3}
       - {fileID: 8300000, guid: 79bca8c0c576f0e4b86fd866671633ad, type: 3}
     - text: EpicFM
-      nextDialogNode: 0
+      nextDialogNode: 1
       endDialog: 0
       actions:
       - {fileID: 114240825226500884}
@@ -820,27 +789,27 @@ MonoBehaviour:
       - {fileID: 8300000, guid: dac4209622ec3e940a69fac9fa00ceff, type: 3}
       - {fileID: 8300000, guid: 3ced75d71d487bf4ba5b7ad3101eeaf7, type: 3}
     - text: FearFM
-      nextDialogNode: 0
+      nextDialogNode: 1
       endDialog: 0
       actions:
       - {fileID: 114240825226500884}
       playList:
       - {fileID: 8300000, guid: de9d37fcd6b10374eb94181f5dbb7593, type: 3}
+      - {fileID: 8300000, guid: c215f6f7352bb874bbd679b240f115d0, type: 3}
       - {fileID: 8300000, guid: 1b7a45f9d70840f45a3578b64ae51a65, type: 3}
       - {fileID: 8300000, guid: 10c822fe42f97d64aa11c3b62c7d8fff, type: 3}
-      - {fileID: 8300000, guid: c215f6f7352bb874bbd679b240f115d0, type: 3}
     - text: FunFM
-      nextDialogNode: 0
+      nextDialogNode: 1
       endDialog: 0
       actions:
       - {fileID: 114240825226500884}
       playList:
       - {fileID: 8300000, guid: fed858695d72a9d46a4a45eba74fcae3, type: 3}
-      - {fileID: 8300000, guid: f187d41821609cf42a26d6252fe53bcf, type: 3}
       - {fileID: 8300000, guid: 0baef91fc093ded4181b1c7f2c49ba96, type: 3}
+      - {fileID: 8300000, guid: f187d41821609cf42a26d6252fe53bcf, type: 3}
       - {fileID: 8300000, guid: 38db624849060ac42a6b2d0106d699f7, type: 3}
     - text: LightFM
-      nextDialogNode: 0
+      nextDialogNode: 1
       endDialog: 0
       actions:
       - {fileID: 114240825226500884}
@@ -850,7 +819,7 @@ MonoBehaviour:
       - {fileID: 8300000, guid: 7d7ff73f67c3cbe409883eb3106b01c6, type: 3}
       - {fileID: 8300000, guid: f892a14ee955a1248a06a5db58a7d2af, type: 3}
     - text: RetroFM
-      nextDialogNode: 0
+      nextDialogNode: 1
       endDialog: 0
       actions:
       - {fileID: 114240825226500884}
@@ -860,7 +829,7 @@ MonoBehaviour:
       - {fileID: 8300000, guid: 4fbfb5c81cc28894b881cb819356df0b, type: 3}
       - {fileID: 8300000, guid: 993e1ef0867dc3346abd95eaf2bf6ff9, type: 3}
     - text: RockFM
-      nextDialogNode: 0
+      nextDialogNode: 1
       endDialog: 0
       actions:
       - {fileID: 114240825226500884}
@@ -871,9 +840,11 @@ MonoBehaviour:
       - {fileID: 8300000, guid: ae5862e4a2b93f742bc316f5eafec66e, type: 3}
       - {fileID: 8300000, guid: 4a0d9879d878a8347a4ab4f0721ecfd0, type: 3}
       - {fileID: 8300000, guid: db1b078a589a11d4ebd6a008bfadab51, type: 3}
-    - text: "\u042F \u043F\u0435\u0440\u0435\u0434\u0443\u043C\u0430\u043B"
+    - text: "\u0411\u0443\u0434\u044C \u0442\u044B \u043F\u0440\u043E\u043A\u043B\u044F\u0442!
+        \u041D\u0435\u0442 \u043D\u043E\u0440\u043C\u0430\u043B\u044C\u043D\u043E\u0439
+        \u043C\u0443\u0437\u044B\u043A\u0438!"
       nextDialogNode: 0
-      endDialog: 0
+      endDialog: 1
       actions: []
       playList: []
   activeNode: 0

@@ -657,7 +657,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1353413337050916
 GameObject:
   m_ObjectHideFlags: 1
@@ -2753,7 +2753,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1159757858031396}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -133.93275, y: -3.0806926e-17, z: 13.874207}
+  m_LocalPosition: {x: -52.245865, y: 0.03, z: -56.94706}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224560275368991760}
@@ -3527,7 +3527,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.17
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4002,7 +4002,7 @@ MonoBehaviour:
   jumpSpeed: 25
   maxHealth: 100
   startRegen: 30
-  regenValue: 0.01
+  regenValue: 0.3
   inDialog: 0
   weaponNumber: 0
   ammunitionCount: {fileID: 114033146788962372}
@@ -4161,7 +4161,7 @@ MonoBehaviour:
     noAmmo: {fileID: 8300000, guid: a9646a6173bb6ad4b951ea60adaaa407, type: 3}
   ammo: 0
   magazin: 0
-  sprite: {fileID: 21300000, guid: 318cf222be88c074d85515fad65a3d86, type: 3}
+  sprite: {fileID: 21300000, guid: 0c3fee2212890be49a7ba62e2a6d4b99, type: 3}
   playerUI: {fileID: 114733463249369294}
 --- !u!114 &114230197382572312
 MonoBehaviour:
@@ -4406,7 +4406,7 @@ MonoBehaviour:
     noAmmo: {fileID: 8300000, guid: a9646a6173bb6ad4b951ea60adaaa407, type: 3}
   ammo: 0
   magazin: 0
-  sprite: {fileID: 21300000, guid: 023a5227a9fd4e743a9f4c36abb0dac5, type: 3}
+  sprite: {fileID: 21300000, guid: 2a6fa1dde60e2724a8242e49a709f9e6, type: 3}
   playerUI: {fileID: 114733463249369294}
 --- !u!114 &114360030356876214
 MonoBehaviour:
@@ -4936,7 +4936,7 @@ MonoBehaviour:
     noAmmo: {fileID: 8300000, guid: a9646a6173bb6ad4b951ea60adaaa407, type: 3}
   ammo: 0
   magazin: 0
-  sprite: {fileID: 21300000, guid: 4a807266262714e4abe212f65c730695, type: 3}
+  sprite: {fileID: 21300000, guid: ca107ce1a0ecade45b3699ad9d3e2c7d, type: 3}
   playerUI: {fileID: 114733463249369294}
 --- !u!114 &114937207297401020
 MonoBehaviour:
@@ -20007,7 +20007,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
