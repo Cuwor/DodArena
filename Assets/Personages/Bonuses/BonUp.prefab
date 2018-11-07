@@ -51,7 +51,6 @@ GameObject:
   - component: {fileID: 4358301621982696}
   - component: {fileID: 33876818838307664}
   - component: {fileID: 23481796707330752}
-  - component: {fileID: 64017135081104100}
   m_Layer: 0
   m_Name: SciFi_Fan_Grey_01 1
   m_TagString: Untagged
@@ -84,7 +83,6 @@ GameObject:
   - component: {fileID: 4117089148046822}
   - component: {fileID: 33525118737627648}
   - component: {fileID: 23087762184779314}
-  - component: {fileID: 64540715407395936}
   m_Layer: 0
   m_Name: SciFi_Fan_Grey_01 1
   m_TagString: Untagged
@@ -171,7 +169,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1869218069520166}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -134.4, y: 0.77, z: 28.3}
+  m_LocalPosition: {x: -115.72262, y: 3.41, z: 25.414877}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4552842915717654}
@@ -280,34 +278,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1288924256398010}
   m_Mesh: {fileID: 4300002, guid: bc04f7fb99c5ba644807627950056a1a, type: 3}
---- !u!64 &64017135081104100
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1288924256398010}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300002, guid: bc04f7fb99c5ba644807627950056a1a, type: 3}
---- !u!64 &64540715407395936
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1510665762862892}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300002, guid: bc04f7fb99c5ba644807627950056a1a, type: 3}
 --- !u!114 &114882586756841774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -321,8 +291,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1.15
   target: {fileID: 0}
-  move: 0
+  Duration: 15
   bonusType: 1
+  MagnettoBonus: 0
 --- !u!135 &135262609888068360
 SphereCollider:
   m_ObjectHideFlags: 1

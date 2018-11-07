@@ -78,14 +78,14 @@ namespace Al_AI.Scripts
                             State = EnemyState.Attack;
                             NavAgent.enabled = false;
                         }
-                        else // движение и атака радио игорь помоги портировать с демонконтроллера систему аларма
+                        else
                         {
                             if (Alarm)
                             {
                                 FindPlayers();
                                 Alarm = false;
                             }
-                            else // хуйня какая то
+                            else
                             {
                                 target = radio;
                             }
@@ -102,7 +102,7 @@ namespace Al_AI.Scripts
                     if (target != null)
                     {
                         distanceTP = Vector3.Distance(target.transform.position, transform.position);
-                        if (distanceTP > attackDistance) // либо идет либо атакует
+                        if (distanceTP > attackDistance)
                         {
                             State = EnemyState.Walk;
                         }
@@ -117,10 +117,9 @@ namespace Al_AI.Scripts
                         FindPlayers();
                     }
                 }
-                else //radio is off
+                else
                 {
-                    Debug.Log("!!!!");
-                    if (target != null) // стандартный код
+                    if (target != null)
                     {
                         distanceTP = Vector3.Distance(target.transform.position, transform.position);
                         if (distanceTP <= RadiusView && distanceTP > attackDistance)
@@ -252,7 +251,7 @@ namespace Al_AI.Scripts
 
         #endregion
 
-        #region Здлоровье и смерть
+        #region Здоровье и смерть
 
         public void PlusHealth(float value)
         {
@@ -288,8 +287,9 @@ namespace Al_AI.Scripts
 
         protected IEnumerator GetRandomStayState()
         {
-            //_anim.SetFloat("Ystate", -1);
-            //_anim.SetFloat("Xstate", UnityEngine.Random.Range(-1, 1.1f));
+            Debug.Log(_anim);
+            _anim.SetFloat("Ystate", -1);
+            _anim.SetFloat("Xstate", UnityEngine.Random.Range(-1, 1.1f));
             //FindPlayers();
             yield return new WaitForSeconds(2);
             wait = false;

@@ -54,6 +54,6 @@ MonoBehaviour:
   min: -5
   max: 5
   cooldown: 30
-  enemy: {fileID: 1806343340067952, guid: 94ccde4f3ddaeaa4ba7a20acc2c43508, type: 2}
+  enemy: {fileID: 1902682229677214, guid: e0c3d5d8a5f5c534bbd8bc02b09563e1, type: 2}
   maximum: 10
   gameObjects: []

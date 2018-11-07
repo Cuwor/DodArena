@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.AI;
 
 namespace Al_AI.Scripts
 {
 	public class ScarecrowScriptController : Monster
 	{
-
-		public PumpcinheadScriptController PHSC;
+        public PumpcinheadScriptController PHSC;
 		public bool IsNotPumkinHead = false;
 
 		public override void Death()
@@ -31,6 +31,7 @@ namespace Al_AI.Scripts
 		void Start () 
 		{
 			Initiolize();
+            NavAgent = transform.parent.GetComponent<NavMeshAgent>();
 			PHSC._anim.enabled = false;
 			PHSC.NavAgent.enabled = false;
 		}
@@ -39,12 +40,7 @@ namespace Al_AI.Scripts
 		{
 			if (alive && !IsNotPumkinHead)
 			{
-				
-                
-					DistanceTP = Vector3.Distance(target.transform.position, transform.position);
-               
-				
-
+                DistanceTP = Vector3.Distance(target.transform.position, transform.position);
 			
 				switch (State)
 				{
@@ -70,5 +66,11 @@ namespace Al_AI.Scripts
 			}
 		
 		}
-	}
+
+        protected override void GetAttackDistance()
+        {
+            attackType = UnityEngine.Random.Range(1, 3);
+            attackDistance = attackType == 1 ? RadiusAttack + 2 : RadiusAttack;
+        }
+    }
 }
