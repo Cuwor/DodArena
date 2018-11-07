@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 namespace Al_AI.Scripts
 {
@@ -9,6 +10,10 @@ namespace Al_AI.Scripts
         [Tooltip("Здесь объект")]
         [Header("Здесь объект")]
         public GameObject target;
+
+        public Scene WS;
+        public Scene TS;
+        
 
 
         [Space(20)] public NavMeshAgent NavAgent;
