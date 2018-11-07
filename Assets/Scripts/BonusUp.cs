@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Boo.Lang;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -7,23 +8,21 @@ public class BonusUp : MonoBehaviour
 {
     [Range(0, 10)] public float speed;
     public GameObject target;
+    [Range(0, 100)] public float Duration;
     private Vector3 moveVector;
-    public bool move;
     public BonusType bonusType;
     public IHaveBonus haveBonus;
-
-
-    private void Start()
-    {
-        move = false;
-    }
+    [HideInInspector] public bool MagnettoBonus = false;
+    private float distance;
 
     //Update is called once per frame
     private void FixedUpdate()
     {
         transform.Rotate(transform.up, 2 * Time.deltaTime);
-        if (move)
+        
+        if (target != null)
         {
+            MagnettoBonus = target.GetComponent<SinglePlayerController>().magnettoBonus;
             MoveToTarget();
         }
     }
@@ -32,16 +31,42 @@ public class BonusUp : MonoBehaviour
     {
         moveVector = target.transform.position - transform.position;
         float step = Vector3.Magnitude(moveVector.normalized * speed);
-        float distance = Vector3.Distance(transform.position, target.transform.position);
-        if (step < distance)
+        distance = Vector3.Distance(transform.position, target.transform.position);
+        DistanceGet(MagnettoBonus, step);
+    }
+
+    private void DistanceGet(bool bon, float step)
+    {
+        if (bon)
         {
-            transform.position += moveVector.normalized * speed;
+            if (step < distance)
+            {
+                transform.position += moveVector.normalized * speed;
+            }
+            else
+            {
+                target.GetComponent<SinglePlayerController>().durationBonus = Duration;
+                transform.position = target.transform.position;
+                haveBonus.AddBonus(bonusType);
+                Destroy(gameObject);
+            }
         }
         else
         {
-            transform.position = target.transform.position;
-            haveBonus.AddBonus(bonusType);
-            Destroy(gameObject);
+            if (distance <= 1)
+            {
+                if (step < distance)
+                {
+                    transform.position += moveVector.normalized * speed;
+                }
+                else
+                {
+                    target.GetComponent<SinglePlayerController>().durationBonus = Duration;
+                    transform.position = target.transform.position;
+                    haveBonus.AddBonus(bonusType);
+                    Destroy(gameObject);
+                }
+            }
         }
     }
 }

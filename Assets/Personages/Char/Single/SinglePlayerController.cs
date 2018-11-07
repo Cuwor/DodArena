@@ -106,6 +106,8 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus
     public float regenValue;
 
     [HideInInspector] public bool inDialog;
+    [HideInInspector] public float durationBonus;
+    [HideInInspector] public bool magnettoBonus;
 
     public int weaponNumber;
 
@@ -455,7 +457,6 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus
         {
             amun.target = gameObject;
             amun.haveWeapons = this;
-            amun.move = true;
         }
 
 
@@ -464,7 +465,6 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus
         {
             bon.target = gameObject;
             bon.haveBonus = this;
-            bon.move = true;
         }
 
         AttackArea at;
@@ -492,13 +492,19 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus
         if (type == BonusType.SpeedUp)
         {
             speed = 40;
-            Invoke("ReturnSpeed", 5f);
+            Invoke("ReturnSpeed", durationBonus);
         }
 
         if (type == BonusType.GravityDown)
         {
             grav = -20;
-            Invoke("ReturnGrav", 5f);
+            Invoke("ReturnGrav", durationBonus);
+        }
+        
+        if (type == BonusType.Magnetto)
+        {
+            magnettoBonus = true;
+            Invoke("ReturnMagnetto", durationBonus);
         }
     }
 
@@ -511,6 +517,12 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus
     {
         grav = -40;
     }
+
+    public void ReturnMagnetto()
+    {
+        magnettoBonus = false;
+    }
+    
 
     #endregion
 }

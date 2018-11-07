@@ -298,7 +298,6 @@ public class PlayeroController : MyTools, IAlive, IHaveWeapons
         {
             amun.target = gameObject;
             amun.haveWeapons = this;
-            amun.move = true;
         }
 
 

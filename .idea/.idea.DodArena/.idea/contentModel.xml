@@ -9,6 +9,7 @@
         <e p="Al_AI" t="Include">
           <e p="Scripts" t="Include">
             <e p="Eidolon_Script_Controller.cs" t="Include" />
+            <e p="ModeScript.cs" t="Include" />
             <e p="Monster.cs" t="Include" />
             <e p="ObstacleScript.cs" t="Include" />
             <e p="PumpcinheadScriptController.cs" t="Include" />

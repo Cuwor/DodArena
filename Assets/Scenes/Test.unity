@@ -614,6 +614,11 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224560275368991760, guid: 8bd8bd73767e1f44ea284c9f8acbfa59,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bd8bd73767e1f44ea284c9f8acbfa59, type: 2}
   m_IsPrefabAsset: 0
@@ -1830,10 +1835,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b798fec46f3174399b7408aa56550fe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.15
+  speed: 1
   target: {fileID: 0}
-  move: 0
-  bonusType: 0
+  Duration: 6
+  bonusType: 2
+  MagnettoBonus: 0
 --- !u!1 &2004732799
 GameObject:
   m_ObjectHideFlags: 0

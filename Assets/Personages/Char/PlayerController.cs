@@ -248,7 +248,6 @@ public class PlayerController : SinglePlayerController
         if (MyGetComponent(out amun, other.gameObject))
         {
             amun.target = gameObject;
-            amun.move = true;
         }
 
 
