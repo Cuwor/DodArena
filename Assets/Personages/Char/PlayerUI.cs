@@ -10,8 +10,14 @@ public interface IPinChanged
     void PinChanged(bool pin);
 }
 
+public enum Gametype
+{
+    Wave,
+    Timer
+}
 public class PlayerUI : MyTools, IHit, IPinChanged
 {
+    public Gametype type;
 
     public GameObject cam;
     public int minScale;
@@ -53,6 +59,18 @@ public class PlayerUI : MyTools, IHit, IPinChanged
 
     public Animator deadPanel;
 
+    public void KakayaToFunxia(){}
+    public void WhatType()
+    {
+        if (type == Gametype.Wave)
+        {
+            
+        }
+        else
+        {
+            
+        }
+    }
     public float Hit1
     {
         get

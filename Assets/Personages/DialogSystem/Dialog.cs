@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+public delegate void StartHandler();
 public class Dialog : MonoBehaviour {
 
+    public event StartHandler OnStart;
     public DialogNode[] nodes;
     public int activeNode;
     public bool Show;
@@ -11,6 +12,7 @@ public class Dialog : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+	    
         Show = false;
 	}
 
@@ -37,7 +39,17 @@ public class Dialog : MonoBehaviour {
                         {
                             MusicManager MM = obj.GetComponent<MusicManager>();
                             MM.tracks = nodes[activeNode].answers[i].playList;
-                            player.gameObject.GetComponent<PlayerUI>().musicEvent+=MM.OnNextTreck;
+                            PlayerUI PUI = player.gameObject.GetComponent<PlayerUI>();
+                            PUI.musicEvent += MM.OnNextTreck;
+                            OnStart += PUI.WhatType;
+                            gameObject.GetComponent<RadioScriptController>().OnDead+=PUI.KakayaToFunxia;
+                            
+                           
+                            if (OnStart != null)
+                            {
+                                Debug.Log("!!!");
+                                OnStart.Invoke();
+                            }
                             
                         }
                         nodes[activeNode].answers[i].actions[j].Use();

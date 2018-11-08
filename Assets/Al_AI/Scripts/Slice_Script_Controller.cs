@@ -84,7 +84,7 @@ namespace Al_AI.Scripts
                   
                     if (target != null)
                     {
-                        Debug.Log(Alarm);
+                       
                       
                         if (Alarm)
                         {
@@ -270,10 +270,12 @@ namespace Al_AI.Scripts
                 eidolons[i] = Instantiate(Eidolon, GetRandomPositionForEidolons(), Quaternion.identity);
 
                 Slice_Script_Controller SSC;
+                
                 if (MyGetComponent(out SSC, eidolons[i]))
                 {
+                    
                     brothers.Add(SSC);
-
+                    SSC.radio = radio;
                     SSC.Initiolize();
                     Ini2(brothers, ref SSC, false);
 

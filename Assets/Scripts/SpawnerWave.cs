@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Al_AI.Scripts;
 using UnityEngine;
 
 public class SpawnerWave : MonoBehaviour
@@ -16,10 +17,14 @@ public class SpawnerWave : MonoBehaviour
 
     private void Update()
     {
-        if (key && i < EnemysToSpawn.Count)
+        if (key)
         {
             SpawnEnemy(EnemysToSpawn[i], this.transform.position);
             i++;
+            if (i == EnemysToSpawn.Count)
+            {
+                i = 0;
+            }
             
         }
     }
@@ -29,6 +34,7 @@ public class SpawnerWave : MonoBehaviour
         {
             var temp = Instantiate(enemy, pos, Quaternion.identity);
             WaveManager.AddEnemy(temp);
+            temp.GetComponent<Monster>().radio = WaveManager.radio.gameObject;
         }
         key = false;
     }

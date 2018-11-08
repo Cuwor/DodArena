@@ -14,6 +14,7 @@
             <e p="Monster.cs" t="Include" />
             <e p="ObstacleScript.cs" t="Include" />
             <e p="PumpcinheadScriptController.cs" t="Include" />
+            <e p="RadioScriptController.cs" t="Include" />
             <e p="ScarecrowScriptController.cs" t="Include" />
             <e p="SceletonScriptController.cs" t="Include" />
             <e p="Scripts_from_other_projects" t="Include">
@@ -343,6 +344,8 @@
           <e p="PauseMenu.cs" t="Include" />
           <e p="PlayerManager.cs" t="Include" />
           <e p="SkyRotator.cs" t="Include" />
+          <e p="SpawnerWave.cs" t="Include" />
+          <e p="WaveManager.cs" t="Include" />
         </e>
       </e>
       <e p="DoDA.sln" t="IncludeFlat" />
