@@ -342,6 +342,8 @@
           <e p="PauseMenu.cs" t="Include" />
           <e p="PlayerManager.cs" t="Include" />
           <e p="SkyRotator.cs" t="Include" />
+          <e p="SpawnerWave.cs" t="Include" />
+          <e p="WaveManager.cs" t="Include" />
         </e>
       </e>
       <e p="DodArena.sln" t="IncludeFlat" />
