@@ -17,7 +17,6 @@ namespace Al_AI.Scripts
 
 		public override void Death()
 		{
-
 			NavAgent.enabled = false;
 			if (SCSC != null)
 			{
@@ -25,8 +24,6 @@ namespace Al_AI.Scripts
 
 				SCSC._anim.enabled = false;
 				SCSC.NavAgent.enabled = false;
-
-
 			}
 
 			_anim.SetTrigger("Dead");
@@ -36,6 +33,7 @@ namespace Al_AI.Scripts
 
 		void FixedUpdate()
 		{
+            Debug.Log(NavAgent);
 			if (alive && !OnScareCrow)
 			{
 				if (target != null)

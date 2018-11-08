@@ -16,11 +16,17 @@ namespace Al_AI.Scripts
 			_anim.enabled = true;
 			if (!IsNotPumkinHead)
 			{
-				PHSC._anim.enabled = true;
+                Transform point = PHSC.gameObject.transform.parent;
+                point.parent = null;
+                point.position = new Vector3(point.position.x, 0, point.position.z);
+                point.rotation = new Quaternion(90,0,0,1);
+                PHSC._anim.enabled = true;
 				PHSC.OnScareCrow = false;
-				PHSC.gameObject.transform.parent = null;
+                PHSC.transform.localPosition = Vector3.zero;
+                PHSC.transform.localRotation = Quaternion.identity;
+                PHSC._anim.SetTrigger("Go");
+                PHSC.SCSC = null;
 			}
-
 			_anim.SetTrigger("Dead");
 			StartCoroutine(Drop());
 			StartCoroutine(Destroeded());
@@ -30,12 +36,18 @@ namespace Al_AI.Scripts
 
 		void Start () 
 		{
-			Initiolize();
+            Initiolize();
             NavAgent = transform.parent.GetComponent<NavMeshAgent>();
-			PHSC._anim.enabled = false;
-			PHSC.NavAgent.enabled = false;
-		}
+            NavAgent.enabled = false;
+            Invoke("SetPumkin", 1f);
+        }
 		
+        public void SetPumkin()
+        {
+            PHSC._anim.enabled = false;
+            PHSC.NavAgent.enabled = false;
+        }
+
 	
 		void FixedUpdate () 
 		{

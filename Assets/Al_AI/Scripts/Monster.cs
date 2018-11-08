@@ -98,7 +98,6 @@ namespace Al_AI.Scripts
                 }
                 else if (SceneManager.GetActiveScene().name == TS.name && MusicManager.musicKey) // TimerMode is on && radio is on
                 {
-                    Debug.Log("!!!");
                     if (target != null)
                     {
                         distanceTP = Vector3.Distance(target.transform.position, transform.position);
@@ -287,7 +286,6 @@ namespace Al_AI.Scripts
 
         protected IEnumerator GetRandomStayState()
         {
-            Debug.Log(_anim);
             _anim.SetFloat("Ystate", -1);
             _anim.SetFloat("Xstate", UnityEngine.Random.Range(-1, 1.1f));
             //FindPlayers();
@@ -298,7 +296,7 @@ namespace Al_AI.Scripts
         {
             yield return new WaitForSeconds(2);
             int x = UnityEngine.Random.Range(0, ammos.Length);
-            Instantiate(ammos[x], transform.position, new Quaternion());
+            Instantiate(ammos[x], transform.position + Vector3.up*3, new Quaternion());
         }
         protected virtual void OnTriggerEnter(Collider other)
         {

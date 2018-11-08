@@ -660,7 +660,7 @@ Transform:
   m_LocalPosition: {x: -1.6307106, y: -0.031787038, z: 0}
   m_LocalScale: {x: 0.9999998, y: 1.0000001, z: 0.99999976}
   m_Children:
-  - {fileID: 1623366098}
+  - {fileID: 156197734}
   - {fileID: 1910283455}
   m_Father: {fileID: 521830830}
   m_RootOrder: 3
@@ -1278,6 +1278,57 @@ Transform:
   m_Father: {fileID: 406676483}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0.0000056922436, y: -0.00000295043, z: -29.184523}
+--- !u!1 &156197733
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 156197734}
+  - component: {fileID: 156197735}
+  m_Layer: 0
+  m_Name: PumPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &156197734
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 156197733}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1623366098}
+  m_Father: {fileID: 86280013}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!195 &156197735
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 156197733}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &162113665
 GameObject:
   m_ObjectHideFlags: 0
@@ -3278,7 +3329,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &374262093
 Transform:
   m_ObjectHideFlags: 0
@@ -4297,7 +4348,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &521080532
 Transform:
   m_ObjectHideFlags: 0
@@ -8193,7 +8244,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!195 &1013780093
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -12697,7 +12748,6 @@ GameObject:
   - component: {fileID: 1623366102}
   - component: {fileID: 1623366101}
   - component: {fileID: 1623366100}
-  - component: {fileID: 1623366099}
   - component: {fileID: 1623366097}
   m_Layer: 0
   m_Name: PumOnLeg
@@ -12744,36 +12794,14 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1623366096}
-  m_LocalRotation: {x: -0.089648016, y: -0.000000104308114, z: 0.0000011324881, w: 0.9959735}
-  m_LocalPosition: {x: -0, y: 2.0930765, z: -10.516539}
+  m_LocalRotation: {x: -0.08964803, y: -0.0000000745058, z: 0.0000011324881, w: 0.9959735}
+  m_LocalPosition: {x: -0, y: 2.0930755, z: -10.51654}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 644413385}
-  m_Father: {fileID: 86280013}
+  m_Father: {fileID: 156197734}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!195 &1623366099
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 195570258434348282, guid: 1a9bc8f8e5b06f54f9a5dcbd582f823f,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1623366096}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 1.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1.7999918
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!143 &1623366100
 CharacterController:
   m_ObjectHideFlags: 0
