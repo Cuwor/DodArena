@@ -169,8 +169,8 @@ ModelImporter:
     - serializedVersion: 16
       name: PumSit
       takeName: Pum
-      firstFrame: 470
-      lastFrame: 500
+      firstFrame: 469
+      lastFrame: 470
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -497,7 +497,7 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 0
-    previousCalculatedGlobalScale: 0.05
+    previousCalculatedGlobalScale: 0.06
     hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60

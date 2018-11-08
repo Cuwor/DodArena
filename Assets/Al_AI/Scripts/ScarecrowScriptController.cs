@@ -35,6 +35,7 @@ namespace Al_AI.Scripts
 			PHSC._anim.enabled = false;
 			PHSC.NavAgent.enabled = false;
 		}
+		
 	
 		void FixedUpdate () 
 		{
