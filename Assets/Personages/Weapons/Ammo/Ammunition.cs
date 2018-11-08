@@ -51,7 +51,7 @@ public class Ammunition : MonoBehaviour
         }
         else
         {
-            if (distance <=1)
+            if (distance <=2)
             {
                 if (step < distance)
                 {

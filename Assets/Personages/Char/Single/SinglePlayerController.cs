@@ -26,10 +26,12 @@ public interface IHaveBonus
 {
     void AddBonus(BonusType type);
 }
+
 public interface IHaveCandy
 {
     void AddCandy(Candy type);
 }
+
 public interface IAlive
 {
     float Health { get; set; }
@@ -46,7 +48,7 @@ public class RecoilRotation
 }
 
 
-public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus , IHaveCandy
+public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus, IHaveCandy
 {
     public GameObject plCam;
     private GameObject sceneCam;
@@ -73,7 +75,7 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus 
             if (value < startRegen)
             {
                 regen = true;
-                playerUI.damagePanelAnim.SetFloat("LowToNormal", value / (float)startRegen);
+                playerUI.damagePanelAnim.SetFloat("LowToNormal", value / (float) startRegen);
             }
 
             playerUI.health.value = value;
@@ -92,21 +94,17 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus 
     [Tooltip("Скорость поворота по вертикали")]
     public float ySpeed;
 
-    [Space(10)] [Tooltip("Оружие")]
-    public Weapon[] weapon;
+    [Space(10)] [Tooltip("Оружие")] public Weapon[] weapon;
 
     [Space(10)] [Header("Гравитация")] [Tooltip("Ускорение")]
     public float grav;
 
-    [Tooltip("Сила прыжка")]
-    public float jumpSpeed;
+    [Tooltip("Сила прыжка")] public float jumpSpeed;
 
-    [Tooltip("Макимальное здоровье")]
-    public short maxHealth;
+    [Tooltip("Макимальное здоровье")] public short maxHealth;
 
     public short startRegen;
-    [Range(0, 1)]
-    public float regenValue;
+    [Range(0, 1)] public float regenValue;
 
     [HideInInspector] public bool inDialog;
     [HideInInspector] public float durationBonus;
@@ -114,14 +112,17 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus 
 
     public int weaponNumber;
 
-    [Space(20)]
-    [Header("Части интерфейса")]
-    [Tooltip("Количество патронов")]
+    [Space(20)] [Header("Части интерфейса")] [Tooltip("Количество патронов")]
     public Text ammunitionCount;
+
+
     public Image WeaponSprite;
 
+    [Space(20)] [Tooltip("Количество конфет")]
+    public Text candyCount;
+
     [SerializeField] private int Candies = 0;
-    
+
     private Animator anim;
     private CharacterController controller;
     private Vector3 gravVector;
@@ -130,14 +131,12 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus 
     private const float minY = -100, maxY = 70;
     private float rotationX, rotationY;
     private float movementMultiplicator;
-    private bool regen= false;
+    private bool regen = false;
     private float vertSpeed;
     public bool death = false;
 
     private PlayerUI playerUI;
-    [Space(20)]
-    [Header("Звук")]
-    public AudioSource audioSource;
+    [Space(20)] [Header("Звук")] public AudioSource audioSource;
     public AudioClip damageClip;
     public AudioClip deadClip;
 
@@ -158,12 +157,13 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus 
         playerUI.pc = this;
         playerUI.SetToPistol();
         Health = maxHealth;
-        for(int i = 0; i < weapon.Length; i++)
+        for (int i = 0; i < weapon.Length; i++)
         {
             weapon[i].playerUI = playerUI;
             if (i != weaponNumber)
                 weapon[i].gameObject.SetActive(false);
         }
+
         DrawAmmo();
     }
 
@@ -185,6 +185,7 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus 
                 RightWeapon();
             }
         }
+
         //if (recoil)
         //{
         //    StartCoroutine(Recoil());
@@ -202,15 +203,18 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus 
             PlayThisClip(damageClip);
         }
     }
+
     private void PlayThisClip(AudioClip audioClip)
     {
         if (audioSource.isPlaying)
         {
             audioSource.Stop();
         }
+
         audioSource.clip = audioClip;
         audioSource.Play();
     }
+
     public void PlusHealth(float value)
     {
     }
@@ -228,6 +232,7 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus 
         if (Health >= startRegen)
             regen = false;
     }
+
     #endregion
 
     #region Перемещение
@@ -311,7 +316,7 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus 
         {
             if (weapon[weaponNumber].MakeShoot())
             {
-                if(weapon[weaponNumber].auto)
+                if (weapon[weaponNumber].auto)
                     anim.SetBool("Shoot", true);
                 else
                     anim.SetTrigger("ShootTrig");
@@ -435,8 +440,8 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus 
 
     public void SetVisibleWeapon()
     {
-        foreach(var wea in weapon)
-            wea.gameObject.SetActive(false); 
+        foreach (var wea in weapon)
+            wea.gameObject.SetActive(false);
         weapon[weaponNumber].gameObject.SetActive(true);
         DrawAmmo();
     }
@@ -449,6 +454,11 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus 
     {
         ammunitionCount.text = weapon[weaponNumber].magazin.ToString() + "/" + weapon[weaponNumber].ammo.ToString();
         WeaponSprite.sprite = weapon[weaponNumber].sprite;
+    }
+
+    public void DrawCandy()
+    {
+        candyCount.text = Candies.ToString();
     }
 
     #endregion
@@ -471,7 +481,7 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus 
             bon.target = gameObject;
             bon.haveBonus = this;
         }
-        
+
         CandyCount can;
         if (MyGetComponent(out can, other.gameObject))
         {
@@ -512,25 +522,35 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus 
             grav = -20;
             Invoke("ReturnGrav", durationBonus);
         }
-        
+
         if (type == BonusType.Magnetto)
         {
             magnettoBonus = true;
             Invoke("ReturnMagnetto", durationBonus);
         }
     }
-    
+
     public void AddCandy(Candy type)
     {
         switch (type)
         {
-                case Candy.Candies:
-                    Candies += 1; break;
-                case Candy.CandyOnBowler:Candies += 2; break;
-                case Candy.CandyOnBucket:Candies += 3; break;
-                case Candy.CandyOnDump:Candies += 4; break;
-                case Candy.CandyOnPum:Candies += 5; break;
+            case Candy.Candies:
+                Candies += 1;
+                break;
+            case Candy.CandyOnBowler:
+                Candies += 2;
+                break;
+            case Candy.CandyOnBucket:
+                Candies += 3;
+                break;
+            case Candy.CandyOnDump:
+                Candies += 4;
+                break;
+            case Candy.CandyOnPum:
+                Candies += 5;
+                break;
         }
+        DrawCandy();
     }
 
     public void ReturnSpeed()
@@ -547,9 +567,6 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus 
     {
         magnettoBonus = false;
     }
-    
-    
-    #endregion
 
-    
+    #endregion
 }
