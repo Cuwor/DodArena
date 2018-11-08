@@ -19,17 +19,17 @@ public abstract class MyTools : MonoBehaviour
 
 public interface IHaveWeapons
 {
-    void AddAmmos(WeaponType type, int qty);
+    void AddAmmos(WeaponType type, int qty, AudioClip sound);
 }
 
 public interface IHaveBonus
 {
-    void AddBonus(BonusType type);
+    void AddBonus(BonusType type, AudioClip sound);
 }
 
 public interface IHaveCandy
 {
-    void AddCandy(Candy type);
+    void AddCandy(Candy type, AudioClip clip);
 }
 
 public interface IAlive
@@ -103,6 +103,9 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus,
 
     [Tooltip("Макимальное здоровье")] public short maxHealth;
 
+    [Tooltip("Картинки для бонусов")]
+    public GameObject[] BonusImages;
+
     public short startRegen;
     [Range(0, 1)] public float regenValue;
 
@@ -163,7 +166,10 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus,
             if (i != weaponNumber)
                 weapon[i].gameObject.SetActive(false);
         }
-
+        foreach(var c in BonusImages)
+        {
+            c.SetActive(false);
+        }
         DrawAmmo();
     }
 
@@ -224,6 +230,7 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus,
         playerUI.deadPanel.SetTrigger("Death");
         PlayThisClip(deadClip);
         death = true;
+        Invoke("Statisticks", 8f);
     }
 
     public void Regeneration()
@@ -231,6 +238,11 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus,
         Health += regenValue;
         if (Health >= startRegen)
             regen = false;
+    }
+
+    private void Statisticks()
+    {
+        playerUI.GetResults();
     }
 
     #endregion
@@ -335,7 +347,7 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus,
             if (Input.GetMouseButton(0))
                 if (weapon[weaponNumber].MakeShoot())
                     DrawAmmo();
-        if (weapon[weaponNumber].auto && Input.GetMouseButtonUp(0))
+        if (weapon[weaponNumber].auto && (Input.GetMouseButtonUp(0) || weapon[weaponNumber].magazin == 0))
         {
             //weapon[weaponNumber].StopShooting();
             anim.SetBool("Shoot", false);
@@ -496,8 +508,9 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus,
         }
     }
 
-    public void AddAmmos(WeaponType type, int qty)
+    public void AddAmmos(WeaponType type, int qty, AudioClip clip)
     {
+        PlayThisClip(clip);
         foreach (var wea in weapon)
         {
             if (wea.type == type)
@@ -509,45 +522,52 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus,
         DrawAmmo();
     }
 
-    public void AddBonus(BonusType type)
+    public void AddBonus(BonusType type, AudioClip clip)
     {
+        PlayThisClip(clip);
+
         if (type == BonusType.SpeedUp)
         {
+            BonusImages[0].SetActive(true);
             speed = 40;
             Invoke("ReturnSpeed", durationBonus);
         }
 
         if (type == BonusType.GravityDown)
         {
+            BonusImages[1].SetActive(true);
             grav = -20;
             Invoke("ReturnGrav", durationBonus);
         }
 
         if (type == BonusType.Magnetto)
         {
+            BonusImages[2].SetActive(true);
             magnettoBonus = true;
             Invoke("ReturnMagnetto", durationBonus);
         }
     }
 
-    public void AddCandy(Candy type)
+    public void AddCandy(Candy type, AudioClip clip)
     {
+        PlayThisClip(clip);
+
         switch (type)
         {
             case Candy.Candies:
-                Candies += 1;
-                break;
-            case Candy.CandyOnBowler:
-                Candies += 2;
-                break;
-            case Candy.CandyOnBucket:
                 Candies += 3;
                 break;
+            case Candy.CandyOnBowler:
+                Candies += 20;
+                break;
+            case Candy.CandyOnBucket:
+                Candies += 100;
+                break;
             case Candy.CandyOnDump:
-                Candies += 4;
+                Candies += 30;
                 break;
             case Candy.CandyOnPum:
-                Candies += 5;
+                Candies += 50;
                 break;
         }
         DrawCandy();
@@ -555,16 +575,19 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus,
 
     public void ReturnSpeed()
     {
+        BonusImages[0].SetActive(false);
         speed = 20;
     }
 
     public void ReturnGrav()
     {
+        BonusImages[1].SetActive(false);
         grav = -40;
     }
 
     public void ReturnMagnetto()
     {
+        BonusImages[2].SetActive(false);
         magnettoBonus = false;
     }
 

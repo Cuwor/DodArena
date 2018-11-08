@@ -93,7 +93,7 @@ public class DamageScript : MonoBehaviour
         {
             RaycastHit hit;
             Ray ray = new Ray(cam.transform.position + cam.transform.forward * 5, cam.transform.forward);
-            if (Physics.Raycast(ray, out hit, 150))
+            if (Physics.Raycast(ray, out hit, 150,~(1<<9)))
                 transform.LookAt(hit.point);
             particleSystem.Play();
         }

@@ -308,7 +308,7 @@ public class PlayeroController : MyTools, IAlive, IHaveWeapons
         }
     }
 
-    public void AddAmmos(WeaponType type, int qty)
+    public void AddAmmos(WeaponType type, int qty, AudioClip clip)
     {
         weapon.ammo += qty;
     }

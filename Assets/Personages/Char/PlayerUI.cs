@@ -13,11 +13,14 @@ public interface IPinChanged
 public enum Gametype
 {
     Wave,
-    Timer
+    Timer,
+    Test
 }
 public class PlayerUI : MyTools, IHit, IPinChanged
 {
     public Gametype type;
+
+    public Text[] statistics;
 
     public GameObject cam;
     public int minScale;
@@ -26,6 +29,8 @@ public class PlayerUI : MyTools, IHit, IPinChanged
     public float scale;
     public Text tipText;
     public Slider musickSlider;
+    public Text waveCount;
+    public Text time;
 
     private float crosslineScale;
     private bool lockMusicKey;
@@ -87,6 +92,10 @@ public class PlayerUI : MyTools, IHit, IPinChanged
 
     private void Start()
     {
+        foreach(var c in statistics)
+        {
+            c.gameObject.SetActive(false);
+        }
         pinPistolAnim = pinPistol.gameObject.GetComponent<Animator>();
         pinShotgunAnim = pinShotgun.gameObject.GetComponent<Animator>();
         crosslineScale = 1;
@@ -229,7 +238,6 @@ public class PlayerUI : MyTools, IHit, IPinChanged
             musickSlider.value += 0.5f * Time.deltaTime;
             if (musickSlider.value >= 1)
             {
-                Debug.Log("!");
                 if (musicEvent != null)
                 {
                     musickSlider.value = 0;
@@ -265,6 +273,23 @@ public class PlayerUI : MyTools, IHit, IPinChanged
             {
 
             }
+        }
+    }
+
+    public void GetResults()
+    {
+        statistics[0].text = "Счёт: " + gameObject.GetComponent<SinglePlayerController>().candyCount.text;
+        statistics[0].gameObject.SetActive(true);
+
+        if(type == Gametype.Wave)
+        {
+            statistics[1].text = "Количество волн: " + waveCount.text;
+            statistics[1].gameObject.SetActive(true);
+        }
+        else if (type == Gametype.Wave)
+        {
+            statistics[2].text = "Время: " + time.text;
+            statistics[2].gameObject.SetActive(true);
         }
     }
 }

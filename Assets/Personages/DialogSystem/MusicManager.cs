@@ -36,9 +36,8 @@ public class MusicManager : UsedObject
 
     public override void Use()
     {
-        Debug.Log("!");
         musicKey = true;
-        if(aud.isPlaying)
+        if(aud.isPlaying)//sad
         {
             aud.Stop();
         }

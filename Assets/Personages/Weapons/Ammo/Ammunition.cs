@@ -7,6 +7,10 @@ public class Ammunition : MonoBehaviour
 
     [Range(0, 10)]
     public float speed;
+    [Range(0, 10)]
+    public float defaultDistance;
+    [Header("Звук во время поднятия предмета")]
+    public AudioClip sound;
     public short count;
     public GameObject target;
     private Vector3 moveVector;
@@ -15,7 +19,7 @@ public class Ammunition : MonoBehaviour
     [HideInInspector]public bool MagnettoBonus = false;
     private float distance;
 
-    //Update is called once per frame//kkj
+    //Update is called once per frame//
     private void FixedUpdate()
     {
         transform.Rotate(transform.up, 2 * Time.deltaTime);
@@ -46,12 +50,12 @@ public class Ammunition : MonoBehaviour
             {
                 transform.position = target.transform.position;
                       Adder();
-                Destroy(gameObject);
+                
             }
         }
         else
         {
-            if (distance <=2)
+            if (distance <= defaultDistance)
             {
                 if (step < distance)
                 {
@@ -68,8 +72,13 @@ public class Ammunition : MonoBehaviour
         }
     }
 
+    private void TheEnd()
+    {
+        Destroy(gameObject);
+    }
+
     public virtual void Adder()
     {
-        haveWeapons.AddAmmos(weaponType,count);
+        haveWeapons.AddAmmos(weaponType,count, sound);
     }
 }

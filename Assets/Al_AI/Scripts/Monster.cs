@@ -11,6 +11,9 @@ namespace Al_AI.Scripts
         [Header("Здесь объект")]
         public GameObject target;
 
+        [Header("Конфеты")]
+        public GameObject[] Candies;
+
         public Scene WS; 
         public Scene TS;
         public GameObject radio;
@@ -297,7 +300,19 @@ namespace Al_AI.Scripts
             yield return new WaitForSeconds(2);
             int x = UnityEngine.Random.Range(0, ammos.Length);
             Instantiate(ammos[x], transform.position + Vector3.up*3, new Quaternion());
+
+            
+            foreach(var c in Candies)
+            {
+                Instantiate(c, randomDropPosition(), new Quaternion());
+            }
         }
+
+        private Vector3 randomDropPosition()
+        {
+            return new Vector3(transform.position.x + Random.Range(-5, 6), transform.position.y + 1, transform.position.z + Random.Range(-5, 6));
+        }
+
         protected virtual void OnTriggerEnter(Collider other)
         {
             if (alive)

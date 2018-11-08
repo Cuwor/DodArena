@@ -19,6 +19,6 @@ public class CandyCount : Ammunition
     
     public override void Adder()
     {
-        candy.AddCandy(candyType);    
+        candy.AddCandy(candyType, sound);    
     }
 }

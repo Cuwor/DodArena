@@ -9,6 +9,7 @@ public class Dialog : MonoBehaviour {
     public int activeNode;
     public bool Show;
     public SinglePlayerController player;
+    public Gametype type;
 
 	// Use this for initialization
 	void Start () {
@@ -40,17 +41,22 @@ public class Dialog : MonoBehaviour {
                             MusicManager MM = obj.GetComponent<MusicManager>();
                             MM.tracks = nodes[activeNode].answers[i].playList;
                             PlayerUI PUI = player.gameObject.GetComponent<PlayerUI>();
-                            PUI.musicEvent += MM.OnNextTreck;
-                            OnStart += PUI.WhatType;
-                            gameObject.GetComponent<RadioScriptController>().OnDead+=PUI.KakayaToFunxia;
-                            
-                           
-                            if (OnStart != null)
+                            if(!MusicManager.musicKey)
                             {
-                                Debug.Log("!!!");
-                                OnStart.Invoke();
+                                PUI.musicEvent += MM.OnNextTreck;
                             }
-                            
+                            MM.number = 0;
+                            if(type == Gametype.Wave)
+                            {
+                                OnStart += PUI.WhatType;
+                                gameObject.GetComponent<RadioScriptController>().OnDead += PUI.KakayaToFunxia;
+
+
+                                if (OnStart != null)
+                                {
+                                    OnStart.Invoke();
+                                }
+                            }
                         }
                         nodes[activeNode].answers[i].actions[j].Use();
 

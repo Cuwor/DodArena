@@ -394,7 +394,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1738794801491616}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -40.029537, y: -1.07020925e-17, z: -11.688556}
+  m_LocalPosition: {x: -40.938763, y: 2.1272774e-17, z: -40.488956}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4076580036184570}
@@ -703,6 +703,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  Candies:
+  - {fileID: 1938341569595342, guid: b0474d32426b74a83b65ab0b6514fef4, type: 2}
+  - {fileID: 1506957957790778, guid: fa280d25aeff74f7ebaab97bbe4b37cf, type: 2}
+  - {fileID: 1506957957790778, guid: fa280d25aeff74f7ebaab97bbe4b37cf, type: 2}
   radio: {fileID: 0}
   Alarm: 0
   NavAgent: {fileID: 0}

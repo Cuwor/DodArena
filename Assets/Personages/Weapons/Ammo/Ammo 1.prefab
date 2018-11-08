@@ -116,10 +116,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  defaultDistance: 4
+  sound: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
   count: 6
   target: {fileID: 0}
-  move: 0
   weaponType: 0
+  MagnettoBonus: 0
 --- !u!135 &135356132007942284
 SphereCollider:
   m_ObjectHideFlags: 1

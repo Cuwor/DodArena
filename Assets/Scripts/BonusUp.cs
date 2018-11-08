@@ -8,7 +8,10 @@ public class BonusUp : MonoBehaviour
 {
     [Range(0, 10)] public float speed;
     public GameObject target;
+    [Range(0, 10)]
+    public float defaultDistance;
     [Range(0, 100)] public float Duration;
+    public AudioClip sound;
     private Vector3 moveVector;
     public BonusType bonusType;
     public IHaveBonus haveBonus;
@@ -19,7 +22,6 @@ public class BonusUp : MonoBehaviour
     private void FixedUpdate()
     {
         transform.Rotate(transform.up, 2 * Time.deltaTime);
-        
         if (target != null)
         {
             MagnettoBonus = target.GetComponent<SinglePlayerController>().magnettoBonus;
@@ -47,13 +49,13 @@ public class BonusUp : MonoBehaviour
             {
                 target.GetComponent<SinglePlayerController>().durationBonus = Duration;
                 transform.position = target.transform.position;
-                haveBonus.AddBonus(bonusType);
+                haveBonus.AddBonus(bonusType, sound);
                 Destroy(gameObject);
             }
         }
         else
         {
-            if (distance <= 2)
+            if (distance <= defaultDistance)
             {
                 if (step < distance)
                 {
@@ -63,7 +65,7 @@ public class BonusUp : MonoBehaviour
                 {
                     target.GetComponent<SinglePlayerController>().durationBonus = Duration;
                     transform.position = target.transform.position;
-                    haveBonus.AddBonus(bonusType);
+                    haveBonus.AddBonus(bonusType, sound);
                     Destroy(gameObject);
                 }
             }
