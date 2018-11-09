@@ -48,10 +48,10 @@ public class RadioScriptController : MyTools, IAlive
 	
 	private void OnTriggerEnter(Collider other)
 	{
-		Projectile proj;
+		AttackArea proj;
 		if(MyGetComponent(out proj, other.gameObject))
 		{
-			GetDamage(proj.damage);
+			GetDamage(proj.Damage);
 		}
 	}
 	

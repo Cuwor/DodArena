@@ -4,7 +4,7 @@ using UnityEngine;
 public delegate void StartHandler();
 public class Dialog : MonoBehaviour {
 
-    public event StartHandler OnStart;
+    public static event StartHandler OnStart;
     public DialogNode[] nodes;
     public int activeNode;
     public bool Show;
@@ -46,9 +46,8 @@ public class Dialog : MonoBehaviour {
                                 PUI.musicEvent += MM.OnNextTreck;
                             }
                             MM.number = 0;
-                            if(type == Gametype.Wave)
+                            if(type != Gametype.Test)
                             {
-                                Debug.Log("!!");
                                 OnStart += PUI.WhatType;
                                 gameObject.GetComponent<RadioScriptController>().OnDead += PUI.KakayaToFunxia;
 

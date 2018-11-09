@@ -6,19 +6,20 @@ namespace Al_AI.Scripts
 {
     public class Spavn : MonoBehaviour
     {
-        public float min = -2;
-        public float max = 3;
-        public float cooldown = 5;
+        public float radius = 3;
+        public float cooldown = 10;
         public GameObject enemy;
 
         public short maximum = 10;
 
         public List<GameObject> gameObjects = new List<GameObject>();
 
+        public ServivalManagerScript SMS;
+
         // Use this for initialization
         private void Start()
         {
-            State();
+            Invoke("Start2",5f);
         }
 
         // Update is called once per frame
@@ -27,17 +28,23 @@ namespace Al_AI.Scripts
             
         }
 
+        private void Start2()
+        {
+            if(SMS==null)
+                State();
+        }
+        
 
         private Vector3 GetRandomPositionForEidolons()
         {
             float x, z;
-            x = UnityEngine.Random.Range(min, max);
-            z = UnityEngine.Random.Range(min, max);
+            x = UnityEngine.Random.Range(-radius, radius);
+            z = UnityEngine.Random.Range(-radius, radius);
 
             return transform.position + new Vector3(x, 0, z);
         }
 
-        private void State()
+        public void State()
         {
             if (gameObjects.Count < maximum)
             {

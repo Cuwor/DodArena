@@ -92,15 +92,25 @@ public class PlayerUI : MyTools, IHit, IPinChanged
 
     public event NextMusicHandler musicEvent;
 
+   
     public void KakayaToFunxia()
     {
+        GetComponent<SinglePlayerController>().Death();
     }
+
+    public void DrawWave(int number)
+    {
+        Debug.Log("&&&");
+        displayMode.text = "волна " + number.ToString();
+    }
+
 
 
     public void WhatType()
     {
         if (type == Gametype.Wave)
         {
+            
         }
     }
 

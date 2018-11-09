@@ -2,12 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public delegate void OnWaveHandler(int number);
+
 public class WaveManager : MonoBehaviour
 {
     public List<GameObject> Spawners;
     public List<GameObject> enemies;
     public Dialog radio;
     private bool keyForFunction;
+    public PlayerUI PUI;
+    public event OnWaveHandler NewWave;
+    
+    private int savedWave;
 
     private void Update()
     {
@@ -25,8 +32,11 @@ public class WaveManager : MonoBehaviour
 
     private void Start()
     {
+        
+        NewWave += PUI.DrawWave;
         keyForFunction = false;
-        radio.OnStart += FunctionForKey;
+        Dialog.OnStart += FunctionForKey;
+        savedWave = 0;
     }
 
     public void Spawn()
@@ -60,6 +70,11 @@ public class WaveManager : MonoBehaviour
         if (key)
         {
             enemies = new List<GameObject>();
+            savedWave++;
+            if (NewWave != null)
+            {
+                NewWave.Invoke(savedWave);
+            }
             Spawn();
         }
     }
