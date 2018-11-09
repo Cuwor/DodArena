@@ -61,6 +61,7 @@ public class PlayerUI : MyTools, IHit, IPinChanged
     public int stat;
 
     public Text[] statistics;
+    public GameObject ReturnButton;
 
     public bool SurvaivalKey;
     public Text tipText;
@@ -277,6 +278,7 @@ public class PlayerUI : MyTools, IHit, IPinChanged
     {
         statistics[0].text = "Счёт: " + gameObject.GetComponent<SinglePlayerController>().candyCount.text;
         statistics[0].gameObject.SetActive(true);
+        ReturnButton.SetActive(true);
 
         if (type == Gametype.Wave)
         {
@@ -288,5 +290,7 @@ public class PlayerUI : MyTools, IHit, IPinChanged
             statistics[2].text = "Время: " + displayMode.text;
             statistics[2].gameObject.SetActive(true);
         }
+
+        Cursor.lockState = CursorLockMode.None;
     }
 }

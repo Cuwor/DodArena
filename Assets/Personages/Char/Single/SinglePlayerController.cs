@@ -170,7 +170,7 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus,
         {
             c.SetActive(false);
         }
-        DrawAmmo();
+        Invoke("DrawAmmo",1f);
     }
 
     protected virtual void FixedUpdate()
