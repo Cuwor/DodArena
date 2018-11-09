@@ -72,17 +72,17 @@ namespace Al_AI.Scripts
             {
 
                 distanceTP = value;
-                 if (SceneManager.GetActiveScene().buildIndex == WS.buildIndex && MusicManager.musicKey) // WaveMode is on && radio is on
+                if (SceneManager.GetActiveScene().buildIndex == WS.buildIndex && MusicManager.musicKey) // WaveMode is on && radio is on
                 {
-                  
+
                     if (target != null)
                     {
-                       
-                      
+
+
                         if (Alarm)
                         {
                             FindPlayers();
-                           
+
                             Alarm = false;
                         }
                         else if (distanceTP <= RadiusView && distanceTP > attackDistance)
@@ -94,23 +94,23 @@ namespace Al_AI.Scripts
                             State = EnemyState.Attack;
                             NavAgent.enabled = false;
                         }
-                        else 
+                        else
                         {
-                            
-                            
+
+
                             {
                                 if (radio != null)
                                 {
                                     target = radio;
                                     State = EnemyState.Walk;
                                 }
-                                
+
                             }
                         }
                     }
                     else
                     {
-                       
+
                         FindPlayers();
                     }
                 }
@@ -123,7 +123,7 @@ namespace Al_AI.Scripts
                         {
                             State = EnemyState.Walk;
                         }
-                        else if (distanceTP <= attackDistance) 
+                        else if (distanceTP <= attackDistance)
                         {
                             State = EnemyState.Attack;
                             NavAgent.enabled = false;
@@ -139,11 +139,11 @@ namespace Al_AI.Scripts
 
                     if (!boss && slameType != SlameType.Senior && (State == EnemyState.Stay || State == EnemyState.Spec) && unionTarget != null)
                     {
-                        
+
                         distanceUT = Vector3.Distance(unionTarget.transform.position, transform.position);
-                        
+
                     }
-                    
+
                     if (distanceTP <= RadiusView && distanceTP > attackDistance)
                     {
                         State = EnemyState.Walk;
@@ -254,9 +254,10 @@ namespace Al_AI.Scripts
         {
             if (alive)
             {
-                
-                DistanceTP = Vector3.Distance(target.transform.position, transform.position);
-               
+                if (target != null)
+                    DistanceTP = Vector3.Distance(target.transform.position, transform.position);
+                else
+                    FindPlayers();
             }
         }
 
@@ -270,10 +271,10 @@ namespace Al_AI.Scripts
                 eidolons[i] = Instantiate(Eidolon, GetRandomPositionForEidolons(), Quaternion.identity);
 
                 Slice_Script_Controller SSC;
-                
+
                 if (MyGetComponent(out SSC, eidolons[i]))
                 {
-                    
+
                     brothers.Add(SSC);
                     SSC.radio = radio;
                     SSC.Initiolize();

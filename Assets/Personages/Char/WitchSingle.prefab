@@ -4584,7 +4584,7 @@ MonoBehaviour:
   death: 0
   audioSource: {fileID: 82062524618696024}
   audioSourceRun: {fileID: 82370272660194584}
-  damageClip: {fileID: 8300000, guid: 6fb4181b76d8e6448b957f6dbb68681c, type: 3}
+  damageClip: {fileID: 8300000, guid: f6471dd06a691bf4d806d83421ceea20, type: 3}
   deadClip: {fileID: 8300000, guid: 3f0a41684178ddd439a707796f4409ec, type: 3}
   run: {fileID: 8300000, guid: 6f6f05fce0a0ff543bc038de0c42ef15, type: 3}
 --- !u!114 &114080814713744974
