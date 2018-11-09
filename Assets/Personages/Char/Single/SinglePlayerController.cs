@@ -228,6 +228,7 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus,
     public void Death()
     {
         playerUI.deadPanel.SetTrigger("Death");
+        playerUI.displayMode.gameObject.SetActive(false);
         PlayThisClip(deadClip);
         death = true;
         Invoke("Statisticks", 8f);

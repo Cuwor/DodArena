@@ -29,8 +29,8 @@ public class PlayerUI : MyTools, IHit, IPinChanged
     public float scale;
     public Text tipText;
     public Slider musickSlider;
-    public Text waveCount;
-    public Text time;
+    public Text displayMode;
+    public int stat;
 
     private float crosslineScale;
     private bool lockMusicKey;
@@ -64,7 +64,14 @@ public class PlayerUI : MyTools, IHit, IPinChanged
 
     public Animator deadPanel;
 
-    public void KakayaToFunxia(){}
+    public bool SurvaivalKey;
+
+    public void KakayaToFunxia()
+    {
+        
+    }
+    
+    
     public void WhatType()
     {
         if (type == Gametype.Wave)
@@ -126,6 +133,18 @@ public class PlayerUI : MyTools, IHit, IPinChanged
                 NextMusic();
             }
         }
+
+        if (SurvaivalKey)
+        {
+            StartCoroutine(Timer());
+        }
+    }
+
+    public IEnumerator Timer()
+    {
+        yield return new WaitForSeconds(1);
+        stat++;
+        displayMode.text = stat.ToString();
     }
 
     public void ActiveDamagePanel()
@@ -283,12 +302,12 @@ public class PlayerUI : MyTools, IHit, IPinChanged
 
         if(type == Gametype.Wave)
         {
-            statistics[1].text = "Количество волн: " + waveCount.text;
+            statistics[1].text = "Количество волн: " + displayMode.text;
             statistics[1].gameObject.SetActive(true);
         }
         else if (type == Gametype.Wave)
         {
-            statistics[2].text = "Время: " + time.text;
+            statistics[2].text = "Время: " + displayMode.text;
             statistics[2].gameObject.SetActive(true);
         }
     }

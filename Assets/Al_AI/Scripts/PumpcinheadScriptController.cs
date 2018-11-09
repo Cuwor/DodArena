@@ -14,8 +14,16 @@ namespace Al_AI.Scripts
 		void Start()
 		{
 			Initiolize();
-            
-            NavAgent.enabled = false;
+			if (OnScareCrow)
+			{
+				NavAgent.enabled = false;
+			}
+			else
+			{
+				_anim.SetTrigger("Go");
+				transform.rotation = new Quaternion(0,0,0,0);
+				transform.Rotate(-90,0,0);
+			}
 		}
 		public virtual void Initiolize()
 		{
