@@ -610,13 +610,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b798fec46f3174399b7408aa56550fe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bonusType: 0
+  defaultDistance: 5
+  Duration: 10
+  MagnettoBonus: 0
+  sound: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
   speed: 1.15
   target: {fileID: 0}
-  defaultDistance: 3.7
-  Duration: 10
-  sound: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
-  bonusType: 0
-  MagnettoBonus: 0
 --- !u!135 &135147404796101336
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -627,5 +627,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 15
+  m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}

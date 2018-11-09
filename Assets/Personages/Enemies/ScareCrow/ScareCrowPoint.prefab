@@ -4004,7 +4004,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1468848214044174}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -36, y: -24.28639, z: 18.35}
+  m_LocalPosition: {x: 6.4, y: -24.28639, z: 10.6}
   m_LocalScale: {x: 0.83936, y: 0.83936, z: 0.83936}
   m_Children:
   - {fileID: 4211400895966382}
@@ -5235,6 +5235,15 @@ MonoBehaviour:
   - {fileID: 1610908672447604, guid: 50595537b1b6a4c519efeb290216c363, type: 2}
   - {fileID: 1506957957790778, guid: fa280d25aeff74f7ebaab97bbe4b37cf, type: 2}
   - {fileID: 1506957957790778, guid: fa280d25aeff74f7ebaab97bbe4b37cf, type: 2}
+  Bonuses:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   radio: {fileID: 0}
   Alarm: 0
   NavAgent: {fileID: 0}
@@ -5267,6 +5276,15 @@ MonoBehaviour:
   target: {fileID: 0}
   Candies:
   - {fileID: 1087238629475326, guid: 2277aa6c501484c11bf3165456c15b3c, type: 2}
+  Bonuses:
+  - {fileID: 1995474979167030, guid: 4cc8d813255bd5848b72f40859a3f136, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 1869317017194768, guid: fa42d17efaa795d4194e2cc03db2e545, type: 2}
+  - {fileID: 1869317017194768, guid: fa42d17efaa795d4194e2cc03db2e545, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 1921422921451184, guid: 8344a9e2317431340ab195fc5af2058b, type: 2}
   radio: {fileID: 0}
   Alarm: 0
   NavAgent: {fileID: 0}

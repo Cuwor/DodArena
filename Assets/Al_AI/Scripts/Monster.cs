@@ -13,6 +13,8 @@ namespace Al_AI.Scripts
 
         [Header("Конфеты")]
         public GameObject[] Candies;
+        [Header("Бонусы")]
+        public GameObject[] Bonuses;
 
         public Scene WS; 
         public Scene TS;
@@ -328,9 +330,12 @@ namespace Al_AI.Scripts
             yield return new WaitForSeconds(2);
             int x = UnityEngine.Random.Range(0, ammos.Length);
             Instantiate(ammos[x], transform.position + Vector3.up*3, new Quaternion());
-
-            
-            foreach(var c in Candies)
+            x = UnityEngine.Random.Range(0, Bonuses.Length);
+            if(Bonuses[x] != null)
+            {
+                Instantiate(Bonuses[x], transform.position + Vector3.up * 3, new Quaternion());
+            }
+            foreach (var c in Candies)
             {
                 Instantiate(c, randomDropPosition(), new Quaternion());
             }

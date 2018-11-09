@@ -1538,7 +1538,16 @@ MonoBehaviour:
   - {fileID: 1506957957790778, guid: fa280d25aeff74f7ebaab97bbe4b37cf, type: 2}
   - {fileID: 1506957957790778, guid: fa280d25aeff74f7ebaab97bbe4b37cf, type: 2}
   - {fileID: 1938341569595342, guid: b0474d32426b74a83b65ab0b6514fef4, type: 2}
-  radio: {fileID: 0}
+  Bonuses:
+  - {fileID: 1921422921451184, guid: 8344a9e2317431340ab195fc5af2058b, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 1869317017194768, guid: fa42d17efaa795d4194e2cc03db2e545, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 1921422921451184, guid: 8344a9e2317431340ab195fc5af2058b, type: 2}
+  - {fileID: 0}
+  radio: {fileID: 1995474979167030, guid: 4cc8d813255bd5848b72f40859a3f136, type: 2}
   Alarm: 0
   NavAgent: {fileID: 0}
   RadiusAttack: 5

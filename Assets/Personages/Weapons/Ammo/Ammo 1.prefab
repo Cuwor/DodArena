@@ -115,13 +115,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c1c147369418c34f9527b56181ae124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  defaultDistance: 4
-  sound: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
   count: 6
+  defaultDistance: 5
+  MagnettoBonus: 0
+  sound: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
+  speed: 1
   target: {fileID: 0}
   weaponType: 0
-  MagnettoBonus: 0
 --- !u!135 &135356132007942284
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -132,5 +132,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 7
+  m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}

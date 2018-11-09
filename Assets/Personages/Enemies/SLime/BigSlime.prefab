@@ -729,7 +729,16 @@ MonoBehaviour:
   target: {fileID: 0}
   Candies:
   - {fileID: 1206864944658082, guid: c3e6683f99885490697d3307b8f739f1, type: 2}
-  radio: {fileID: 0}
+  Bonuses:
+  - {fileID: 1995474979167030, guid: 4cc8d813255bd5848b72f40859a3f136, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 1995474979167030, guid: 4cc8d813255bd5848b72f40859a3f136, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 1921422921451184, guid: 8344a9e2317431340ab195fc5af2058b, type: 2}
+  - {fileID: 0}
+  radio: {fileID: 1869317017194768, guid: fa42d17efaa795d4194e2cc03db2e545, type: 2}
   Alarm: 0
   NavAgent: {fileID: 0}
   RadiusAttack: 7

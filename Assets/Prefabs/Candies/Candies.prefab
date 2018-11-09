@@ -300,13 +300,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb35861748b09433eb84a22263132753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  defaultDistance: 4
-  sound: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
   count: 3
+  defaultDistance: 5
+  MagnettoBonus: 0
+  sound: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
+  speed: 1
   target: {fileID: 0}
   weaponType: 0
-  MagnettoBonus: 0
   candyType: 0
 --- !u!135 &135112440926654926
 SphereCollider:

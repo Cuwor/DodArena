@@ -97,13 +97,10 @@ public class DamageScript : MonoBehaviour
             if (Physics.Raycast(ray, out hit, 1000, mask))
             {
                 transform.LookAt(hit.point);
-                Debug.Log("LookAt");
-
             }
             else
             {
                 transform.localRotation = new Quaternion();
-                Debug.Log("else");
             }
             particleSystem.Play();
         }
