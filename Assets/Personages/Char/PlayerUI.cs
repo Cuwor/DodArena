@@ -1,6 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public delegate void NextMusicHandler();
@@ -16,79 +16,59 @@ public enum Gametype
     Timer,
     Test
 }
+
 public class PlayerUI : MyTools, IHit, IPinChanged
 {
-    public Gametype type;
-
-    public Text[] statistics;
-
     public GameObject cam;
-    public int minScale;
-    public int maxScale;
-    [HideInInspector]
-    public float scale;
-    public Text tipText;
-    public Slider musickSlider;
-    public Text displayMode;
-    public int stat;
-
-    private float crosslineScale;
-    private bool lockMusicKey;
-
-    [Tooltip("Слайдер для здоровья")]
-    public Slider health;
 
     public GameObject crossline;
 
+    private float crosslineScale;
+
     public Image damagePanel;
 
-    public GameObject pinShotgun;
-    [HideInInspector]
-    public Animator pinShotgunAnim;
-    public Image[] linesShotgun;
-
-    public GameObject pinPistol;
-    [HideInInspector]
-    public Animator pinPistolAnim;
-    public Image[] linesAutogun;
-
-    public Animator pinHit;
-    [HideInInspector]
-    public SinglePlayerController pc;
-    public event NextMusicHandler musicEvent;
-
-    private Animator musicAnim;
-    [HideInInspector]
-    public Animator damagePanelAnim;
-    private float hit = 0;
+    [HideInInspector] public Animator damagePanelAnim;
 
     public Animator deadPanel;
+    public Text displayMode;
+
+    [Tooltip("Слайдер для здоровья")] public Slider health;
+
+    private float hit;
+    public Image[] linesAutogun;
+    public Image[] linesShotgun;
+    private bool lockMusicKey;
+    public int maxScale;
+    public int minScale;
+
+    private Animator musicAnim;
+    public Slider musickSlider;
+
+    [HideInInspector] public SinglePlayerController pc;
+
+    public Animator pinHit;
+
+    public GameObject pinPistol;
+
+    [HideInInspector] public Animator pinPistolAnim;
+
+    public GameObject pinShotgun;
+
+    [HideInInspector] public Animator pinShotgunAnim;
+
+    [HideInInspector] public float scale;
+
+    public int stat;
+
+    public Text[] statistics;
 
     public bool SurvaivalKey;
+    public Text tipText;
+    public Gametype type;
 
-    public void KakayaToFunxia()
-    {
-        
-    }
-    
-    
-    public void WhatType()
-    {
-        if (type == Gametype.Wave)
-        {
-            
-        }
-        else
-        {
-            
-        }
-    }
     public float Hit1
     {
-        get
-        {
-            return hit;
-        }
+        get { return hit; }
 
         set
         {
@@ -97,18 +77,42 @@ public class PlayerUI : MyTools, IHit, IPinChanged
         }
     }
 
+    public void Hit()
+    {
+        Hit1++;
+    }
+
+    public void PinChanged(bool pin)
+    {
+        if (pin)
+            if (pinShotgun.activeSelf)
+            {
+            }
+    }
+
+    public event NextMusicHandler musicEvent;
+
+    public void KakayaToFunxia()
+    {
+    }
+
+
+    public void WhatType()
+    {
+        if (type == Gametype.Wave)
+        {
+        }
+    }
+
     private void Start()
     {
-        foreach(var c in statistics)
-        {
-            c.gameObject.SetActive(false);
-        }
+        foreach (var c in statistics) c.gameObject.SetActive(false);
         pinPistolAnim = pinPistol.gameObject.GetComponent<Animator>();
         pinShotgunAnim = pinShotgun.gameObject.GetComponent<Animator>();
         crosslineScale = 1;
         tipText.text = string.Empty;
         lockMusicKey = false;
-        musicAnim = musickSlider.gameObject.GetComponent<Animator>(); 
+        musicAnim = musickSlider.gameObject.GetComponent<Animator>();
         damagePanelAnim = damagePanel.GetComponent<Animator>();
         musicAnim.SetBool("On", false);
         damagePanelAnim.SetFloat("LowToNormal", 1);
@@ -124,20 +128,11 @@ public class PlayerUI : MyTools, IHit, IPinChanged
         //}
         if (!pc.death)
         {
-            if (Hit1 > 0)
-            {
-                Hit1 -= 0.1f;
-            }
-            if (!lockMusicKey)
-            {
-                NextMusic();
-            }
+            if (Hit1 > 0) Hit1 -= 0.1f;
+            if (!lockMusicKey) NextMusic();
         }
 
-        if (SurvaivalKey)
-        {
-            StartCoroutine(Timer());
-        }
+        if (SurvaivalKey) StartCoroutine(Timer());
     }
 
     public IEnumerator Timer()
@@ -178,29 +173,22 @@ public class PlayerUI : MyTools, IHit, IPinChanged
     {
         RaycastHit hit;
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 100))
-        {
-            crosslineScale = Mathf.Clamp(Vector3.Distance(cam.transform.position, hit.transform.position) / 10, minScale, maxScale);
-        }
+            crosslineScale = Mathf.Clamp(Vector3.Distance(cam.transform.position, hit.transform.position) / 10,
+                minScale, maxScale);
         else
-        {
             crosslineScale = 5;
-        }
     }
 
     private IEnumerator ChangeScale()
     {
-        for (int i = 0; i < 100; i++)
+        for (var i = 0; i < 100; i++)
         {
-            float s = Mathf.Sign(scale - crosslineScale);
-            float step = scale + s * 0.005f;
-            if ((s > 0 && step < crosslineScale) || (s > 0 && step < crosslineScale))
-            {
+            var s = Mathf.Sign(scale - crosslineScale);
+            var step = scale + s * 0.005f;
+            if (s > 0 && step < crosslineScale || s > 0 && step < crosslineScale)
                 scale = step;
-            }
             else
-            {
                 scale = crosslineScale;
-            }
             crossline.transform.localScale = new Vector3(scale, scale, 0);
             yield return new WaitForSeconds(0.1f);
         }
@@ -208,19 +196,14 @@ public class PlayerUI : MyTools, IHit, IPinChanged
 
     private void OnTriggerEnter(Collider other)
     {
-
         UsedObject obj;
-        if (MyGetComponent(out obj, other.gameObject))
-        {
-
-            tipText.text = obj.tip;
-        }
+        if (MyGetComponent(out obj, other.gameObject)) tipText.text = obj.tip;
     }
+
     private void OnTriggerStay(Collider other)
     {
         UsedObject obj;
         if (MyGetComponent(out obj, other.gameObject))
-        {
             if (Input.GetKeyDown(KeyCode.F) && !pc.inDialog)
             {
                 Dialog dialog;
@@ -230,18 +213,16 @@ public class PlayerUI : MyTools, IHit, IPinChanged
                     dialog.player = pc;
                     pc.inDialog = true;
                 }
+
                 obj.Use();
                 CleanTip();
             }
-        }
     }
+
     private void OnTriggerExit(Collider other)
     {
         UsedObject obj;
-        if (MyGetComponent(out obj, other.gameObject))
-        {
-            CleanTip();
-        }
+        if (MyGetComponent(out obj, other.gameObject)) CleanTip();
     }
 
     private void CleanTip()
@@ -256,7 +237,6 @@ public class PlayerUI : MyTools, IHit, IPinChanged
             musicAnim.SetBool("On", true);
             musickSlider.value += 0.5f * Time.deltaTime;
             if (musickSlider.value >= 1)
-            {
                 if (musicEvent != null)
                 {
                     musickSlider.value = 0;
@@ -264,7 +244,6 @@ public class PlayerUI : MyTools, IHit, IPinChanged
                     lockMusicKey = true;
                     Invoke("BackFalseLock", 2);
                 }
-            }
         }
 
         if (Input.GetKeyUp(KeyCode.C))
@@ -279,20 +258,9 @@ public class PlayerUI : MyTools, IHit, IPinChanged
         lockMusicKey = false;
     }
 
-    public void Hit()
+    public void BackToMainMenu()
     {
-        Hit1++;
-    }
-
-    public void PinChanged(bool pin)
-    {
-        if (pin)
-        {
-            if (pinShotgun.activeSelf)
-            {
-
-            }
-        }
+        SceneManager.LoadSceneAsync(0);
     }
 
     public void GetResults()
@@ -300,7 +268,7 @@ public class PlayerUI : MyTools, IHit, IPinChanged
         statistics[0].text = "Счёт: " + gameObject.GetComponent<SinglePlayerController>().candyCount.text;
         statistics[0].gameObject.SetActive(true);
 
-        if(type == Gametype.Wave)
+        if (type == Gametype.Wave)
         {
             statistics[1].text = "Количество волн: " + displayMode.text;
             statistics[1].gameObject.SetActive(true);
