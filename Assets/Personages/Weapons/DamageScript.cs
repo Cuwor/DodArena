@@ -92,9 +92,19 @@ public class DamageScript : MonoBehaviour
         if (start)
         {
             RaycastHit hit;
-            Ray ray = new Ray(cam.transform.position + cam.transform.forward * 5, cam.transform.forward);
-            if (Physics.Raycast(ray, out hit, 150,~(1<<9)))
+            Ray ray = new Ray(cam.transform.position, cam.transform.forward);
+            var mask = (1 << 10);
+            if (Physics.Raycast(ray, out hit, 1000, mask))
+            {
                 transform.LookAt(hit.point);
+                Debug.Log("LookAt");
+
+            }
+            else
+            {
+                transform.localRotation = new Quaternion();
+                Debug.Log("else");
+            }
             particleSystem.Play();
         }
         else

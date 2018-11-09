@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4158734029705538}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bone079
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4436643510534204}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bone073
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4456622432782140}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bone089
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 23092622914075080}
   - component: {fileID: 65745758827897566}
   - component: {fileID: 114427978753713478}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Attack2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,7 +83,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4927891386758140}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bone076
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4089082832561506}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bone085
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4534500626161624}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bone081
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4969484919114820}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bone075
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4123101119787114}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bone080
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4988829489656580}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bone087
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4117990155662988}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bone078
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,7 +188,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4433480997253226}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bone082
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +203,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4664331913025824}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bone077
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,7 +218,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4236600870385738}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bone083
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 195500089093048104}
   - component: {fileID: 114942557494784748}
   - component: {fileID: 143958082082032770}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EidolonMini
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,7 +252,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4252218641248808}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bone086
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,7 +267,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4777809893543182}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bone074
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 23135057297552364}
   - component: {fileID: 65586613378710072}
   - component: {fileID: 114394748068425412}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Attack1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -301,7 +301,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4095297849399848}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bone084
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -318,7 +318,7 @@ GameObject:
   - component: {fileID: 4606548634626846}
   - component: {fileID: 137931608618321502}
   - component: {fileID: 64057778887586622}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SLame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -333,7 +333,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4218213945495064}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bone088
   m_TagString: Untagged
   m_Icon: {fileID: 0}
