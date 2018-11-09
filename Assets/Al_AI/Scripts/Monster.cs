@@ -65,14 +65,21 @@ namespace Al_AI.Scripts
 
             set
             {
-                if (SceneManager.GetActiveScene().name == WS.name && MusicManager.musicKey) // WaveMode is on && radio is on
+                distanceTP = value;
+                if (SceneManager.GetActiveScene().buildIndex == WS.buildIndex && MusicManager.musicKey)// WaveMode is on && radio is on
                 {
                     
                     if (target != null)
                     {
                        
-                        distanceTP = Vector3.Distance(target.transform.position, transform.position);
-                        if (distanceTP <= RadiusView && distanceTP > attackDistance)
+                        
+                        if (Alarm)
+                        {
+                            FindPlayers();
+                            Debug.Log(target.name);
+                            Alarm = false;
+                        }
+                        else if (distanceTP <= RadiusView && distanceTP > attackDistance)
                         {
                             State = EnemyState.Walk;
                         }
@@ -83,15 +90,14 @@ namespace Al_AI.Scripts
                         }
                         else
                         {
-                            if (Alarm)
-                            {
-                                FindPlayers();
-                                Alarm = false;
-                            }
-                            else
-                            {
-                                target = radio;
-                            }
+                            
+                          
+                                if (radio != null)
+                                {
+                                    target = radio;
+                                    State = EnemyState.Walk;
+                                }
+                            
                         }
                     }
                     else
@@ -99,7 +105,7 @@ namespace Al_AI.Scripts
                         FindPlayers();
                     }
                 }
-                else if (SceneManager.GetActiveScene().name == TS.name && MusicManager.musicKey) // TimerMode is on && radio is on
+                else if (SceneManager.GetActiveScene().buildIndex == TS.buildIndex && MusicManager.musicKey) // TimerMode is on && radio is on
                 {
                     if (target != null)
                     {
@@ -155,6 +161,26 @@ namespace Al_AI.Scripts
             set
             {
                 state = value;
+                switch (State)
+                {
+                    case EnemyState.Stay:
+                        if (!wait)
+                        {
+                            wait = true;  
+                            CaseMethod(false, UnityEngine.Random.Range(-1, 1.1f), -1, 0, target.transform.position);
+                            StartCoroutine(GetRandomStayState());
+                        }
+                        break;
+
+                    case EnemyState.Walk:
+                        CaseMethod(true, 0, 1, 0, target.transform.position);
+                        break;
+
+                    case EnemyState.Attack:
+                        GetAttackDistance();
+                        CaseMethod(false, 0, 0, attackType, target.transform.position);
+                        break;
+                }
             }
         }
 
@@ -162,6 +188,7 @@ namespace Al_AI.Scripts
 
         public virtual void Initiolize()
         {
+            radio = GameObject.FindGameObjectWithTag("Radio");
             WS = SceneManager.GetSceneByBuildIndex(3);
             TS = SceneManager.GetSceneByBuildIndex(4);
             FindPlayers();
@@ -243,7 +270,8 @@ namespace Al_AI.Scripts
         {
             AttackAreas[trigger].SetActive(true);
         }
-        private void StopAttack()
+
+        protected void StopAttack()
         {
             foreach (var trigger in AttackAreas)
             {
@@ -277,7 +305,7 @@ namespace Al_AI.Scripts
             StartCoroutine(Drop());
             StartCoroutine(Destroeded());
         }
-        protected IEnumerator Destroeded()
+        protected virtual IEnumerator Destroeded()
         {
             yield return new WaitForSeconds(2);
             Destroy(gameObject);

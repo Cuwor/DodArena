@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
@@ -13,16 +14,42 @@ namespace Al_AI.Scripts
 		public bool key3 = false;
 		public int phase = 1;
 		
+		
 
 		// Use this for initialization
 		void Start () 
 		{
-			Initiolize();
+
 			NavAgent = nav;
-            alive = false;
+			Initiolize();
+			alive = false;
 			
 		}
 
+		public override void Initiolize()
+		{
+			radio = GameObject.FindGameObjectWithTag("Radio");
+			WS = SceneManager.GetSceneByBuildIndex(3);
+			TS = SceneManager.GetSceneByBuildIndex(4);
+			FindPlayers();
+			gameObject.AddComponent<Rigidbody>().isKinematic = true;
+			_anim = GetComponent<Animator>();
+			maxHP = Health;
+			alive = true;
+			wait = false;
+			for (int i = 0; i < AttackAreas.Length; i++)
+			{
+				AttackArea proj;
+				if (MyGetComponent(out proj, AttackAreas[i]))
+				{
+					proj.Damage = AttackForce;
+				}
+			}
+			StopAttack();
+			State = EnemyState.Stay;
+			GetAttackDistance();
+			size = transform.localScale.x;
+		}
 		public override float Health
 		{
 			get { return HP; }
@@ -61,11 +88,18 @@ namespace Al_AI.Scripts
 			}
 		
 		}
+
+		protected override IEnumerator Destroeded()
+		{
+			yield return new WaitForSeconds(2);
+			Destroy(transform.parent.gameObject);
+		}
 	
 		public override void GetDamage(float value)
 		{
             if(Health > 0)
             {
+	            Alarm = true;
                 alive = false;
                 NavAgent.enabled = false;
                 Health -= value;
@@ -84,27 +118,6 @@ namespace Al_AI.Scripts
                 
 					DistanceTP = Vector3.Distance(target.transform.position, transform.position);
                
-				}
-
-				switch (State)
-				{
-					case EnemyState.Stay:
-						if (!wait)
-						{
-							wait = true;  
-							CaseMethod(false, UnityEngine.Random.Range(-1, 1.1f), -1, 0, target.transform.position);
-							StartCoroutine(GetRandomStayState());
-						}
-						break;
-
-					case EnemyState.Walk:
-						CaseMethod(true, 0, 1, 0, target.transform.position);
-						break;
-
-					case EnemyState.Attack:
-						GetAttackDistance();
-						CaseMethod(false, 0, 0, attackType, target.transform.position);
-						break;
 				}
 			}
 		}

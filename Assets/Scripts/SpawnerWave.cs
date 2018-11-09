@@ -30,11 +30,13 @@ public class SpawnerWave : MonoBehaviour
     }
     public void SpawnEnemy(GameObject enemy, Vector3 pos)
     {
+        
         if (enemy != null)
         {
             var temp = Instantiate(enemy, pos, Quaternion.identity);
             WaveManager.AddEnemy(temp);
-            temp.GetComponent<Monster>().radio = WaveManager.radio.gameObject;
+
+            //temp.GetComponent<Monster>().radio = WaveManager.radio.gameObject;
         }
         key = false;
     }

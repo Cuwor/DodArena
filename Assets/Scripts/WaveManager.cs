@@ -14,6 +14,7 @@ public class WaveManager : MonoBehaviour
         if (keyForFunction)
         {
             StartCoroutine(Waiterforseconds());
+
         }
     }
 
@@ -26,12 +27,10 @@ public class WaveManager : MonoBehaviour
     {
         keyForFunction = false;
         radio.OnStart += FunctionForKey;
-        
     }
 
     public void Spawn()
     {
-        
         foreach (var spawner in Spawners)
         {
             spawner.GetComponent<SpawnerWave>().key = true;
@@ -45,7 +44,9 @@ public class WaveManager : MonoBehaviour
 
     private IEnumerator Waiterforseconds()
     {
+        keyForFunction = false;
         yield return new WaitForSeconds(5f);
+        keyForFunction = true;
         bool key = true;
         foreach (var n in enemies)
         {
@@ -58,7 +59,7 @@ public class WaveManager : MonoBehaviour
 
         if (key)
         {
-            enemies=new List<GameObject>();
+            enemies = new List<GameObject>();
             Spawn();
         }
     }

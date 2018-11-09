@@ -89,7 +89,7 @@ namespace Al_AI.Scripts
                         if (Alarm)
                         {
                             FindPlayers();
-                            Debug.Log(target.name);
+                           
                             Alarm = false;
                         }
                         else if (distanceTP <= RadiusView && distanceTP > attackDistance)
@@ -106,8 +106,12 @@ namespace Al_AI.Scripts
                             
                             
                             {
-                                target = radio;
-                                State = EnemyState.Walk;
+                                if (radio != null)
+                                {
+                                    target = radio;
+                                    State = EnemyState.Walk;
+                                }
+                                
                             }
                         }
                     }

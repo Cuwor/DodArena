@@ -48,6 +48,7 @@ public class Dialog : MonoBehaviour {
                             MM.number = 0;
                             if(type == Gametype.Wave)
                             {
+                                Debug.Log("!!");
                                 OnStart += PUI.WhatType;
                                 gameObject.GetComponent<RadioScriptController>().OnDead += PUI.KakayaToFunxia;
 
