@@ -40,6 +40,7 @@ public class PlayerUI : MyTools, IHit, IPinChanged
     private bool lockMusicKey;
     public int maxScale;
     public int minScale;
+    private bool timelock;
 
     private Animator musicAnim;
     public Slider musickSlider;
@@ -58,7 +59,7 @@ public class PlayerUI : MyTools, IHit, IPinChanged
 
     [HideInInspector] public float scale;
 
-    public int stat;
+    public float stat;
 
     public Text[] statistics;
     public GameObject ReturnButton;
@@ -109,14 +110,16 @@ public class PlayerUI : MyTools, IHit, IPinChanged
 
     public void WhatType()
     {
-        if (type == Gametype.Wave)
+        if (type == Gametype.Timer)
         {
-            
+            SurvaivalKey=true;
+            timelock = true;
         }
     }
 
     private void Start()
     {
+        timelock = true;
         foreach (var c in statistics) c.gameObject.SetActive(false);
         pinPistolAnim = pinPistol.gameObject.GetComponent<Animator>();
         pinShotgunAnim = pinShotgun.gameObject.GetComponent<Animator>();
@@ -143,13 +146,19 @@ public class PlayerUI : MyTools, IHit, IPinChanged
             if (!lockMusicKey) NextMusic();
         }
 
-        if (SurvaivalKey) StartCoroutine(Timer());
+        if (SurvaivalKey && timelock ) StartCoroutine(Timer());
     }
 
     public IEnumerator Timer()
     {
+        //hi!
+        Debug.Log("Gease");
+        timelock = false;
         yield return new WaitForSeconds(1);
+        
+        timelock = true;
         stat++;
+        
         displayMode.text = stat.ToString();
     }
 
@@ -279,14 +288,16 @@ public class PlayerUI : MyTools, IHit, IPinChanged
         statistics[0].text = "Счёт: " + gameObject.GetComponent<SinglePlayerController>().candyCount.text;
         statistics[0].gameObject.SetActive(true);
         ReturnButton.SetActive(true);
+        if(ReturnButton)
 
         if (type == Gametype.Wave)
         {
             statistics[1].text = "Количество волн: " + displayMode.text;
             statistics[1].gameObject.SetActive(true);
         }
-        else if (type == Gametype.Wave)
+        else if (type == Gametype.Timer)
         {
+            SurvaivalKey = false;
             statistics[2].text = "Время: " + displayMode.text;
             statistics[2].gameObject.SetActive(true);
         }
