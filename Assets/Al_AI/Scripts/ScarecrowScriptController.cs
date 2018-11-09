@@ -11,20 +11,23 @@ namespace Al_AI.Scripts
 
 		public override void Death()
 		{
-		
 			NavAgent.enabled = false;
 			_anim.enabled = true;
 			if (!IsNotPumkinHead)
 			{
-                PHSC.transform.parent.transform.parent = null;
-                PHSC.transform.localPosition = Vector3.zero;
+                Transform point = PHSC.transform.parent;
+                point.transform.parent = null;
+                point.transform.position = new Vector3(point.transform.position.x, point.transform.position.y - 1.8f, point.transform.position.z);
                 PHSC._anim.enabled = true;
                 PHSC._anim.SetTrigger("Go");
-                PHSC.OnScareCrow = false;
-                PHSC.transform.position = new Vector3(PHSC.transform.position.x, 0, PHSC.transform.position.z); ;
+                PHSC.transform.localPosition = Vector3.zero;
+                PHSC.transform.localRotation = new Quaternion(0, 0,0, 0);
+                PHSC.transform.Rotate(-90, 0, 0);
                 PHSC.SCSC = null;
-			}
-			_anim.SetTrigger("Dead");
+                PHSC.NavAgent.enabled = true;
+                PHSC.OnScareCrow = false;
+            }
+            _anim.SetTrigger("Dead");
 			StartCoroutine(Drop());
 			StartCoroutine(Destroeded());
 		}
@@ -43,10 +46,10 @@ namespace Al_AI.Scripts
         {
             PHSC.gameObject.GetComponent<Rigidbody>().useGravity = false;
             PHSC.gameObject.GetComponent<Rigidbody>().isKinematic = false;
-            PHSC._anim.enabled = false;
             PHSC.NavAgent.enabled = false;
+            PHSC._anim.enabled = false;
+            PHSC.transform.localPosition = Vector3.zero;
         }
-
 	
 		void FixedUpdate () 
 		{

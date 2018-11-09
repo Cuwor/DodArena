@@ -12,7 +12,8 @@ namespace Al_AI.Scripts
 		void Start()
 		{
 			Initiolize();
-			NavAgent = transform.parent.GetComponent<NavMeshAgent>();
+            NavAgent = transform.parent.gameObject.GetComponent<NavMeshAgent>();
+            NavAgent.enabled = false;
 		}
 
 		public override void Death()
@@ -21,8 +22,7 @@ namespace Al_AI.Scripts
 			if (SCSC != null)
 			{
 				SCSC.IsNotPumkinHead = true;
-
-				SCSC._anim.enabled = false;
+                SCSC.Death();
 				SCSC.NavAgent.enabled = false;
 			}
 
