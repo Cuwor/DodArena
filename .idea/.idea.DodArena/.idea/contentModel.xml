@@ -13,6 +13,7 @@
             <e p="Monster.cs" t="Include" />
             <e p="ObstacleScript.cs" t="Include" />
             <e p="PumpcinheadScriptController.cs" t="Include" />
+            <e p="RadioScriptController.cs" t="Include" />
             <e p="ScarecrowScriptController.cs" t="Include" />
             <e p="SceletonScriptController.cs" t="Include" />
             <e p="Scripts_from_other_projects" t="Include">

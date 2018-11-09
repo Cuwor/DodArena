@@ -1,23 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Ammunition : MonoBehaviour
 {
+    public short count;
+    [Range(0, 10)] public float defaultDistance;
+    private float distance;
+    public IHaveWeapons haveWeapons;
+    [HideInInspector] public bool MagnettoBonus;
+    private Vector3 moveVector;
 
-    [Range(0, 10)]
-    public float speed;
-    [Range(0, 10)]
-    public float defaultDistance;
     [Header("Звук во время поднятия предмета")]
     public AudioClip sound;
-    public short count;
+
+    [Range(0, 10)] public float speed;
     public GameObject target;
-    private Vector3 moveVector;
     public WeaponType weaponType;
-    public IHaveWeapons haveWeapons;
-    [HideInInspector]public bool MagnettoBonus = false;
-    private float distance;
 
     //Update is called once per frame//
     private void FixedUpdate()
@@ -33,11 +30,11 @@ public class Ammunition : MonoBehaviour
     private void MoveToTarget()
     {
         moveVector = target.transform.position - transform.position;
-        float step = Vector3.Magnitude(moveVector.normalized * speed);
+        var step = Vector3.Magnitude(moveVector.normalized * speed);
         distance = Vector3.Distance(transform.position, target.transform.position);
         DistanceGet(MagnettoBonus, step);
-        
     }
+
     private void DistanceGet(bool bon, float step)
     {
         if (bon)
@@ -49,8 +46,8 @@ public class Ammunition : MonoBehaviour
             else
             {
                 transform.position = target.transform.position;
-                      Adder();
-                
+                Adder();
+                Destroy(gameObject);
             }
         }
         else
@@ -68,7 +65,6 @@ public class Ammunition : MonoBehaviour
                     Destroy(gameObject);
                 }
             }
-            
         }
     }
 
@@ -79,6 +75,6 @@ public class Ammunition : MonoBehaviour
 
     public virtual void Adder()
     {
-        haveWeapons.AddAmmos(weaponType,count, sound);
+        haveWeapons.AddAmmos(weaponType, count, sound);
     }
 }

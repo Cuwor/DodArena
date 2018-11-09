@@ -2245,11 +2245,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b798fec46f3174399b7408aa56550fe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bonusType: 2
+  defaultDistance: 4
+  Duration: 25.7
+  MagnettoBonus: 0
+  sound: {fileID: 0}
   speed: 1
   target: {fileID: 0}
-  Duration: 12.9
-  bonusType: 2
-  MagnettoBonus: 0
 --- !u!1 &2004732799
 GameObject:
   m_ObjectHideFlags: 0

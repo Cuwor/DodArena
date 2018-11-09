@@ -1,22 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Boo.Lang;
-using UnityEngine;
-using UnityEngine.Serialization;
+﻿using UnityEngine;
 
 public class BonusUp : MonoBehaviour
 {
+    public BonusType bonusType;
+
+    [Range(0, 10)] public float defaultDistance;
+
+    private float distance;
+    [Range(0, 100)] public float Duration;
+    public IHaveBonus haveBonus;
+    [HideInInspector] public bool MagnettoBonus;
+    private Vector3 moveVector;
+    public AudioClip sound;
     [Range(0, 10)] public float speed;
     public GameObject target;
-    [Range(0, 10)]
-    public float defaultDistance;
-    [Range(0, 100)] public float Duration;
-    public AudioClip sound;
-    private Vector3 moveVector;
-    public BonusType bonusType;
-    public IHaveBonus haveBonus;
-    [HideInInspector] public bool MagnettoBonus = false;
-    private float distance;
 
     //Update is called once per frame
     private void FixedUpdate()
@@ -32,7 +29,7 @@ public class BonusUp : MonoBehaviour
     private void MoveToTarget()
     {
         moveVector = target.transform.position - transform.position;
-        float step = Vector3.Magnitude(moveVector.normalized * speed);
+        var step = Vector3.Magnitude(moveVector.normalized * speed);
         distance = Vector3.Distance(transform.position, target.transform.position);
         DistanceGet(MagnettoBonus, step);
     }
