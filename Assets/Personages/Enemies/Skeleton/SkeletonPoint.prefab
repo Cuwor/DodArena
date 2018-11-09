@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4675800912064768}
   - component: {fileID: 33120189401048248}
   - component: {fileID: 23921903931495152}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HandL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4122676921550614}
   - component: {fileID: 33795417074071752}
   - component: {fileID: 23237423578556634}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spine003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4208523678092430}
   - component: {fileID: 33138778387127784}
   - component: {fileID: 23614107609090018}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin000-003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 4835820392262092}
   - component: {fileID: 33187797813383840}
   - component: {fileID: 23953445236919258}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin003-0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 4570523851986372}
   - component: {fileID: 33325172777595090}
   - component: {fileID: 23539727654257182}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 4947995368081128}
   - component: {fileID: 33390370583069712}
   - component: {fileID: 23925516870633138}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin004-0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 4301611395736390}
   - component: {fileID: 33430664394694780}
   - component: {fileID: 23288410881673782}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin004-004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 4506701255114392}
   - component: {fileID: 33390159944521114}
   - component: {fileID: 23538250765014206}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FootR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 33169032693859000}
   - component: {fileID: 135086327302624332}
   - component: {fileID: 114738835606073716}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Attack2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 4260531857875016}
   - component: {fileID: 33441561870671586}
   - component: {fileID: 23220477949993994}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin002-0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 4608715713682956}
   - component: {fileID: 33660289207149486}
   - component: {fileID: 23076387217319994}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin002-004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 4660262035980658}
   - component: {fileID: 33712888077993814}
   - component: {fileID: 23596547371449520}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin009
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 4297287943331028}
   - component: {fileID: 33250601868130786}
   - component: {fileID: 23745178401821450}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 4646041258940620}
   - component: {fileID: 33301126461294920}
   - component: {fileID: 23908220816955200}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin004-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 4599850041601160}
   - component: {fileID: 33179043922514814}
   - component: {fileID: 23651918705142796}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -277,7 +277,7 @@ GameObject:
   - component: {fileID: 4024246646716950}
   - component: {fileID: 33027837724977332}
   - component: {fileID: 23528006384991952}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin002-003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ GameObject:
   - component: {fileID: 4099784003779272}
   - component: {fileID: 33208745478010040}
   - component: {fileID: 23519656970901060}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Jaw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -311,7 +311,7 @@ GameObject:
   - component: {fileID: 4235512010250320}
   - component: {fileID: 33636313538619144}
   - component: {fileID: 23897512665370182}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Neck003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -328,7 +328,7 @@ GameObject:
   - component: {fileID: 4912589689339512}
   - component: {fileID: 33970039430896736}
   - component: {fileID: 23493811539720258}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin003-004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 4907152743573662}
   - component: {fileID: 33141251769157710}
   - component: {fileID: 23026306674088458}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Ribs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -363,7 +363,7 @@ GameObject:
   - component: {fileID: 33289729376217822}
   - component: {fileID: 23307375990461062}
   - component: {fileID: 54206432861756776}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: UpperArmL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -380,7 +380,7 @@ GameObject:
   - component: {fileID: 4127050818370746}
   - component: {fileID: 33552809813835442}
   - component: {fileID: 23139040676457980}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin001-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -397,7 +397,7 @@ GameObject:
   - component: {fileID: 4409234145498420}
   - component: {fileID: 33958775283645634}
   - component: {fileID: 23543010679179280}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ThighR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -414,7 +414,7 @@ GameObject:
   - component: {fileID: 4804849677003324}
   - component: {fileID: 33108965734780776}
   - component: {fileID: 23224412698406980}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin003-005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -431,7 +431,7 @@ GameObject:
   - component: {fileID: 4645067855374710}
   - component: {fileID: 33307836100898828}
   - component: {fileID: 23265199109366026}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin008
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -448,7 +448,7 @@ GameObject:
   - component: {fileID: 4466238097757632}
   - component: {fileID: 33762835007908612}
   - component: {fileID: 23802091104290148}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin001-003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -465,7 +465,7 @@ GameObject:
   - component: {fileID: 4108417148641926}
   - component: {fileID: 33097907539180752}
   - component: {fileID: 23000409645830220}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Neck004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -482,7 +482,7 @@ GameObject:
   - component: {fileID: 4131626397398084}
   - component: {fileID: 33896714051546034}
   - component: {fileID: 23114772236280924}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Hip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -499,7 +499,7 @@ GameObject:
   - component: {fileID: 4251546561400198}
   - component: {fileID: 33777142853511600}
   - component: {fileID: 23559424371861968}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FootL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -516,7 +516,7 @@ GameObject:
   - component: {fileID: 4557585492910886}
   - component: {fileID: 33193063288279032}
   - component: {fileID: 23954887460442150}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin000
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -533,7 +533,7 @@ GameObject:
   - component: {fileID: 4316340905049884}
   - component: {fileID: 33728293389836768}
   - component: {fileID: 23842418019777630}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin004-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -550,7 +550,7 @@ GameObject:
   - component: {fileID: 4964885008239986}
   - component: {fileID: 33216487137509772}
   - component: {fileID: 23149133598824488}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spine001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -567,7 +567,7 @@ GameObject:
   - component: {fileID: 4536234228846020}
   - component: {fileID: 33473636054139100}
   - component: {fileID: 23539072317979226}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -584,7 +584,7 @@ GameObject:
   - component: {fileID: 4442681638391534}
   - component: {fileID: 33416604050906456}
   - component: {fileID: 23674853460455116}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin003-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -601,7 +601,7 @@ GameObject:
   - component: {fileID: 4039447279051870}
   - component: {fileID: 33669123060374582}
   - component: {fileID: 23252215189703986}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin004-005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -618,7 +618,7 @@ GameObject:
   - component: {fileID: 4679954334511050}
   - component: {fileID: 33026138075857478}
   - component: {fileID: 23560725319321350}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -635,7 +635,7 @@ GameObject:
   - component: {fileID: 4875670328895034}
   - component: {fileID: 33895635891509752}
   - component: {fileID: 23014928221688486}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -652,7 +652,7 @@ GameObject:
   - component: {fileID: 4076399210447644}
   - component: {fileID: 33503934631005494}
   - component: {fileID: 23045552124334950}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LowerArmL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -670,7 +670,7 @@ GameObject:
   - component: {fileID: 33596906928208598}
   - component: {fileID: 23282180209048952}
   - component: {fileID: 54740770351379430}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ThighL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -687,7 +687,7 @@ GameObject:
   - component: {fileID: 4300860785539784}
   - component: {fileID: 33707145934842470}
   - component: {fileID: 23398925736793466}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -705,7 +705,7 @@ GameObject:
   - component: {fileID: 33921983325550020}
   - component: {fileID: 23926947891219114}
   - component: {fileID: 54956807265808590}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: UpperArmR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -721,7 +721,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4931173033564818}
   - component: {fileID: 195257162400741332}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SkeletonPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -738,7 +738,7 @@ GameObject:
   - component: {fileID: 4326861447560134}
   - component: {fileID: 33851017674635648}
   - component: {fileID: 23275815539468440}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin001-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -755,7 +755,7 @@ GameObject:
   - component: {fileID: 4454670616266678}
   - component: {fileID: 33857555913109402}
   - component: {fileID: 23156074249391942}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin002-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -772,7 +772,7 @@ GameObject:
   - component: {fileID: 4251773444207814}
   - component: {fileID: 33841468877957284}
   - component: {fileID: 23941464455124954}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LowerArmR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -790,7 +790,7 @@ GameObject:
   - component: {fileID: 95959197535297756}
   - component: {fileID: 143573815325894810}
   - component: {fileID: 114241182474527184}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Skeleton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -807,7 +807,7 @@ GameObject:
   - component: {fileID: 4380597342979196}
   - component: {fileID: 33265807412095360}
   - component: {fileID: 23012567913409174}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin001-0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -824,7 +824,7 @@ GameObject:
   - component: {fileID: 4209931139778064}
   - component: {fileID: 33537429794182864}
   - component: {fileID: 23971011651713430}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -842,7 +842,7 @@ GameObject:
   - component: {fileID: 33205870098941180}
   - component: {fileID: 135476789924760242}
   - component: {fileID: 114640710083120698}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Attack0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -859,7 +859,7 @@ GameObject:
   - component: {fileID: 4690509478650562}
   - component: {fileID: 33737974794533472}
   - component: {fileID: 23965002635732006}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HandR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -876,7 +876,7 @@ GameObject:
   - component: {fileID: 4373981635675004}
   - component: {fileID: 33869835529522784}
   - component: {fileID: 23861011095583078}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spine002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -893,7 +893,7 @@ GameObject:
   - component: {fileID: 4224068347822578}
   - component: {fileID: 33212967467002536}
   - component: {fileID: 23518516894853570}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -910,7 +910,7 @@ GameObject:
   - component: {fileID: 4826081823650264}
   - component: {fileID: 33728644591779312}
   - component: {fileID: 23879440064785686}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin002-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -927,7 +927,7 @@ GameObject:
   - component: {fileID: 4743215578654514}
   - component: {fileID: 33192561248593070}
   - component: {fileID: 23949416979044466}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CalfR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -944,7 +944,7 @@ GameObject:
   - component: {fileID: 4732760626151086}
   - component: {fileID: 33329575614668570}
   - component: {fileID: 23229606823357772}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin004-003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -961,7 +961,7 @@ GameObject:
   - component: {fileID: 4863931388837638}
   - component: {fileID: 33764927538213354}
   - component: {fileID: 23531525537148982}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin002-005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -978,7 +978,7 @@ GameObject:
   - component: {fileID: 4309488617869946}
   - component: {fileID: 33189862560597840}
   - component: {fileID: 23914513940042662}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -996,7 +996,7 @@ GameObject:
   - component: {fileID: 33572841705677810}
   - component: {fileID: 136716345698218524}
   - component: {fileID: 114578019125607268}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Attack1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1013,7 +1013,7 @@ GameObject:
   - component: {fileID: 4897771820995796}
   - component: {fileID: 33534639719540776}
   - component: {fileID: 23475552738382754}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Neck001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1030,7 +1030,7 @@ GameObject:
   - component: {fileID: 4270121740494502}
   - component: {fileID: 33895733496081258}
   - component: {fileID: 23668952194494310}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin003-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1047,7 +1047,7 @@ GameObject:
   - component: {fileID: 4374698021064198}
   - component: {fileID: 33116235905577952}
   - component: {fileID: 23310106470387850}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Neck002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1064,7 +1064,7 @@ GameObject:
   - component: {fileID: 4301153871424630}
   - component: {fileID: 33133538889691010}
   - component: {fileID: 23410904851184480}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin000-002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1081,7 +1081,7 @@ GameObject:
   - component: {fileID: 4042080115208886}
   - component: {fileID: 33142862446873470}
   - component: {fileID: 23135722964728732}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin001-004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1098,7 +1098,7 @@ GameObject:
   - component: {fileID: 4579600141943666}
   - component: {fileID: 33465931699820152}
   - component: {fileID: 23548496088987322}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin000-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1115,7 +1115,7 @@ GameObject:
   - component: {fileID: 4372923179940546}
   - component: {fileID: 33697059142113118}
   - component: {fileID: 23909367353320734}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin001-005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1132,7 +1132,7 @@ GameObject:
   - component: {fileID: 4543514384458320}
   - component: {fileID: 33742447964904900}
   - component: {fileID: 23364463959776642}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin003-003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1149,7 +1149,7 @@ GameObject:
   - component: {fileID: 4203241187528012}
   - component: {fileID: 33317823799343660}
   - component: {fileID: 23899961371562810}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fin000-0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1166,7 +1166,7 @@ GameObject:
   - component: {fileID: 4882735785844672}
   - component: {fileID: 33154522137387506}
   - component: {fileID: 23490864589856992}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CalfL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2084,7 +2084,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1613375644243658}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.612816, y: -8.928892, z: 5.3785133}
+  m_LocalPosition: {x: 35.84, y: -8.928892, z: 12.139999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4013032226670262}

@@ -1820,6 +1820,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1924410798613338
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4501927053753218}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1925615535703814
 GameObject:
   m_ObjectHideFlags: 1
@@ -2596,6 +2611,20 @@ Transform:
   m_Father: {fileID: 4564010242198906}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4501927053753218
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1924410798613338}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 2.04, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4692011201167554}
+  m_Father: {fileID: 4978591420386686}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!4 &4535348955813904
 Transform:
   m_ObjectHideFlags: 1
@@ -2744,11 +2773,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1308925981074244}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 2.04, z: 0}
+  m_LocalRotation: {x: -0.00000011920923, y: -0.00000008692784, z: -0.00000004478101,
+    w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4978591420386686}
+  m_Father: {fileID: 4501927053753218}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!4 &4721381673364210
@@ -3066,7 +3096,7 @@ Transform:
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4692011201167554}
+  - {fileID: 4501927053753218}
   m_Father: {fileID: 4280990284203556}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5205,8 +5235,8 @@ MonoBehaviour:
   scale: 0
   tipText: {fileID: 114937207297401020}
   musickSlider: {fileID: 114080814713744974}
-  waveCount: {fileID: 114300736487945662}
-  time: {fileID: 114452597571079110}
+  displayMode: {fileID: 0}
+  stat: 0
   health: {fileID: 114090103673472526}
   crossline: {fileID: 1005414319420852}
   damagePanel: {fileID: 114332810440589694}
@@ -5228,6 +5258,7 @@ MonoBehaviour:
   pc: {fileID: 0}
   damagePanelAnim: {fileID: 0}
   deadPanel: {fileID: 95495515301860794}
+  SurvaivalKey: 0
 --- !u!114 &114739536885955972
 MonoBehaviour:
   m_ObjectHideFlags: 1
