@@ -42,7 +42,7 @@ namespace Al_AI.Scripts
             NavAgent.enabled = false;
             Invoke("SetPumkin", 1f);
         }
-		public virtual void Initiolize()
+		public override void Initiolize()
 		{
 			radio = GameObject.FindGameObjectWithTag("Radio");
 			WS = SceneManager.GetSceneByBuildIndex(3);

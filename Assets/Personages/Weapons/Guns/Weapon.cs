@@ -118,14 +118,14 @@ public class Weapon : MonoBehaviour
             {
                 ShootNowInvoke(true);
                 magazin -= 1;
-                PlayThisClip(sounds.shoot);
+                PlayThisClip(sound,sounds.shoot);
                 ready = false;
                 Invoke("ReadyAttack", pauseTime);
                 return true;
             }
             else
             {
-                PlayThisClip(sounds.noAmmo);
+                PlayThisClip(sound,sounds.noAmmo);
             }
         }
         return false;
@@ -146,7 +146,7 @@ public class Weapon : MonoBehaviour
     //}
 
 
-    private void PlayThisClip(AudioClip audioClip)
+    private void PlayThisClip(AudioSource sound,AudioClip audioClip)
     {
         if (sound.isPlaying)
         {
@@ -161,7 +161,7 @@ public class Weapon : MonoBehaviour
         if (ammo > 0 && magazin < maxAmmo && readyReload)
         {
             readyReload = false;
-            PlayThisClip(sounds.reload);
+            PlayThisClip(sound,sounds.reload);
             Invoke("ReadyReload", reloadTime);
             var x = maxAmmo - magazin;
             if (x < ammo)
@@ -177,7 +177,7 @@ public class Weapon : MonoBehaviour
         }
         else
         {
-            PlayThisClip(sounds.noAmmo);
+            PlayThisClip(sound,sounds.noAmmo);
         }
     }
 

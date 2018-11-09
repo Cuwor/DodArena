@@ -15,6 +15,16 @@ public abstract class MyTools : MonoBehaviour
 
         return false;
     }
+
+    protected void PlayThisClip(AudioSource sound, AudioClip audioClip)
+    {
+        if (sound.isPlaying)
+        {
+            sound.Stop();
+        }
+        sound.clip = audioClip;
+        sound.Play();
+    }
 }
 
 public interface IHaveWeapons
@@ -139,9 +149,12 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus,
     public bool death = false;
 
     private PlayerUI playerUI;
-    [Space(20)] [Header("Звук")] public AudioSource audioSource;
+    [Space(20)] [Header("Звук")]
+    public AudioSource audioSource;
+    public AudioSource audioSourceRun;
     public AudioClip damageClip;
     public AudioClip deadClip;
+    public AudioClip run;
 
     //private bool recoil;
     private bool reload;
@@ -171,6 +184,7 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus,
             c.SetActive(false);
         }
         Invoke("DrawAmmo",1f);
+        audioSourceRun.clip = run;
     }
 
     protected virtual void FixedUpdate()
@@ -206,21 +220,10 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus,
         {
             Health -= value;
             playerUI.ActiveDamagePanel();
-            PlayThisClip(damageClip);
+            PlayThisClip(audioSource,damageClip);
         }
     }
-
-    private void PlayThisClip(AudioClip audioClip)
-    {
-        if (audioSource.isPlaying)
-        {
-            audioSource.Stop();
-        }
-
-        audioSource.clip = audioClip;
-        audioSource.Play();
-    }
-
+    
     public void PlusHealth(float value)
     {
     }
@@ -229,7 +232,7 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus,
     {
         playerUI.deadPanel.SetTrigger("Death");
         playerUI.displayMode.gameObject.SetActive(false);
-        PlayThisClip(deadClip);
+        PlayThisClip(audioSource, deadClip);
         death = true;
         Invoke("Statisticks", 8f);
     }
@@ -311,10 +314,14 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus,
     {
         if (Input.GetKey(KeyCode.LeftShift))
         {
+            if (audioSourceRun.isPlaying == false)
+                audioSourceRun.Play();
             movementMultiplicator = 2;
         }
         else
         {
+            if (audioSourceRun.isPlaying)
+                audioSourceRun.Stop();
             movementMultiplicator = 1;
         }
     }
@@ -511,7 +518,7 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus,
 
     public void AddAmmos(WeaponType type, int qty, AudioClip clip)
     {
-        PlayThisClip(clip);
+        PlayThisClip(audioSource, clip);
         foreach (var wea in weapon)
         {
             if (wea.type == type)
@@ -525,7 +532,7 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus,
 
     public void AddBonus(BonusType type, AudioClip clip)
     {
-        PlayThisClip(clip);
+        PlayThisClip(audioSource, clip);
 
         if (type == BonusType.SpeedUp)
         {
@@ -551,7 +558,7 @@ public class SinglePlayerController : MyTools, IAlive, IHaveWeapons, IHaveBonus,
 
     public void AddCandy(Candy type, AudioClip clip)
     {
-        PlayThisClip(clip);
+        PlayThisClip(audioSource, clip);
 
         switch (type)
         {

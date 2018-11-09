@@ -45,8 +45,6 @@ namespace Al_AI.Scripts
         [HideInInspector]
         public GameObject unionTarget;
 
-        public AudioClip[] Moves;
-
         public float distanceUT;
 
         public GameObject Eidolon;
@@ -65,11 +63,6 @@ namespace Al_AI.Scripts
         private const int qtyEidolons = 4;
 
         public List<Slice_Script_Controller> Brothers;
-
-        public void MoveAudioChoose(int audio)
-        {
-
-        }
 
         public override float DistanceTP
         {
@@ -220,15 +213,18 @@ namespace Al_AI.Scripts
                         break;
 
                     case EnemyState.Walk:
+                        PlayThisClip(audioSource, Moves[1]);
                         CaseMethod(true, 0, 1, 0, target.transform.position);
                         break;
 
                     case EnemyState.Attack:
                         GetAttackDistance();
+                        PlayThisClip(audioSource, Moves[0]);
                         CaseMethod(false, 0, 0, attackType, target.transform.position);
                         break;
 
                     case EnemyState.Spec:
+                        PlayThisClip(audioSource, Moves[1]);
                         CaseMethod(true, 0, 1, 0, unionTarget.transform.position);
                         break;
                 }

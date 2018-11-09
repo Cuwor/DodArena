@@ -91,7 +91,8 @@ namespace Al_AI.Scripts
 
 		protected override IEnumerator Destroeded()
 		{
-			yield return new WaitForSeconds(2);
+            PlayThisClip(audioSource, Moves[2]);
+            yield return new WaitForSeconds(2);
 			Destroy(transform.parent.gameObject);
 		}
 	

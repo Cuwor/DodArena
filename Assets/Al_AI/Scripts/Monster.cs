@@ -21,6 +21,8 @@ namespace Al_AI.Scripts
         public GameObject radio;
         public bool Alarm;
 
+        public AudioClip[] Moves;
+        public AudioSource audioSource;
 
         [Space(20)] public NavMeshAgent NavAgent;
         [Range(1, 30)] public float RadiusAttack = 5;
@@ -175,11 +177,13 @@ namespace Al_AI.Scripts
                         break;
 
                     case EnemyState.Walk:
+                        PlayThisClip(audioSource, Moves[1]);
                         CaseMethod(true, 0, 1, 0, target.transform.position);
                         break;
 
                     case EnemyState.Attack:
                         GetAttackDistance();
+                        PlayThisClip(audioSource, Moves[0]);
                         CaseMethod(false, 0, 0, attackType, target.transform.position);
                         break;
                 }

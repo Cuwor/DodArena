@@ -25,7 +25,7 @@ namespace Al_AI.Scripts
 				transform.Rotate(-90,0,0);
 			}
 		}
-		public virtual void Initiolize()
+		public override void Initiolize()
 		{
 			radio = GameObject.FindGameObjectWithTag("Radio");
 			WS = SceneManager.GetSceneByBuildIndex(3);

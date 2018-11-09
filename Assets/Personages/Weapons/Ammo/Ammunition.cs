@@ -39,32 +39,29 @@ public class Ammunition : MonoBehaviour
     {
         if (bon)
         {
-            if (step < distance)
-            {
-                transform.position += moveVector.normalized * speed;
-            }
-            else
-            {
-                transform.position = target.transform.position;
-                Adder();
-                Destroy(gameObject);
-            }
+            TranslateToPlayer(step);
         }
         else
         {
             if (distance <= defaultDistance)
             {
-                if (step < distance)
-                {
-                    transform.position += moveVector.normalized * speed;
-                }
-                else
-                {
-                    transform.position = target.transform.position;
-                    Adder();
-                    Destroy(gameObject);
-                }
+                TranslateToPlayer(step);
             }
+        }
+
+    }
+
+    private void TranslateToPlayer(float step)
+    {
+        if (step < distance)
+        {
+            transform.position += moveVector.normalized * speed;
+        }
+        else
+        {
+            transform.position = target.transform.position;
+            Adder();
+            Destroy(gameObject);
         }
     }
 
