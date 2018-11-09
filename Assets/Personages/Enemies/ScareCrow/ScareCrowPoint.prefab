@@ -5275,7 +5275,7 @@ MonoBehaviour:
   NavAgent: {fileID: 0}
   RadiusAttack: 6
   RadiusView: 50
-  HP: 100
+  HP: 200
   AttackForce: 20
   _anim: {fileID: 0}
   AttackAreas:

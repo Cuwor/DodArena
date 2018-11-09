@@ -23,7 +23,7 @@ namespace Al_AI.Scripts
         [Space(20)] public NavMeshAgent NavAgent;
         [Range(1, 30)] public float RadiusAttack = 5;
         [Range(1, 100)] public float RadiusView = 15;
-        [Range(0, 100)] public float HP = 100;
+        [Range(0, 200)] public float HP;
         [Range(0, 50)] public float AttackForce = 20;
         [HideInInspector] public Animator _anim;
 

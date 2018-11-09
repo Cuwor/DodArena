@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 namespace Al_AI.Scripts
 {
@@ -12,8 +14,33 @@ namespace Al_AI.Scripts
 		void Start()
 		{
 			Initiolize();
-            NavAgent = transform.parent.gameObject.GetComponent<NavMeshAgent>();
+            
             NavAgent.enabled = false;
+		}
+		public virtual void Initiolize()
+		{
+			radio = GameObject.FindGameObjectWithTag("Radio");
+			WS = SceneManager.GetSceneByBuildIndex(3);
+			TS = SceneManager.GetSceneByBuildIndex(4);
+			FindPlayers();
+			gameObject.AddComponent<Rigidbody>().isKinematic = true;
+			NavAgent = transform.parent.gameObject.GetComponent<NavMeshAgent>();
+			_anim = GetComponent<Animator>();
+			maxHP = Health;
+			alive = true;
+			wait = false;
+			for (int i = 0; i < AttackAreas.Length; i++)
+			{
+				AttackArea proj;
+				if (MyGetComponent(out proj, AttackAreas[i]))
+				{
+					proj.Damage = AttackForce;
+				}
+			}
+			StopAttack();
+			State = EnemyState.Stay;
+			GetAttackDistance();
+			size = transform.localScale.x;
 		}
 
 		public override void Death()
@@ -35,54 +62,14 @@ namespace Al_AI.Scripts
 		{
 			if (alive && !OnScareCrow)
 			{
-				if (target != null)
-				{
-					distanceTP = Vector3.Distance(target.transform.position, transform.position);
-                    if (distanceTP <= RadiusView && distanceTP > attackDistance)
-                    {
-                        State = EnemyState.Walk;
-
-
-                    }
-                    else if (distanceTP <= attackDistance)
-                    {
-                        State = EnemyState.Attack;
-
-                    }
-                    else
-                    {
-                        State = EnemyState.Stay;
-                    }
-                }
-                else
-                {
-                    FindPlayers();
-                }
-
-                switch (State)
-					{
-						case EnemyState.Stay:
-							if (!wait)
-							{
-								wait = true;
-								CaseMethod(false, UnityEngine.Random.Range(-1, 1.1f), -1, 0, target.transform.position);
-								StartCoroutine(GetRandomStayState());
-							}
-
-							break;
-
-						case EnemyState.Walk:
-							CaseMethod(true, 0, 1, 0, target.transform.position);
-							break;
-
-						case EnemyState.Attack:
-							GetAttackDistance();
-							CaseMethod(false, 0, 0, attackType, target.transform.position);
-							break;
-
-
-					}
-				}
+				DistanceTP = Vector3.Distance(target.transform.position, transform.position);
 			}
+		}
+
+		protected override IEnumerator Destroeded()
+		{
+			yield return new WaitForSeconds(2);
+			Destroy(transform.parent.gameObject);
+		}
 		}
 	}

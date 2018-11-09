@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.AI;
 
@@ -37,10 +38,35 @@ namespace Al_AI.Scripts
 		void Start () 
 		{
             Initiolize();
-            NavAgent = transform.parent.GetComponent<NavMeshAgent>();
+            
             NavAgent.enabled = false;
             Invoke("SetPumkin", 1f);
         }
+		public virtual void Initiolize()
+		{
+			radio = GameObject.FindGameObjectWithTag("Radio");
+			WS = SceneManager.GetSceneByBuildIndex(3);
+			TS = SceneManager.GetSceneByBuildIndex(4);
+			FindPlayers();
+			gameObject.AddComponent<Rigidbody>().isKinematic = true;
+			NavAgent = transform.parent.GetComponent<NavMeshAgent>();
+			_anim = GetComponent<Animator>();
+			maxHP = Health;
+			alive = true;
+			wait = false;
+			for (int i = 0; i < AttackAreas.Length; i++)
+			{
+				AttackArea proj;
+				if (MyGetComponent(out proj, AttackAreas[i]))
+				{
+					proj.Damage = AttackForce;
+				}
+			}
+			StopAttack();
+			State = EnemyState.Stay;
+			GetAttackDistance();
+			size = transform.localScale.x;
+		}
 		
         public void SetPumkin()
         {
@@ -56,28 +82,6 @@ namespace Al_AI.Scripts
 			if (alive && !IsNotPumkinHead)
 			{
                 DistanceTP = Vector3.Distance(target.transform.position, transform.position);
-			
-				switch (State)
-				{
-					case EnemyState.Stay:
-						if (!wait)
-						{
-							wait = true;  CaseMethod(false, UnityEngine.Random.Range(-1, 1.1f), -1, 0, target.transform.position);
-							StartCoroutine(GetRandomStayState());
-						}
-						break;
-
-					case EnemyState.Walk:
-						CaseMethod(true, 0, 1, 0, target.transform.position);
-						break;
-
-					case EnemyState.Attack:
-						GetAttackDistance();
-						CaseMethod(false, 0, 0, attackType, target.transform.position);
-						break;
-
-				
-				}
 			}
 		
 		}
@@ -87,5 +91,11 @@ namespace Al_AI.Scripts
             attackType = UnityEngine.Random.Range(1, 3);
             attackDistance = attackType == 1 ? RadiusAttack + 2 : RadiusAttack;
         }
+		
+		protected override IEnumerator Destroeded()
+		{
+			yield return new WaitForSeconds(2);
+			Destroy(transform.parent.gameObject);
+		}
     }
 }
