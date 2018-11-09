@@ -1,20 +1,53 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    public GameObject PlayerUi;
     [SerializeField] private List<GameObject> _ui;
+    public bool pause = false;
 
     void Start()
     {
         ResetUi();
-        ToMenu();
+        
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            pause = !pause;
+            PauseOnOff();
+        }
+    }
+
+    private void PauseOnOff()
+    {
+        if (pause)
+        {
+            Time.timeScale = 0.001f;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            PlayerUi.SetActive(false);
+            ToMenu();  
+        }
+        else
+        {
+            Time.timeScale = 1;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            PlayerUi.SetActive(true);
+            ResetUi();
+        }
+        
+    }
     public void BackToTheGame()
     {
-        ResetUi();
+        pause = false;
+        PauseOnOff();
     }
 
     public void ToMenu()
@@ -31,7 +64,7 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitApp()
     {
-        Application.Quit();
+        SceneManager.LoadSceneAsync(0);
     }
 
 
